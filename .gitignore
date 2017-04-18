@@ -1,0 +1,44 @@
+### Entire paths and folders
+#Project/Externals
+#Docs
+.vs
+
+### Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+### Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+### Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+### Executables
+*.exe
+*.out
+*.app
+
+### Temporary compiled files
+*.tlog
+*.log
+*.lastbuildstate
+*.cache
+*.ilk
+
+### Databases
+*.idb
+*.pdb
+
+### Visual Studio
+*.sdf
+*.suo
+*.opensdf
+*.opendb
+*.vcxproj.user
+*.VC.db
+*.tmp
