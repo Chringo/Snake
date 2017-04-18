@@ -8,6 +8,7 @@ Amadeus/Externals
 *.lo
 *.o
 *.obj
+*.iobj
 
 ### Compiled Dynamic libraries
 *.so
@@ -33,6 +34,7 @@ Amadeus/Externals
 ### Databases
 *.idb
 *.pdb
+*.ipdb
 
 ### Visual Studio
 *.sdf
