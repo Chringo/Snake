@@ -6,5 +6,9 @@ class System
 public:
 	System();
 	~System();
+
+	int Init();
+	int Run();
+	int Shutdown();
 };
 #endif // AMADEUS_MAIN_SYSTEM_H_
