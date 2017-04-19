@@ -1,8 +1,12 @@
 #ifndef AMADEUS_MAIN_SYSTEM_H_
 #define AMADEUS_MAIN_SYSTEM_H_
 /// The format of the symbol name should be <SOLUTION>_<PROJECT>_<FILE>_H_
+#include <SFML\Graphics.hpp>
 class System
 {
+private:
+	sf::RenderWindow window;
+	sf::CircleShape shape;
 public:
 	System();
 	~System();
