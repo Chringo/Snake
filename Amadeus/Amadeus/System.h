@@ -5,8 +5,12 @@
 class System
 {
 private:
-	sf::RenderWindow window;
+	sf::RenderWindow m_window;
 	sf::CircleShape shape;
+	//sf::Clock dt;
+
+
+	void Render();
 public:
 	System();
 	~System();

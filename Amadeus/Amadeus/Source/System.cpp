@@ -1,11 +1,17 @@
 #include <Amadeus\System.h>
+System::System() {}
+System::~System() {}
 
-System::System(){}
-System::~System(){}
+void System::Render()
+{
+	m_window.clear();
+	m_window.draw(shape);
+	m_window.display();
+}
 
 int System::Init()
 {
-	window.create(sf::VideoMode(200, 200), "SFML");
+	m_window.create(sf::VideoMode(1280, 720), "TITLE"/*, sf::Style::None*/);
 	shape = sf::CircleShape(100.f);
 	shape.setFillColor(sf::Color::Green);
 	return 0;
@@ -13,18 +19,26 @@ int System::Init()
 
 int System::Run()
 {
-	while (window.isOpen())
+	while (m_window.isOpen())
 	{
-		sf::Event event;
-		while (window.pollEvent(event))
+		// Events triggered since last iteration
+		sf::Event e;
+		while (m_window.pollEvent(e))
 		{
-			if (event.type == sf::Event::Closed)
-				window.close();
+			switch (e.type)
+			{
+			case sf::Event::KeyPressed:
+				if (e.key.code != sf::Keyboard::Escape)// 36 = ESC
+				{
+					std::printf("%d", e.key.code);
+				}
+				// else close
+			case sf::Event::Closed:
+				m_window.close();
+				break;
+			}
 		}
-
-		window.clear();
-		window.draw(shape);
-		window.display();
+		Render();
 	}
 	return 0;
 }
