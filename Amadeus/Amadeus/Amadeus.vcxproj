@@ -23,11 +23,13 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\MapHolder.cpp" />
     <ClCompile Include="Source\System.cpp" />
+    <ClCompile Include="Source\Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="MapHolder.h" />
     <ClInclude Include="System.h" />
+    <ClInclude Include="Tile.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{FB11E115-DAE1-4B3F-991C-A1DD79A9613F}</ProjectGuid>
