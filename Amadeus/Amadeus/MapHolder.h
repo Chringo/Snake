@@ -1,7 +1,8 @@
 #ifndef AMADEUS_MAIN_MAPHOLDER_H_
 #define AMADEUS_MAIN_MAPHOLDER_H_
 #include <SFML\Graphics.hpp>
-class MapHolder : sf::Drawable
+#include <Amadeus\Tile.h>
+class MapHolder : public sf::Drawable
 {
 public:
 	MapHolder();
@@ -11,6 +12,7 @@ public:
 private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
-	//Tile *m_map;
+	Tile *m_map;
+	int m_numtiles;
 };
 #endif // AMADEUS_MAIN_MAPHOLDER_H_
