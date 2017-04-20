@@ -2,18 +2,13 @@
 System::System() {}
 System::~System() {}
 
-void System::Render()
-{
-	m_window.clear();
-	m_window.draw(shape);
-	m_window.display();
-}
-
 int System::Init()
 {
+	// TODO - Error cases
 	m_window.create(sf::VideoMode(1280, 720), "TITLE"/*, sf::Style::None*/);
-	shape = sf::CircleShape(100.f);
-	shape.setFillColor(sf::Color::Green);
+	m_game.Init();
+	// Restart clock to avoid a very high dt on the first frame
+	m_clock.restart();
 	return 0;
 }
 
@@ -28,16 +23,17 @@ int System::Run()
 			switch (e.type)
 			{
 			case sf::Event::KeyPressed:
+				// If escape was pressed go to next case and close window
 				if (e.key.code != sf::Keyboard::Escape)// 36 = ESC
 				{
 					std::printf("%d", e.key.code);
 				}
-				// else close
 			case sf::Event::Closed:
 				m_window.close();
 				break;
 			}
 		}
+		m_game.Update(e, m_clock.restart().asSeconds());
 		Render();
 	}
 	return 0;
@@ -46,4 +42,11 @@ int System::Run()
 int System::Shutdown()
 {
 	return 0;
+}
+
+void System::Render()
+{
+	m_window.clear();
+	m_window.draw(m_game);
+	m_window.display();
 }
