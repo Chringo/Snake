@@ -7,6 +7,7 @@ class System
 {
 /// Separate functions and variables, functions comes first.
 /// Order headers as followed; public, protected, and private.
+/// Member variables starts with <m_> and are lowercase.
 public:
 	System();
 	~System();
@@ -16,9 +17,16 @@ public:
 	int Shutdown();
 private:
 	void Render();
+	void PerformanceTests(const float lastframe);
 
 	sf::RenderWindow m_window;
 	sf::Clock m_clock;
+	// Performance tests
+	int m_numframes = 0;
+	float m_elapsedtime = 0;
+	float m_longestframe = 0;
+	float m_shortestframe = 100;
+
 	Game m_game;
 };
 #endif // AMADEUS_MAIN_SYSTEM_H_

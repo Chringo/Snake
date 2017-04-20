@@ -6,12 +6,13 @@ Game::~Game() {}
 int Game::Init()
 {
 	m_score = 0;
+	//m_backtexture.
 	return 0;
 }
 
 int Game::Update(const sf::Event &e, float dt)
 {
-	std::printf("%.6f\n", dt);
+	//std::printf("%.6f\n", dt);//TEST
 	return 0;
 }
 
@@ -32,7 +33,7 @@ void Game::HandleInput(const sf::Event &e)
 
 void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	sf::CircleShape shape(100.f);
+	sf::CircleShape shape(100.f);//TEST
 	shape.setFillColor(sf::Color::Green);
 	target.draw(shape, states);
 }
