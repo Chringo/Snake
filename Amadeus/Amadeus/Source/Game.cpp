@@ -72,8 +72,5 @@ void Game::HandleInput(const sf::Event &e)
 void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	//target.draw(m_backsprite, states);
-
-	sf::CircleShape shape(100.f);//TEST
-	shape.setFillColor(sf::Color::Green);
-	target.draw(shape, states);
+	target.draw(*m_mapholder, states);
 }
