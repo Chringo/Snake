@@ -67,5 +67,5 @@ void System::PerformanceTests(const float lastframe)
 	std::printf("%.6f\n", averageframe);
 	std::printf("%.6f\n", m_longestframe);
 	std::printf("%.6f\n", m_shortestframe);
-	system("cls");
+	system("cls");// Should avoid calls to system but it gets the job done...
 }

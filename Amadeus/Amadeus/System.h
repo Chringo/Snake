@@ -21,12 +21,13 @@ private:
 
 	sf::RenderWindow m_window;
 	sf::Clock m_clock;
+
+	Game m_game;
+
 	// Performance tests
 	int m_numframes = 0;
 	float m_elapsedtime = 0;
 	float m_longestframe = 0;
 	float m_shortestframe = 100;
-
-	Game m_game;
 };
 #endif // AMADEUS_MAIN_SYSTEM_H_

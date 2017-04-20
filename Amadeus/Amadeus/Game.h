@@ -1,6 +1,7 @@
 #ifndef AMADEUS_MAIN_GAME_H_
 #define AMADEUS_MAIN_GAME_H_
 #include <SFML\Graphics.hpp>
+#include <Amadeus\MapHolder.h>
 class Game : public sf::Drawable
 {
 public:
@@ -17,5 +18,9 @@ private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 	int m_score;
+	MapHolder *m_mapholder;
+
+	sf::Texture m_backtexture;
+	sf::Sprite m_backsprite;
 };
 #endif // AMADEUS_MAIN_GAME_H_
