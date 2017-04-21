@@ -2,6 +2,7 @@
 Game::Game()
 {
 	m_mapholder = nullptr;
+	m_itemholder = nullptr;
 }
 Game::~Game() {}
 
@@ -19,7 +20,7 @@ int Game::Init()
 	{
 		for (int w = 0; w < WIDTH; w++)
 		{
-			if(h == 0)
+			if (h == 0)
 				map[h * HEIGHT + w] = 1;
 			else if (h == HEIGHT - 1)
 				map[h * HEIGHT + w] = 1;
@@ -32,6 +33,24 @@ int Game::Init()
 		}
 	}
 	m_mapholder->Init(&map[0], HEIGHT, WIDTH);
+
+	m_itemholder = new ItemHolder();
+	m_itemholder->Init();
+	for (int i = 0; i < 7; i++)//TEST
+	{
+		sf::Vector2i temp = m_itemholder->getActiveItemPos();
+		map[temp.x * HEIGHT + temp.y] = 2;
+	}
+
+	//TEST - Print out potential collision map
+	for (int h = 0; h < HEIGHT; h++)//TEST
+	{
+		for (int w = 0; w < WIDTH; w++)
+		{
+			std::printf("%d ", map[h * HEIGHT + w]);
+		}
+		std::printf("\n");
+	}
 
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
@@ -57,6 +76,11 @@ void Game::Shutdown()
 		delete m_mapholder;
 		m_mapholder = nullptr;
 	}
+	if (m_itemholder)
+	{
+		delete m_itemholder;
+		m_itemholder = nullptr;
+	}
 }
 
 int Game::getHighScore() const
@@ -74,5 +98,6 @@ void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	//target.draw(m_backsprite, states);
 	if (m_mapholder)
 		target.draw(*m_mapholder, states);
-	//target.draw(*ItemHolder, states);
+	if (m_itemholder)
+		target.draw(*m_itemholder, states);
 }
