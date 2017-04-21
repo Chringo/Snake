@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Game.cpp" />
+    <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\ItemHolder.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\MapHolder.cpp" />
@@ -28,6 +29,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Item.h" />
     <ClInclude Include="ItemHolder.h" />
     <ClInclude Include="MapHolder.h" />
     <ClInclude Include="System.h" />
