@@ -1,15 +1,23 @@
 #include <Amadeus\ItemHolder.h>
-
 ItemHolder::ItemHolder()
 {
+	m_items = nullptr;
 }
 ItemHolder::~ItemHolder()
 {
+	Shutdown();
 }
 
 int ItemHolder::Init()
 {
-	// Initialise finite set of items
+	Shutdown();
+	m_activeitem = 0;
+	m_numitems = 7;
+	m_items = new Item[m_numitems];
+	for (int i = 0; i < m_numitems; i++)
+	{
+		m_items[i].Init(sf::Vector2i((3 * i) + 3, (3 * i) + 3), i + 1);
+	}
 	return 0;
 }
 
@@ -21,20 +29,33 @@ int ItemHolder::Respawn()
 	// Should we return something?
 	return 0;
 }
-
-sf::Vector2i ItemHolder::getPos() const
+/**
+*	Active item returns it's position on the grid map
+*/
+sf::Vector2i ItemHolder::getActiveItemPos() const
 {
-	// Return active item's position from list
-	return sf::Vector2i();
+	return m_items[m_activeitem].getGridPos();
 }
 
 int ItemHolder::getPoints() const
 {
-	// Return the active item's points 
-	return 0;
+	return m_items[m_activeitem].getPoints();
+}
+
+void ItemHolder::Shutdown()
+{
+	if (m_items)
+	{
+		delete[] m_items;
+		m_items = nullptr;
+	}
 }
 
 void ItemHolder::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	// Draw active item(s)
+	for (int i = 0; i < m_numitems; i++)
+	{
+		target.draw(m_items[i], states);
+	}
+	//target.draw(m_items[m_activeitem], states);
 }
