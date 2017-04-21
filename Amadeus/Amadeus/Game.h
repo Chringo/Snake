@@ -20,7 +20,7 @@ private:
 
 	int m_score;
 	MapHolder *m_mapholder;
-	ItemHolder *ItemHolder;
+	ItemHolder *m_itemholder;
 
 	sf::Texture m_backtexture;
 	sf::Sprite m_backsprite;
