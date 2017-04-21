@@ -2,6 +2,7 @@
 #define AMADEUS_MAIN_GAME_H_
 #include <SFML\Graphics.hpp>
 #include <Amadeus\MapHolder.h>
+#include <Amadeus\ItemHolder.h>
 class Game : public sf::Drawable
 {
 public:
@@ -19,6 +20,7 @@ private:
 
 	int m_score;
 	MapHolder *m_mapholder;
+	ItemHolder *ItemHolder;
 
 	sf::Texture m_backtexture;
 	sf::Sprite m_backsprite;

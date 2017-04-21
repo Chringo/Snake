@@ -4,7 +4,7 @@ Tile::~Tile() {}
 
 void Tile::Init(int type, int height, int width)
 {
-	float size = 30;
+	float size = 24;
 	shape = sf::RectangleShape(sf::Vector2f(size, size));
 	shape.setPosition(5 + height * (size + 1), 5 + width * (size + 1));
 	shape.setOutlineThickness(1);

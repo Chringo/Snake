@@ -1,6 +1,6 @@
 #include <Amadeus\Game.h>
 
-Game::Game() 
+Game::Game()
 {
 	m_mapholder = nullptr;
 }
@@ -12,26 +12,27 @@ int Game::Init()
 	m_mapholder = new MapHolder();
 
 	// TODO - Import map
-	// Generate map
-	const int MAPSIZE = 16;
-	int map[MAPSIZE*MAPSIZE];
-	for (int h = 0; h < MAPSIZE; h++)
+	// Generate map - Only quadratic map works for now
+	const int HEIGHT = 25;
+	const int WIDTH = HEIGHT;
+	int map[HEIGHT*WIDTH];
+	for (int h = 0; h < HEIGHT; h++)
 	{
-		for (int w = 0; w < MAPSIZE; w++)
+		for (int w = 0; w < WIDTH; w++)
 		{
 			if(h == 0)
-				map[h * MAPSIZE + w] = 1;
-			else if (h == MAPSIZE - 1)
-				map[h * MAPSIZE + w] = 1;
+				map[h * HEIGHT + w] = 1;
+			else if (h == HEIGHT - 1)
+				map[h * HEIGHT + w] = 1;
 			else if (w == 0)
-				map[h * MAPSIZE + w] = 1;
-			else if (w == MAPSIZE - 1)
-				map[h * MAPSIZE + w] = 1;
+				map[h * HEIGHT + w] = 1;
+			else if (w == WIDTH - 1)
+				map[h * HEIGHT + w] = 1;
 			else
-				map[h * MAPSIZE + w] = 0;
+				map[h * HEIGHT + w] = 0;
 		}
 	}
-	m_mapholder->Init(&map[0], MAPSIZE);
+	m_mapholder->Init(&map[0], HEIGHT, WIDTH);
 
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
@@ -72,5 +73,7 @@ void Game::HandleInput(const sf::Event &e)
 void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	//target.draw(m_backsprite, states);
-	target.draw(*m_mapholder, states);
+	if (m_mapholder)
+		target.draw(*m_mapholder, states);
+	//target.draw(*ItemHolder, states);
 }

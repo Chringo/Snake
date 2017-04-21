@@ -8,7 +8,7 @@ public:
 	MapHolder();
 	~MapHolder();
 
-	int Init(int *map, int size);
+	int Init(int *map, int height, int width);
 private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
