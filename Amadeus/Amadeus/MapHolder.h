@@ -10,6 +10,7 @@ public:
 
 	int Init(int *map, int height, int width);
 private:
+	void Shutdown();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 	Tile *m_map;

@@ -6,15 +6,12 @@ MapHolder::MapHolder()
 }
 MapHolder::~MapHolder()
 {
-	if (m_map)
-	{
-		delete[] m_map;
-		m_map = nullptr;
-	}
+	Shutdown();
 }
 
 int MapHolder::Init(int  *map, int height, int width)
 {
+	Shutdown();
 	m_numtiles = height * width;
 	//for (int h = 0; h < height; h++)//TEST
 	//{
@@ -33,6 +30,15 @@ int MapHolder::Init(int  *map, int height, int width)
 		}
 	}
 	return 0;
+}
+
+void MapHolder::Shutdown()
+{
+	if (m_map)
+	{
+		delete[] m_map;
+		m_map = nullptr;
+	}
 }
 
 void MapHolder::draw(sf::RenderTarget & target, sf::RenderStates states) const
