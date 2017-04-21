@@ -1,12 +1,9 @@
 #include <Amadeus\MapHolder.h>
-
 MapHolder::MapHolder()
 {
 	m_map = nullptr;
 	m_numtiles = 0;
 }
-
-
 MapHolder::~MapHolder()
 {
 	if (m_map)
@@ -19,14 +16,14 @@ MapHolder::~MapHolder()
 int MapHolder::Init(int  *map, int height, int width)
 {
 	m_numtiles = height * width;
-	for (int h = 0; h < height; h++)//TEST
-	{
-		for (int w = 0; w < width; w++)
-		{
-			std::printf("%d ", map[h * height + w]);
-		}
-		std::printf("\n");
-	}
+	//for (int h = 0; h < height; h++)//TEST
+	//{
+	//	for (int w = 0; w < width; w++)
+	//	{
+	//		std::printf("%d ", map[h * height + w]);
+	//	}
+	//	std::printf("\n");
+	//}
 	m_map = new Tile[m_numtiles];
 	for (int h = 0; h < height; h++)
 	{

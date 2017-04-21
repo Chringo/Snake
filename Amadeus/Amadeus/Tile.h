@@ -6,7 +6,9 @@ class Tile : public sf::Drawable
 public:
 	Tile();
 	~Tile();
+
 	void Init(int type, int height, int width);
+
 	bool isWall() const;
 private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;

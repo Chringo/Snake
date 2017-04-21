@@ -1,5 +1,4 @@
 #include <Amadeus\Game.h>
-
 Game::Game()
 {
 	m_mapholder = nullptr;
