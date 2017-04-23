@@ -14,7 +14,7 @@ public:
 	SnakePiece();
 	~SnakePiece();
 
-	void Init(sf::Vector2i gridpos, int type);
+	void Init(sf::Vector2i gridpos, Piece type);
 	void setType(Piece type);
 private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;

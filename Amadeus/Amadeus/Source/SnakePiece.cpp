@@ -6,7 +6,7 @@ SnakePiece::~SnakePiece()
 {
 }
 
-void SnakePiece::Init(sf::Vector2i gridpos, int type)
+void SnakePiece::Init(sf::Vector2i gridpos, Piece type)
 {
 	m_gridpos = gridpos;
 	m_type = Piece::Body;
