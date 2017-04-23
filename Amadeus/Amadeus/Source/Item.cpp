@@ -15,11 +15,6 @@ void Item::Init(sf::Vector2i gridpos, int points)
 	shape.setOutlineColor(sf::Color::Black);
 }
 
-sf::Vector2i Item::getGridPos() const
-{
-	return m_gridpos;
-}
-
 int Item::getPoints() const
 {
 	return m_points;

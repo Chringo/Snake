@@ -1,7 +1,7 @@
 #ifndef AMADEUS_MAIN_TILE_H_
 #define AMADEUS_MAIN_TILE_H_
-#include <SFML\Graphics.hpp>
-class Tile : public sf::Drawable
+#include <Amadeus\GridObject.h>
+class Tile : public GridObject
 {
 public:
 	Tile();
@@ -14,8 +14,6 @@ private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 	sf::RectangleShape shape;//TEST
-	sf::Texture m_texture;
-	sf::Sprite m_sprite;
 	bool m_iswall;
 };
 #endif // AMADEUS_MAIN_TILE_H_

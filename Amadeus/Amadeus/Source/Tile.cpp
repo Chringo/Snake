@@ -1,5 +1,8 @@
 #include <Amadeus\Tile.h>
-Tile::Tile() {}
+Tile::Tile() 
+{
+	m_iswall = false;
+}
 Tile::~Tile() {}
 
 void Tile::Init(int type, int height, int width)
@@ -19,6 +22,7 @@ void Tile::Init(int type, int height, int width)
 		shape.setFillColor(sf::Color(50, 0, 25));
 		m_iswall = true;
 	}
+	m_gridpos = sf::Vector2i(height, width);
 }
 
 bool Tile::isWall() const
