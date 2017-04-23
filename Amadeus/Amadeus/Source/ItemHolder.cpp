@@ -53,9 +53,9 @@ void ItemHolder::Shutdown()
 
 void ItemHolder::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	for (int i = 0; i < m_numitems; i++)
-	{
-		target.draw(m_items[i], states);
-	}
-	//target.draw(m_items[m_activeitem], states);
+	//for (int i = 0; i < m_numitems; i++)//TEST
+	//{
+	//	target.draw(m_items[i], states);
+	//}
+	target.draw(m_items[m_activeitem], states);
 }

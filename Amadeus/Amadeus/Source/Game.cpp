@@ -14,10 +14,10 @@ int Game::Init()
 
 	// TODO - Import map
 	// Generate map - Only quadratic map works for now
-	const int HEIGHT = 25;
+	const int HEIGHT = 15;
 	const int WIDTH = HEIGHT;
 	int map[HEIGHT*WIDTH];
-	for (int h = 0; h < HEIGHT; h++)
+	for (int h = 0; h < HEIGHT; h++)//TEST
 	{
 		for (int w = 0; w < WIDTH; w++)
 		{

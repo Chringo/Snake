@@ -11,7 +11,9 @@ SnakeHolder::~SnakeHolder()
 int SnakeHolder::Init(sf::Vector2i startpos)
 {
 	Shutdown();
-
+	m_snake = new Snake();
+	m_snake->Init(startpos);
+	return 0;
 }
 
 sf::Vector2i SnakeHolder::Move(int direction, int input)
@@ -30,5 +32,5 @@ void SnakeHolder::Shutdown()
 
 void SnakeHolder::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-
+	target.draw(*m_snake, states);
 }
