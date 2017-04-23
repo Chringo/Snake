@@ -3,6 +3,7 @@
 #include <SFML\Graphics.hpp>
 #include <Amadeus\MapHolder.h>
 #include <Amadeus\ItemHolder.h>
+#include <Amadeus\SnakeHolder.h>
 class Game : public sf::Drawable
 {
 public:
@@ -21,6 +22,7 @@ private:
 	int m_score;
 	MapHolder *m_mapholder;
 	ItemHolder *m_itemholder;
+	SnakeHolder *m_snakeholder;
 
 	sf::Texture m_backtexture;
 	sf::Sprite m_backsprite;

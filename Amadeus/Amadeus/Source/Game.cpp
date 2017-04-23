@@ -3,6 +3,7 @@ Game::Game()
 {
 	m_mapholder = nullptr;
 	m_itemholder = nullptr;
+	m_snakeholder = nullptr;
 }
 Game::~Game() {}
 
@@ -40,6 +41,13 @@ int Game::Init()
 	{
 		sf::Vector2i temp = m_itemholder->getActiveItemPos();
 		map[temp.x * HEIGHT + temp.y] = 2;
+	}
+
+	m_snakeholder = new SnakeHolder();
+	m_snakeholder->Init(sf::Vector2i((WIDTH / 2) + 1, HEIGHT / 2));
+	for (int i = 0; i < 4; i++)//TEST
+	{
+		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + 1 + i] = 3;
 	}
 
 	//TEST - Print out potential collision map
@@ -100,4 +108,6 @@ void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(*m_mapholder, states);
 	if (m_itemholder)
 		target.draw(*m_itemholder, states);
+	if (m_snakeholder)
+		target.draw(*m_snakeholder, states);
 }
