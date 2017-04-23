@@ -9,6 +9,8 @@ public:
 
 	sf::Vector2i getGridPos() const;
 protected:
+	void draw(sf::RenderTarget &target, sf::RenderStates states) const = 0;
+
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
 	sf::Vector2i m_gridpos;
