@@ -27,6 +27,7 @@
     <ClCompile Include="Source\MapHolder.cpp" />
     <ClCompile Include="Source\Snake.cpp" />
     <ClCompile Include="Source\SnakeHolder.cpp" />
+    <ClCompile Include="Source\SnakePiece.cpp" />
     <ClCompile Include="Source\System.cpp" />
     <ClCompile Include="Source\Tile.cpp" />
   </ItemGroup>
@@ -38,6 +39,7 @@
     <ClInclude Include="MapHolder.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="SnakeHolder.h" />
+    <ClInclude Include="SnakePiece.h" />
     <ClInclude Include="System.h" />
     <ClInclude Include="Tile.h" />
   </ItemGroup>
