@@ -8,7 +8,7 @@ public:
 	SnakeHolder();
 	~SnakeHolder();
 
-	void Init(sf::Vector2i startpos);
+	int Init(sf::Vector2i startpos);
 	sf::Vector2i Move(int direction, int input);
 private:
 	void Shutdown();

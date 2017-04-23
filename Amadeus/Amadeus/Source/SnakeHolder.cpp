@@ -8,7 +8,7 @@ SnakeHolder::~SnakeHolder()
 	Shutdown();
 }
 
-void SnakeHolder::Init(sf::Vector2i startpos)
+int SnakeHolder::Init(sf::Vector2i startpos)
 {
 	Shutdown();
 
