@@ -9,7 +9,7 @@ void Item::Init(sf::Vector2i gridpos, int points)
 
 	float size = 18;
 	shape = sf::CircleShape(size / 2);
-	shape.setPosition(5 + 3 + m_gridpos.x * 25, 5 + 3 + m_gridpos.y * 25);
+	shape.setPosition(5 + 3 + m_gridpos.x * 25.0f, 5 + 3 + m_gridpos.y * 25.0f);
 	shape.setFillColor(sf::Color((35 * m_points), (35 * m_points), 125));
 	shape.setOutlineThickness(2);
 	shape.setOutlineColor(sf::Color::Black);
