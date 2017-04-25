@@ -89,6 +89,11 @@ void Game::Shutdown()
 		delete m_itemholder;
 		m_itemholder = nullptr;
 	}
+	if (m_snakeholder)
+	{
+		delete m_snakeholder;
+		m_snakeholder = nullptr;
+	}
 }
 
 int Game::getHighScore() const
