@@ -10,7 +10,7 @@ public:
 		Head,
 		Tail
 	};
-
+	void operator=(const SnakePiece &orig);
 	SnakePiece();
 	~SnakePiece();
 

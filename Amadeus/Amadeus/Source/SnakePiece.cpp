@@ -6,6 +6,17 @@ SnakePiece::~SnakePiece()
 {
 }
 
+void SnakePiece::operator=(const SnakePiece &orig)
+{
+	//Init(orig.m_gridpos, orig.m_type);
+	this->m_gridpos = orig.m_gridpos;
+	this->m_type = orig.m_type;
+
+	this->shape = orig.shape;
+	this->m_texture = orig.m_texture;
+	this->m_sprite = orig.m_sprite;
+}
+
 void SnakePiece::Init(sf::Vector2i gridpos, Piece type)
 {
 	m_gridpos = gridpos;
