@@ -14,6 +14,7 @@ public:
 	SnakePiece();
 	~SnakePiece();
 
+
 	void Init(sf::Vector2i gridpos, Piece type);
 	void setType(Piece type);
 private:

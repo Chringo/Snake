@@ -17,7 +17,7 @@ private:
 	void Shutdown();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
-	std::vector<SnakePiece> m_pieces;
+	std::vector<SnakePiece*> m_pieces;
 	int m_numpieces;
 };
 #endif // AMADEUS_MAIN_SNAKE_H_
