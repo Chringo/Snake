@@ -7,6 +7,7 @@ public:
 	GridObject();
 	virtual ~GridObject();
 
+	void setGridPos(sf::Vector2i newpos);
 	sf::Vector2i getGridPos() const;
 protected:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const = 0;
