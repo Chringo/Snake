@@ -87,20 +87,23 @@ sf::Vector2i Snake::Move(int direction)
 	Swap(*m_front, *m_back);
 	return gp;
 }
-
+/**
+*	Swap the variables in the objects.
+*/
 void Snake::Swap(SnakePiece &current, SnakePiece &target)
 {
 	SnakePiece temp = target;
 	target = current;
 	current = temp;
-	sf::Vector2i test = current.getGridPos();//TEST
-	test.y++;
-	current.setGridPos(test);
-	test = target.getGridPos();//TEST
-	test.y++;
-	target.setGridPos(test);
-	current.Test();
-	target.Test();
+}
+/**
+*	Swap the addresses the pointers are pointing to.
+*/
+void Snake::Swap(SnakePiece *&current, SnakePiece *&target)
+{
+	SnakePiece *temp = target;
+	target = current;
+	current = temp;
 }
 
 void Snake::Shutdown()

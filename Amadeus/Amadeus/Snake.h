@@ -16,6 +16,7 @@ public:
 	sf::Vector2i Move(int direction);
 private:
 	void Swap(SnakePiece &current, SnakePiece &target);
+	void Swap(SnakePiece *&current, SnakePiece *&target);
 	void Shutdown();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
