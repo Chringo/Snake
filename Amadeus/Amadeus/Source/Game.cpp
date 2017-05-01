@@ -15,9 +15,6 @@ int Game::Init()
 	m_mapholder = new MapHolder();
 	// TODO - Import map
 	// Generate map - Only quadratic map works for now
-	const int HEIGHT = 15;
-	const int WIDTH = HEIGHT;
-	int map[HEIGHT*WIDTH];
 	for (int h = 0; h < HEIGHT; h++)//TEST
 	{
 		for (int w = 0; w < WIDTH; w++)
@@ -46,7 +43,7 @@ int Game::Init()
 
 	m_snakeholder = new SnakeHolder();
 	m_snakeholder->Init(sf::Vector2i((WIDTH / 2) + 1, HEIGHT / 2));
-	for (int i = 0; i < 4; i++)//TEST
+	for (int i = 0; i < 6; i++)//TEST
 	{
 		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + 1 + i] = 3;
 	}
