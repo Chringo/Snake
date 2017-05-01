@@ -65,7 +65,7 @@ void Snake::Reset()
 
 sf::Vector2i Snake::Move(int direction)
 {
-	sf::Vector2i gp = m_pieces[0]->getGridPos();
+	sf::Vector2i gp = m_front->getGridPos();
 	switch (direction)
 	{
 	case 0://Up
