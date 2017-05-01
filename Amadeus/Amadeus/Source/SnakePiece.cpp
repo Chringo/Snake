@@ -21,10 +21,15 @@ void SnakePiece::Init(sf::Vector2i gridpos, Piece type)
 {
 	m_gridpos = gridpos;
 	m_type = Piece::Body;
-	float size = 20;
+	float size = m_size - 4;
 	shape = sf::CircleShape(size / 2, 4);
-	shape.setPosition(5 + 2 + m_gridpos.x * 25.0f, 5 + 2 + m_gridpos.y * 25.0f);
+	shape.setPosition(5 + 2 + m_gridpos.x * (m_size + 1), 5 + 2 + m_gridpos.y * (m_size + 1));
 	shape.setFillColor(sf::Color::Black);
+}
+
+void SnakePiece::Test()
+{
+	shape.setPosition(5 + 2 + m_gridpos.x * (m_size + 1), 5 + 2 + m_gridpos.y * (m_size + 1));
 }
 
 void SnakePiece::setType(Piece type)

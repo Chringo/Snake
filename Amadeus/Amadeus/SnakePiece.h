@@ -10,12 +10,13 @@ public:
 		Head,
 		Tail
 	};
-	void operator=(const SnakePiece &orig);
+
 	SnakePiece();
 	~SnakePiece();
 
-
+	void operator=(const SnakePiece &orig);
 	void Init(sf::Vector2i gridpos, Piece type);
+	void Test();
 	void setType(Piece type);
 private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
