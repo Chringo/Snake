@@ -4,6 +4,7 @@
 #include <Amadeus\MapHolder.h>
 #include <Amadeus\ItemHolder.h>
 #include <Amadeus\SnakeHolder.h>
+#include <Amadeus\CollisionHandler.h>
 class Game : public sf::Drawable
 {
 public:
@@ -23,6 +24,7 @@ private:
 	MapHolder *m_mapholder;
 	ItemHolder *m_itemholder;
 	SnakeHolder *m_snakeholder;
+	CollisionHandler *m_colhandler;
 
 	sf::Texture m_backtexture;
 	sf::Sprite m_backsprite;

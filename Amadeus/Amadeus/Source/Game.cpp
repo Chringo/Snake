@@ -1,9 +1,11 @@
 #include <Amadeus\Game.h>
 Game::Game()
 {
+	m_score = 0;
 	m_mapholder = nullptr;
 	m_itemholder = nullptr;
 	m_snakeholder = nullptr;
+	m_colhandler = nullptr;
 }
 Game::~Game() {}
 
@@ -11,7 +13,6 @@ int Game::Init()
 {
 	m_score = 0;
 	m_mapholder = new MapHolder();
-
 	// TODO - Import map
 	// Generate map - Only quadratic map works for now
 	const int HEIGHT = 15;

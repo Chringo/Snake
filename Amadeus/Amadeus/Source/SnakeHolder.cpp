@@ -18,7 +18,6 @@ int SnakeHolder::Init(sf::Vector2i startpos)
 
 sf::Vector2i SnakeHolder::Move(int direction, int input)
 {
-
 	return m_snake->Move(direction);
 }
 
