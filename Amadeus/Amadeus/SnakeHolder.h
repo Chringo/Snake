@@ -9,7 +9,7 @@ public:
 	~SnakeHolder();
 
 	int Init(sf::Vector2i startpos);
-	sf::Vector2i Move(int direction, int input);
+	Snake::MovedPieces Move(int direction, int input);
 private:
 	void Shutdown();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;

@@ -38,10 +38,10 @@ void Snake::Init(sf::Vector2i gridpos)
 void Snake::Increase(int amount)
 {
 	//TEST
-	sf::Vector2i gp = m_pieces.back()->getGridPos();
-	gp.x++;
-	m_pieces.push_back(new SnakePiece());
-	m_pieces.back()->Init(gp, SnakePiece::Body);
+	for (int i = m_backindex + 1; i < m_numpieces; i++)
+	{
+
+	}
 }
 
 void Snake::Decrease(int amount)
@@ -64,7 +64,7 @@ void Snake::Reset()
 	}
 }
 
-sf::Vector2i Snake::Move(int direction)
+Snake::MovedPieces Snake::Move(int direction)
 {
 	sf::Vector2i gp = m_front->getGridPos();
 	switch (direction)
@@ -85,6 +85,8 @@ sf::Vector2i Snake::Move(int direction)
 		gp = sf::Vector2i(0, 0);
 		break;
 	}
+	m_moved.mp_front = gp;
+	m_moved.mp_back = m_back->getGridPos();
 	m_back->setGridPos(gp);
 	m_back->Test();//TEST Update graphical position which is stored in SnakePiece and not GridObject
 	m_front = m_back;
@@ -93,7 +95,7 @@ sf::Vector2i Snake::Move(int direction)
 	else
 		m_backindex = m_numpieces - 1;
 	m_back = m_pieces[m_backindex];
-	return gp;
+	return m_moved;
 }
 /**
 *	Swap the variables in the objects.

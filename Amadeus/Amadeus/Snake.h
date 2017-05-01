@@ -6,6 +6,11 @@
 class Snake : public sf::Drawable
 {
 public:
+	struct MovedPieces
+	{
+		sf::Vector2i mp_front;
+		sf::Vector2i mp_back;
+	};
 	Snake();
 	~Snake();
 
@@ -13,7 +18,7 @@ public:
 	void Increase(int amount = 1);
 	void Decrease(int amount = 1);
 	void Reset();
-	sf::Vector2i Move(int direction);
+	MovedPieces Move(int direction);
 private:
 	void Swap(SnakePiece &current, SnakePiece &target);
 	void Swap(SnakePiece *&current, SnakePiece *&target);
@@ -26,5 +31,6 @@ private:
 	int m_backindex;
 	SnakePiece *m_front;
 	SnakePiece *m_back;
+	MovedPieces m_moved;
 };
 #endif // AMADEUS_MAIN_SNAKE_H_
