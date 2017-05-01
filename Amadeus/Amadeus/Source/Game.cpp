@@ -48,15 +48,6 @@ int Game::Init()
 		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + 1 + i] = 3;
 	}
 
-	//TEST - Print out potential collision map
-	for (int h = 0; h < HEIGHT; h++)//TEST
-	{
-		for (int w = 0; w < WIDTH; w++)
-		{
-			std::printf("%d ", map[h * HEIGHT + w]);
-		}
-		std::printf("\n");
-	}
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	//{
@@ -118,6 +109,19 @@ void Game::HandleInput(const sf::Event &e)
 		m_snakeholder->Move(3, 0);
 	}
 
+	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
+	{
+		system("cls");
+		//TEST - Print out potential collision map
+		for (int h = 0; h < HEIGHT; h++)//TEST
+		{
+			for (int w = 0; w < WIDTH; w++)
+			{
+				std::printf("%d ", map[h * HEIGHT + w]);
+			}
+			std::printf("\n");
+		}
+	}
 
 }
 
