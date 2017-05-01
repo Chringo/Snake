@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\CollisionHandler.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\GridObject.cpp" />
     <ClCompile Include="Source\Item.cpp" />
     <ClCompile Include="Source\ItemHolder.cpp" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\MapHolder.cpp" />
+    <ClCompile Include="Source\Notifier.cpp" />
     <ClCompile Include="Source\Snake.cpp" />
     <ClCompile Include="Source\SnakeHolder.cpp" />
     <ClCompile Include="Source\SnakePiece.cpp" />
@@ -32,11 +34,13 @@
     <ClCompile Include="Source\Tile.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CollisionHandler.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GridObject.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="ItemHolder.h" />
     <ClInclude Include="MapHolder.h" />
+    <ClInclude Include="Notifier.h" />
     <ClInclude Include="Snake.h" />
     <ClInclude Include="SnakeHolder.h" />
     <ClInclude Include="SnakePiece.h" />
