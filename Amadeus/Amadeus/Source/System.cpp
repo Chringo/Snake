@@ -28,6 +28,7 @@ int System::Run()
 				if (e.key.code != sf::Keyboard::Escape)// 36 = ESC
 				{
 					std::printf("%d", e.key.code);
+					m_game.HandleInput(e);
 					break;
 				}
 			case sf::Event::Closed:

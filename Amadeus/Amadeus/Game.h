@@ -13,10 +13,10 @@ public:
 	int Init();
 	int Update(const sf::Event &e, float dt);
 	void Shutdown();
+	void HandleInput(const sf::Event &e);
 
 	int getHighScore() const;
 private:
-	void HandleInput(const sf::Event &e);
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 	int m_score;
