@@ -23,6 +23,7 @@ private:
 	std::vector<SnakePiece*> m_pieces;
 	int m_numpieces;
 	int m_maxpieces;
+	int m_backindex;
 	SnakePiece *m_front;
 	SnakePiece *m_back;
 };

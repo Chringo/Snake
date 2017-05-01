@@ -30,8 +30,9 @@ void Snake::Init(sf::Vector2i gridpos)
 		m_pieces[i]->Init(gp, SnakePiece::Body);
 		gp.x++;
 	}
+	m_backindex = m_numpieces - 1;
 	m_front = m_pieces[0];
-	m_back = m_pieces[m_numpieces - 1];
+	m_back = m_pieces[m_backindex];
 }
 
 void Snake::Increase(int amount)
@@ -84,7 +85,12 @@ sf::Vector2i Snake::Move(int direction)
 		gp = sf::Vector2i(0, 0);
 		break;
 	}
-	Swap(*m_front, *m_back);
+	m_back->setGridPos(gp);
+	m_back->Test();
+	m_front = m_back;
+	m_backindex--;
+	m_back = m_pieces[m_backindex];
+	//m_front->Test();//Only back needs to get updated since we're only handling bodies for now
 	return gp;
 }
 /**
