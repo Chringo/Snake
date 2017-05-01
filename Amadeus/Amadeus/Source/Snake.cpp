@@ -53,7 +53,7 @@ void Snake::Reset()
 	{
 		m_maxpieces = 16;
 		m_numpieces = 4;
-		for (int i = m_pieces.size() - 1; i >= m_maxpieces; i--)
+		for (int i = (int)m_pieces.size() - 1; i >= m_maxpieces; i--)
 		{
 			delete m_pieces[i];
 		}
@@ -68,16 +68,16 @@ sf::Vector2i Snake::Move(int direction)
 	sf::Vector2i gp = m_front->getGridPos();
 	switch (direction)
 	{
-	case 0://Up
+	case 0://DOWN
 		gp.y++;
 		break;
-	case 1://Down
+	case 1://UP
 		gp.y--;
 		break;
-	case 2://Left
+	case 2://LEFT
 		gp.x--;
 		break;
-	case 3://Right
+	case 3://RIGHT
 		gp.x++;
 		break;
 	default://Failure

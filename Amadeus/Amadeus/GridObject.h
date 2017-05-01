@@ -13,8 +13,8 @@ protected:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const = 0;
 
 	const float m_size = 40.0f;
+	sf::Vector2i m_gridpos;
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
-	sf::Vector2i m_gridpos;
 };
 #endif // AMADEUS_MAIN_GRIDOBJECT_H_
