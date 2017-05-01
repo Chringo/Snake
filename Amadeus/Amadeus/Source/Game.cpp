@@ -94,19 +94,27 @@ void Game::HandleInput(const sf::Event &e)
 	// TODO - See if we even need "const sf::Event &e".
 	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
 	{
-		m_snakeholder->Move(0, 0);
+		Snake::MovedPieces a = m_snakeholder->Move(0, 0);
+		map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+		map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
 	{
-		m_snakeholder->Move(1, 0);
+		Snake::MovedPieces a = m_snakeholder->Move(1, 0);
+		map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+		map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
 	{
-		m_snakeholder->Move(2, 0);
+		Snake::MovedPieces a = m_snakeholder->Move(2, 0);
+		map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+		map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
 	{
-		m_snakeholder->Move(3, 0);
+		Snake::MovedPieces a = m_snakeholder->Move(3, 0);
+		map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+		map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
 	}
 
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
