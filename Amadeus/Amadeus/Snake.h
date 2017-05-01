@@ -22,5 +22,7 @@ private:
 	std::vector<SnakePiece*> m_pieces;
 	int m_numpieces;
 	int m_maxpieces;
+	SnakePiece *m_front;
+	SnakePiece *m_back;
 };
 #endif // AMADEUS_MAIN_SNAKE_H_

@@ -30,6 +30,8 @@ void Snake::Init(sf::Vector2i gridpos)
 		m_pieces[i]->Init(gp, SnakePiece::Body);
 		gp.x++;
 	}
+	m_front = m_pieces[0];
+	m_back = m_pieces[m_numpieces - 1];
 }
 
 void Snake::Increase(int amount)
@@ -82,7 +84,7 @@ sf::Vector2i Snake::Move(int direction)
 		gp = sf::Vector2i(0, 0);
 		break;
 	}
-	Swap(*m_pieces[1], *m_pieces[3]);
+	Swap(*m_front, *m_back);
 	return gp;
 }
 
