@@ -59,16 +59,6 @@ int Game::Init()
 		}
 		std::printf("\n");
 	}
-	m_snakeholder->Move(2, 0);
-	m_snakeholder->Move(2, 0);
-	m_snakeholder->Move(2, 0);
-	m_snakeholder->Move(0, 0);
-	m_snakeholder->Move(0, 0);
-	m_snakeholder->Move(2, 0);
-	m_snakeholder->Move(2, 0);
-	m_snakeholder->Move(2, 0);
-	m_snakeholder->Move(1, 0);
-	m_snakeholder->Move(1, 0);
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	//{
@@ -112,6 +102,24 @@ int Game::getHighScore() const
 
 void Game::HandleInput(const sf::Event &e)
 {
+	// TODO - See if we even need "const sf::Event &e".
+	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	{
+		m_snakeholder->Move(0, 0);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+	{
+		m_snakeholder->Move(1, 0);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+	{
+		m_snakeholder->Move(2, 0);
+	}
+	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+	{
+		m_snakeholder->Move(3, 0);
+	}
+
 
 }
 

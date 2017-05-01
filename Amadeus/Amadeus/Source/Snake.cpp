@@ -2,7 +2,7 @@
 Snake::Snake()
 {
 	m_maxpieces = 16;
-	m_numpieces = 4;
+	m_numpieces = 6;
 	for (int i = 0; i < m_maxpieces; i++)
 	{
 		m_pieces.push_back(new SnakePiece());
@@ -53,7 +53,7 @@ void Snake::Reset()
 	if (!m_pieces.empty())
 	{
 		m_maxpieces = 16;
-		m_numpieces = 4;
+		m_numpieces = 6;
 		for (int i = (int)m_pieces.size() - 1; i >= m_maxpieces; i--)
 		{
 			delete m_pieces[i];
