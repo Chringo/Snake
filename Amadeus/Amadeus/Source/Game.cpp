@@ -59,12 +59,16 @@ int Game::Init()
 		}
 		std::printf("\n");
 	}
-	//m_snakeholder->Move(0, 0);
-	//m_snakeholder->Move(1, 0);
 	m_snakeholder->Move(2, 0);
 	m_snakeholder->Move(2, 0);
 	m_snakeholder->Move(2, 0);
-	//m_snakeholder->Move(2, 0);
+	m_snakeholder->Move(0, 0);
+	m_snakeholder->Move(0, 0);
+	m_snakeholder->Move(2, 0);
+	m_snakeholder->Move(2, 0);
+	m_snakeholder->Move(2, 0);
+	m_snakeholder->Move(1, 0);
+	m_snakeholder->Move(1, 0);
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	//{

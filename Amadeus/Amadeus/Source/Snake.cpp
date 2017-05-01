@@ -86,11 +86,13 @@ sf::Vector2i Snake::Move(int direction)
 		break;
 	}
 	m_back->setGridPos(gp);
-	m_back->Test();
+	m_back->Test();//TEST Update graphical position which is stored in SnakePiece and not GridObject
 	m_front = m_back;
-	m_backindex--;
+	if (m_backindex > 0)
+		m_backindex--;
+	else
+		m_backindex = m_numpieces - 1;
 	m_back = m_pieces[m_backindex];
-	//m_front->Test();//Only back needs to get updated since we're only handling bodies for now
 	return gp;
 }
 /**
