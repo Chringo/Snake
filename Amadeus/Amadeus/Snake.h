@@ -13,11 +13,14 @@ public:
 	void Increase(int amount = 1);
 	void Decrease(int amount = 1);
 	void Reset();
+	sf::Vector2i Move(int direction);
 private:
+	void Swap(SnakePiece &current, SnakePiece &target);
 	void Shutdown();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 	std::vector<SnakePiece*> m_pieces;
 	int m_numpieces;
+	int m_maxpieces;
 };
 #endif // AMADEUS_MAIN_SNAKE_H_

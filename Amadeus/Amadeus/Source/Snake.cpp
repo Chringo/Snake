@@ -37,6 +37,46 @@ void Snake::Reset()
 {
 }
 
+sf::Vector2i Snake::Move(int direction)
+{
+	sf::Vector2i gp = m_pieces[0]->getGridPos();
+	switch (direction)
+	{
+	case 0://Up
+		gp.y++;
+		break;
+	case 1://Down
+		gp.y--;
+		break;
+	case 2://Left
+		gp.x--;
+		break;
+	case 3://Right
+		gp.x++;
+		break;
+	default://Failure
+		gp = sf::Vector2i(0, 0);
+		break;
+	}
+	Swap(*m_pieces[1], *m_pieces[3]);
+	return gp;
+}
+
+void Snake::Swap(SnakePiece &current, SnakePiece &target)
+{
+	SnakePiece temp = target;
+	target = current;
+	current = temp;
+	sf::Vector2i test = current.getGridPos();//TEST
+	test.y++;
+	current.setGridPos(test);
+	test = target.getGridPos();//TEST
+	test.y++;
+	target.setGridPos(test);
+	current.Test();
+	target.Test();
+}
+
 void Snake::Shutdown()
 {
 	// TODO - Replace Shutdown by allocating memory for future pieces of the snake.

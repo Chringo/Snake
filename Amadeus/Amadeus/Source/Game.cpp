@@ -59,7 +59,7 @@ int Game::Init()
 		}
 		std::printf("\n");
 	}
-
+	//m_snakeholder->Move(0, 1);
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	//{
