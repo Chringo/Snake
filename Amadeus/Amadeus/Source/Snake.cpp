@@ -1,20 +1,32 @@
 #include <Amadeus\Snake.h>
 Snake::Snake()
 {
+	m_maxpieces = 16;
+	m_numpieces = 4;
+	for (int i = 0; i < m_maxpieces; i++)
+	{
+		m_pieces.push_back(new SnakePiece());
+	}
 }
 Snake::~Snake()
 {
 	Shutdown();
+	if (!m_pieces.empty())
+	{
+		for (int i = 0; i < m_pieces.size(); i++)
+		{
+			delete m_pieces[i];
+		}
+		m_pieces.clear();
+	}
 }
 
 void Snake::Init(sf::Vector2i gridpos)
 {
-	Shutdown();
-	m_numpieces = 4;
+	Reset();
 	sf::Vector2i gp = gridpos;
 	for (int i = 0; i < m_numpieces; i++)
 	{
-		m_pieces.push_back(new SnakePiece());
 		m_pieces[i]->Init(gp, SnakePiece::Body);
 		gp.x++;
 	}
@@ -35,6 +47,18 @@ void Snake::Decrease(int amount)
 
 void Snake::Reset()
 {
+	if (!m_pieces.empty())
+	{
+		m_maxpieces = 16;
+		m_numpieces = 4;
+		for (int i = m_pieces.size() - 1; i >= m_maxpieces; i--)
+		{
+			delete m_pieces[i];
+		}
+		// TODO - Test for proper shrinkage
+		// m_pieces.size() == m_maxpieces 
+		m_pieces.shrink_to_fit();
+	}
 }
 
 sf::Vector2i Snake::Move(int direction)
@@ -79,15 +103,7 @@ void Snake::Swap(SnakePiece &current, SnakePiece &target)
 
 void Snake::Shutdown()
 {
-	// TODO - Replace Shutdown by allocating memory for future pieces of the snake.
-	if (!m_pieces.empty())
-	{
-		for (int i = 0; i < m_pieces.size(); i++)
-		{
-			delete m_pieces[i];
-		}
-		m_pieces.clear();
-	}
+	
 }
 
 void Snake::draw(sf::RenderTarget & target, sf::RenderStates states) const
