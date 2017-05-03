@@ -70,7 +70,11 @@ int Game::Init()
 int Game::Update(const sf::Event &e, float dt)
 {
 	//std::printf("%.6f\n", dt);//TEST
-
+	m_colhandler->UpdateItem(m_itemholder->getActiveItemPos());
+	if (m_notifier->getLost())
+	{
+		this->Init();
+	}
 	return 0;
 }
 
