@@ -97,24 +97,30 @@ void Game::HandleInput(const sf::Event &e)
 		switch (e.key.code)
 		{
 		case sf::Keyboard::S:
-			a = m_snakeholder->Move(0, 0);
+			a = m_snakeholder->Move(0);
 			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
 			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
 			break;
 		case sf::Keyboard::W:
-			a = m_snakeholder->Move(1, 0);
+			a = m_snakeholder->Move(1);
 			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
 			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
 			break;
 		case sf::Keyboard::A:
-			a = m_snakeholder->Move(2, 0);
+			a = m_snakeholder->Move(2);
 			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
 			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
 			break;
 		case sf::Keyboard::D:
-			a = m_snakeholder->Move(3, 0);
+			a = m_snakeholder->Move(3);
 			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
 			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
+			break;
+		case sf::Keyboard::Q://TEST
+			std::printf("\nTEST KEY Q\n");
+			a = m_snakeholder->Move(5);
+			map[a.mp_front.y * HEIGHT + a.mp_front.x] = -1;
+			map[a.mp_back.y * HEIGHT + a.mp_back.x] = -2;
 			break;
 		case sf::Keyboard::P:
 			system("cls");

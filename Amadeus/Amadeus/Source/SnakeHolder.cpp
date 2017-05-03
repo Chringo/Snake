@@ -16,9 +16,13 @@ int SnakeHolder::Init(sf::Vector2i startpos)
 	return 0;
 }
 
-Snake::MovedPieces SnakeHolder::Move(int direction, int input)
+Snake::MovedPieces SnakeHolder::Move(int input)
 {
-	return m_snake->Move(direction);
+	if (0 <= input && input <= 3)
+		m_direction = input;
+	else
+		m_direction = -1;
+	return m_snake->Move(m_direction);
 }
 
 void SnakeHolder::Shutdown()
