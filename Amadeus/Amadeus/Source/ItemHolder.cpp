@@ -11,12 +11,12 @@ ItemHolder::~ItemHolder()
 int ItemHolder::Init()
 {
 	Shutdown();
-	m_activeitem = 0;
+	m_activeitem = 1;
 	m_numitems = 7;
 	m_items = new Item[m_numitems];
 	for (int i = 0; i < m_numitems; i++)
 	{
-		m_items[i].Init(sf::Vector2i((3 * i) + 3, (3 * i) + 3), i + 1);
+		m_items[i].Init(sf::Vector2i((2 * i) + 1, (2 * i) + 1), i + 1);
 	}
 	return 0;
 }

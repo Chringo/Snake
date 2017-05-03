@@ -11,6 +11,7 @@ Game::~Game() {}
 
 int Game::Init()
 {
+	Shutdown();
 	m_score = 0;
 	m_mapholder = new MapHolder();
 	// TODO - Import map

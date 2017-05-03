@@ -29,7 +29,6 @@ int System::Run()
 				{
 					if (e.key.code == sf::Keyboard::F1)
 					{
-						m_game.Shutdown();
 						m_game.Init();
 					}
 					m_game.HandleInput(e);
