@@ -13,14 +13,6 @@ int MapHolder::Init(int  *map, int height, int width)
 {
 	Shutdown();
 	m_numtiles = height * width;
-	//for (int h = 0; h < height; h++)//TEST
-	//{
-	//	for (int w = 0; w < width; w++)
-	//	{
-	//		std::printf("%d ", map[h * height + w]);
-	//	}
-	//	std::printf("\n");
-	//}
 	m_map = new Tile[m_numtiles];
 	for (int h = 0; h < height; h++)
 	{

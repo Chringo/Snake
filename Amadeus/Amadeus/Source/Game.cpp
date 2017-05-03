@@ -14,6 +14,9 @@ int Game::Init()
 	m_score = 0;
 	m_mapholder = new MapHolder();
 	// TODO - Import map
+	const int HEIGHT = 4;
+	const int WIDTH = HEIGHT;
+	int map[HEIGHT * WIDTH];
 	// Generate map - Only quadratic map works for now
 	for (int h = 0; h < HEIGHT; h++)//TEST
 	{
@@ -31,7 +34,7 @@ int Game::Init()
 				map[h * HEIGHT + w] = 0;
 		}
 	}
-	m_mapholder->Init(&map[0], HEIGHT, WIDTH);
+	m_mapholder->Init(map, HEIGHT, WIDTH);
 
 	m_itemholder = new ItemHolder();
 	m_itemholder->Init();
@@ -92,57 +95,57 @@ void Game::HandleInput(const sf::Event &e)
 {
 	if (e.type == sf::Event::KeyPressed)
 	{
-		Snake::MovedPieces a;
-		switch (e.key.code)
-		{
-		case sf::Keyboard::S:
-			a = m_snakeholder->Move(0);
-			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
-			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
-			break;
-		case sf::Keyboard::W:
-			a = m_snakeholder->Move(1);
-			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
-			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
-			break;
-		case sf::Keyboard::A:
-			a = m_snakeholder->Move(2);
-			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
-			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
-			break;
-		case sf::Keyboard::D:
-			a = m_snakeholder->Move(3);
-			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
-			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
-			break;
-		case sf::Keyboard::Q://TEST
-			std::printf("\nTEST KEY Q\n");
-			// 5 is not valid input which results in error handling in Snake
-			a = m_snakeholder->Move(5);
-			map[a.mp_front.y * HEIGHT + a.mp_front.x] = -1;
-			map[a.mp_back.y * HEIGHT + a.mp_back.x] = -2;
-			break;
-		case sf::Keyboard::E://TEST
-			std::printf("\nTEST KEY E\n");
-			// Add a snake piece
-			m_snakeholder->Add();
-			break;
-		case sf::Keyboard::P://TEST
-			system("cls");
-			//TEST - Print out potential collision map
-			for (int h = 0; h < HEIGHT; h++)//TEST
-			{
-				for (int w = 0; w < WIDTH; w++)
-				{
-					std::printf("%d ", map[h * HEIGHT + w]);
-				}
-				std::printf("\n");
-			}
-			break;
-		default:
-			std::printf("%d", e.key.code);
-			break;
-		}
+		//Snake::MovedPieces a;
+		//switch (e.key.code)
+		//{
+		//case sf::Keyboard::S:
+		//	a = m_snakeholder->Move(0);
+		//	map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+		//	map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
+		//	break;
+		//case sf::Keyboard::W:
+		//	a = m_snakeholder->Move(1);
+		//	map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+		//	map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
+		//	break;
+		//case sf::Keyboard::A:
+		//	a = m_snakeholder->Move(2);
+		//	map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+		//	map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
+		//	break;
+		//case sf::Keyboard::D:
+		//	a = m_snakeholder->Move(3);
+		//	map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+		//	map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
+		//	break;
+		//case sf::Keyboard::Q://TEST
+		//	std::printf("\nTEST KEY Q\n");
+		//	// 5 is not valid input which results in error handling in Snake
+		//	a = m_snakeholder->Move(5);
+		//	map[a.mp_front.y * HEIGHT + a.mp_front.x] = -1;
+		//	map[a.mp_back.y * HEIGHT + a.mp_back.x] = -2;
+		//	break;
+		//case sf::Keyboard::E://TEST
+		//	std::printf("\nTEST KEY E\n");
+		//	// Add a snake piece
+		//	m_snakeholder->Add();
+		//	break;
+		//case sf::Keyboard::P://TEST
+		//	system("cls");
+		//	//TEST - Print out potential collision map
+		//	for (int h = 0; h < HEIGHT; h++)//TEST
+		//	{
+		//		for (int w = 0; w < WIDTH; w++)
+		//		{
+		//			std::printf("%d ", map[h * HEIGHT + w]);
+		//		}
+		//		std::printf("\n");
+		//	}
+		//	break;
+		//default:
+		//	std::printf("%d", e.key.code);
+		//	break;
+		//}
 	}
 }
 

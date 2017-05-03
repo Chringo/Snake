@@ -28,9 +28,5 @@ private:
 
 	sf::Texture m_backtexture;
 	sf::Sprite m_backsprite;
-
-	const int HEIGHT = 15;
-	const int WIDTH = HEIGHT;
-	int map[15 * 15];
 };
 #endif // AMADEUS_MAIN_GAME_H_
