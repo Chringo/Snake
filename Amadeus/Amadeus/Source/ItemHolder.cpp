@@ -36,6 +36,11 @@ int ItemHolder::Respawn()
 	// Might break responsibility of function
 	return 0;
 }
+int ItemHolder::UpdateScore()//TEST int for debug output
+{
+	m_currentscore += this->getPoints();
+	return m_currentscore;
+}
 /**
 *	Active item returns it's position on the grid map
 */

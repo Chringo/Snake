@@ -11,14 +11,16 @@ public:
 	int Init();
 	int Respawn();
 
+	int UpdateScore();
 	sf::Vector2i getActiveItemPos() const;
-	int getPoints() const;
 private:
+	int getPoints() const;
 	void Shutdown();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 	Item *m_items;
 	int m_activeitem;
 	int m_numitems;
+	int m_currentscore;
 };
 #endif // AMADEUS_MAIN_ITEMHOLDER_H_
