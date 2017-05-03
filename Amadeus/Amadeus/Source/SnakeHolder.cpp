@@ -25,6 +25,11 @@ Snake::MovedPieces SnakeHolder::Move(int input)
 	return m_snake->Move(m_direction);
 }
 
+void SnakeHolder::Add()
+{
+	m_snake->Increase();
+}
+
 void SnakeHolder::Shutdown()
 {
 	if (m_snake)

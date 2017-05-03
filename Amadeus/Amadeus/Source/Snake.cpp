@@ -2,7 +2,7 @@
 Snake::Snake()
 {
 	m_maxpieces = 16;
-	m_numpieces = 6;
+	m_numpieces = 4;
 	for (int i = 0; i < m_maxpieces; i++)
 	{
 		m_pieces.push_back(new SnakePiece());
@@ -37,11 +37,23 @@ void Snake::Init(sf::Vector2i gridpos)
 
 void Snake::Increase(int amount)
 {
-	//TEST
-	for (int i = m_backindex + 1; i < m_numpieces; i++)
+	if (m_numpieces == m_maxpieces)
 	{
-
+		m_maxpieces = m_maxpieces * 2;
+		for (int i = m_numpieces; i < m_maxpieces; i++)
+		{
+			m_pieces.push_back(new SnakePiece());
+		}
 	}
+	int i = m_numpieces;
+	for (i; i >  m_backindex + 1; i--)
+	{
+		Swap(m_pieces[i], m_pieces[i - 1]);
+	}
+	m_pieces[i]->Init(m_pieces[m_backindex]->getGridPos(), SnakePiece::Body);
+	m_backindex++;
+	m_back = m_pieces[m_backindex];
+	m_numpieces++;
 }
 
 void Snake::Decrease(int amount)
@@ -53,14 +65,13 @@ void Snake::Reset()
 	if (!m_pieces.empty())
 	{
 		m_maxpieces = 16;
-		m_numpieces = 6;
+		m_numpieces = 4;
 		for (int i = (int)m_pieces.size() - 1; i >= m_maxpieces; i--)
 		{
 			delete m_pieces[i];
+			m_pieces[i] = nullptr;
 		}
-		// TODO - Test for proper shrinkage
-		// m_pieces.size() == m_maxpieces 
-		m_pieces.shrink_to_fit();
+		m_pieces.resize(m_maxpieces);
 	}
 }
 

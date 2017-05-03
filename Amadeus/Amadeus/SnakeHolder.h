@@ -10,6 +10,7 @@ public:
 
 	int Init(sf::Vector2i startpos);
 	Snake::MovedPieces Move(int input);
+	void Add();
 private:
 	void Shutdown();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
