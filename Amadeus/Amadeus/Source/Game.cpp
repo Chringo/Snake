@@ -53,7 +53,9 @@ int Game::Init()
 	}
 
 	m_colhandler = new CollisionHandler();
-	m_colhandler->Init(map, HEIGHT, WIDTH);
+	m_notifier = new Notifier();
+	m_colhandler->Init(m_notifier, map, HEIGHT, WIDTH);
+
 
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
@@ -92,6 +94,11 @@ void Game::Shutdown()
 	{
 		delete m_colhandler;
 		m_colhandler = nullptr;
+	}
+	if (m_notifier)
+	{
+		delete m_notifier;
+		m_notifier = nullptr;
 	}
 }
 

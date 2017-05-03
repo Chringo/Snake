@@ -1,14 +1,16 @@
 #include <Amadeus\CollisionHandler.h>
 CollisionHandler::CollisionHandler()
 {
+	notif = nullptr;
 }
 CollisionHandler::~CollisionHandler()
 {
 }
 
-int CollisionHandler::Init(int * map, int height, int width)
+int CollisionHandler::Init(Notifier *notifier, int * map, int height, int width)
 {
 	Shutdown();
+	notif = notifier;
 	for (int h = 0; h < height; h++)
 	{
 		std::vector<int> row;
@@ -41,5 +43,6 @@ void CollisionHandler::Print() const
 
 void CollisionHandler::Shutdown()
 {
-
+	notif = nullptr;
+	m_colmap.clear();
 }
