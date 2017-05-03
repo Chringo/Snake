@@ -52,10 +52,11 @@ int Game::Init()
 		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + 1 + i] = 3;
 	}
 
-	m_colhandler = new CollisionHandler();
 	m_notifier = new Notifier();
-	m_colhandler->Init(m_notifier, map, HEIGHT, WIDTH);
+	m_notifier->Init(m_snakeholder, m_itemholder);
 
+	m_colhandler = new CollisionHandler();
+	m_colhandler->Init(m_notifier, map, HEIGHT, WIDTH);
 
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
