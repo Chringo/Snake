@@ -6,6 +6,8 @@
 class Snake : public sf::Drawable
 {
 public:
+/// Member variables of structs starts with <*_> and are lowercase.
+/// <*> represents the capital letters of the struct name.
 	struct MovedPieces
 	{
 		sf::Vector2i mp_front;

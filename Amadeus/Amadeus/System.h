@@ -1,5 +1,7 @@
 #ifndef AMADEUS_MAIN_SYSTEM_H_
 #define AMADEUS_MAIN_SYSTEM_H_
+/// Three slashes - /// - are dedicated to style guide references.
+/// The style guide is based upon Google's C++ Style Guide.
 /// The format of the symbol name should be <SOLUTION>_<PROJECT>_<FILE>_H_
 #include <SFML\Graphics.hpp>
 #include <Amadeus\Game.h>
