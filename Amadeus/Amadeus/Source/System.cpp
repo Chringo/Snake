@@ -27,6 +27,11 @@ int System::Run()
 				// If escape was pressed go to next case and close window
 				if (e.key.code != sf::Keyboard::Escape)// 36 = ESC
 				{
+					if (e.key.code == sf::Keyboard::F1)
+					{
+						m_game.Shutdown();
+						m_game.Init();
+					}
 					m_game.HandleInput(e);
 					break;
 				}
