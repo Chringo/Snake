@@ -60,7 +60,6 @@ int Game::Init()
 int Game::Update(const sf::Event &e, float dt)
 {
 	//std::printf("%.6f\n", dt);//TEST
-	//HandleInput(e);
 
 	return 0;
 }
@@ -118,11 +117,17 @@ void Game::HandleInput(const sf::Event &e)
 			break;
 		case sf::Keyboard::Q://TEST
 			std::printf("\nTEST KEY Q\n");
+			// 5 is not valid input which results in error handling in Snake
 			a = m_snakeholder->Move(5);
 			map[a.mp_front.y * HEIGHT + a.mp_front.x] = -1;
 			map[a.mp_back.y * HEIGHT + a.mp_back.x] = -2;
 			break;
-		case sf::Keyboard::P:
+		case sf::Keyboard::E://TEST
+			std::printf("\nTEST KEY E\n");
+			// Add a snake piece
+			m_snakeholder->Add();
+			break;
+		case sf::Keyboard::P://TEST
 			system("cls");
 			//TEST - Print out potential collision map
 			for (int h = 0; h < HEIGHT; h++)//TEST
