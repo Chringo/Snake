@@ -6,7 +6,11 @@ class CollisionHandler
 public:
 	CollisionHandler();
 	~CollisionHandler();
+
+	int Init(int *map, int height, int width);
 private:
-	std::vector<std::vector<int>> m_colmap;
+	void Shutdown();
+
+	std::vector< std::vector<int> > m_colmap;
 };
 #endif

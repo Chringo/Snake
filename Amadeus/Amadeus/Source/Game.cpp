@@ -14,7 +14,7 @@ int Game::Init()
 	m_score = 0;
 	m_mapholder = new MapHolder();
 	// TODO - Import map
-	const int HEIGHT = 4;
+	const int HEIGHT = 15;
 	const int WIDTH = HEIGHT;
 	int map[HEIGHT * WIDTH];
 	// Generate map - Only quadratic map works for now
@@ -51,6 +51,9 @@ int Game::Init()
 		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + 1 + i] = 3;
 	}
 
+	m_colhandler = new CollisionHandler();
+	m_colhandler->Init(map, HEIGHT, WIDTH);
+
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	//{
@@ -83,6 +86,11 @@ void Game::Shutdown()
 	{
 		delete m_snakeholder;
 		m_snakeholder = nullptr;
+	}
+	if (m_colhandler)
+	{
+		delete m_colhandler;
+		m_colhandler = nullptr;
 	}
 }
 
