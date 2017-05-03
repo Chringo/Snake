@@ -92,45 +92,47 @@ int Game::getHighScore() const
 void Game::HandleInput(const sf::Event &e)
 {
 	// TODO - See if we even need "const sf::Event &e".
-	if(sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+	if (e.type == sf::Event::KeyPressed)
 	{
-		Snake::MovedPieces a = m_snakeholder->Move(0, 0);
-		map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
-		map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
-	{
-		Snake::MovedPieces a = m_snakeholder->Move(1, 0);
-		map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
-		map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
-	{
-		Snake::MovedPieces a = m_snakeholder->Move(2, 0);
-		map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
-		map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
-	}
-	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
-	{
-		Snake::MovedPieces a = m_snakeholder->Move(3, 0);
-		map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
-		map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
-	}
-
-	if (sf::Keyboard::isKeyPressed(sf::Keyboard::P))
-	{
-		system("cls");
-		//TEST - Print out potential collision map
-		for (int h = 0; h < HEIGHT; h++)//TEST
+		Snake::MovedPieces a;
+		switch (e.key.code)
 		{
-			for (int w = 0; w < WIDTH; w++)
+		case sf::Keyboard::S:
+			a = m_snakeholder->Move(0, 0);
+			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
+			break;
+		case sf::Keyboard::W:
+			a = m_snakeholder->Move(1, 0);
+			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
+			break;
+		case sf::Keyboard::A:
+			a = m_snakeholder->Move(2, 0);
+			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
+			break;
+		case sf::Keyboard::D:
+			a = m_snakeholder->Move(3, 0);
+			map[a.mp_front.y * HEIGHT + a.mp_front.x] = 3;
+			map[a.mp_back.y * HEIGHT + a.mp_back.x] = 0;
+			break;
+		case sf::Keyboard::P:
+			system("cls");
+			//TEST - Print out potential collision map
+			for (int h = 0; h < HEIGHT; h++)//TEST
 			{
-				std::printf("%d ", map[h * HEIGHT + w]);
+				for (int w = 0; w < WIDTH; w++)
+				{
+					std::printf("%d ", map[h * HEIGHT + w]);
+				}
+				std::printf("\n");
 			}
-			std::printf("\n");
+			break;
+		default:
+			break;
 		}
 	}
-
 }
 
 void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
