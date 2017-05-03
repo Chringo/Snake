@@ -11,6 +11,7 @@ public:
 
 	int Init(Notifier *notifier, int *map, int height, int width);
 	void UpdateSnake(const sf::Vector2i front, const sf::Vector2i back);
+	void UpdateItem(const sf::Vector2i itemPos);
 
 	void Print() const;//TEST
 
