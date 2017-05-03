@@ -41,11 +41,7 @@ void CollisionHandler::UpdateSnake(const sf::Vector2i front, const sf::Vector2i 
 
 void CollisionHandler::UpdateItem(const sf::Vector2i pos)
 {
-	if (m_colmap[pos.y][pos.x] == 2)
-	{
-
-	}
-	else
+	if (m_colmap[pos.y][pos.x] != 2)
 	{
 		m_colmap[pos.y][pos.x] = 2;
 	}
