@@ -9,7 +9,11 @@ public:
 	~Notifier();
 
 	int Init(SnakeHolder *sh, ItemHolder *ih);
+	void Notify(int input);
+	bool getLost() const;
 private:
-
+	bool m_lost;
+	SnakeHolder *snakeholder;
+	ItemHolder *itemholder;
 };
 #endif
