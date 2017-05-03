@@ -25,6 +25,16 @@ int CollisionHandler::Init(Notifier *notifier, int * map, int height, int width)
 
 void CollisionHandler::UpdateSnake(const sf::Vector2i front, const sf::Vector2i back)
 {
+	if (m_colmap[front.y][front.x] == 1)
+	{
+		std::printf("GAME OVER");
+
+	}
+	else if (m_colmap[front.y][front.x] == 2)
+	{
+		std::printf("ADD PIECE");
+
+	}
 	m_colmap[front.y][front.x] = 3;
 	m_colmap[back.y][back.x] = 0;
 }
