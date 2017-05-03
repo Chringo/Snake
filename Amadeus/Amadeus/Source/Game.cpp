@@ -130,6 +130,10 @@ void Game::HandleInput(const sf::Event &e)
 			a = m_snakeholder->Move(3);
 			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
 			break;
+		case sf::Keyboard::Q://TEST
+			std::printf("\nE: RESPAWN ITEM\n");
+			m_itemholder->Respawn();
+			break;
 		case sf::Keyboard::E://TEST
 			std::printf("\nE: ADD PIECE\n");
 			// Add a snake piece

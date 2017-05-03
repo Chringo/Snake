@@ -24,9 +24,16 @@ int ItemHolder::Init()
 int ItemHolder::Respawn()
 {
 	// Remove current item
+	// TODO - Should we remove something?
+	// Move current item
+	// TODO
 	// Set new active item
-	// Move active item
-	// Should we return something?
+	if (m_activeitem == m_numitems - 1)
+		m_activeitem = 0;
+	else
+		m_activeitem++;
+	// Should we return points from here?
+	// Might break responsibility of function
 	return 0;
 }
 /**
