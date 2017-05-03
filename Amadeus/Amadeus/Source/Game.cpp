@@ -91,7 +91,6 @@ int Game::getHighScore() const
 
 void Game::HandleInput(const sf::Event &e)
 {
-	// TODO - See if we even need "const sf::Event &e".
 	if (e.type == sf::Event::KeyPressed)
 	{
 		Snake::MovedPieces a;
@@ -130,6 +129,7 @@ void Game::HandleInput(const sf::Event &e)
 			}
 			break;
 		default:
+			std::printf("%d", e.key.code);
 			break;
 		}
 	}
