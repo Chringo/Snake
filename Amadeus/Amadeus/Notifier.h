@@ -5,6 +5,14 @@
 class Notifier
 {
 public:
+/// Enumerators (for both scoped and unscoped enums) should be named as <ENUM_NAME_WITH_SPACES>.
+	// enum class - scoped and strongly typed enum
+	enum class Flag
+	{
+		GAME_OVER,
+		ITEM_HIT
+	};
+
 	Notifier();
 	~Notifier();
 
