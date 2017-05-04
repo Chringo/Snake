@@ -1,16 +1,16 @@
 #include <Amadeus\CollisionHandler.h>
 CollisionHandler::CollisionHandler()
 {
-	notif = nullptr;
+	notifier = nullptr;
 }
 CollisionHandler::~CollisionHandler()
 {
 }
 
-int CollisionHandler::Init(Notifier *notifier, int * map, int height, int width)
+int CollisionHandler::Init(Notifier *notif, int * map, int height, int width)
 {
 	Shutdown();
-	notif = notifier;
+	notifier = notif;
 	for (int h = 0; h < height; h++)
 	{
 		std::vector<int> row;
@@ -28,12 +28,12 @@ void CollisionHandler::UpdateSnake(const sf::Vector2i front, const sf::Vector2i 
 	if (m_colmap[front.y][front.x] == 1 || m_colmap[front.y][front.x] == 3)
 	{
 		std::printf("GAME OVER");
-		notif->Notify(1);
+		notifier->Notify(1);
 	}
 	else if (m_colmap[front.y][front.x] == 2)
 	{
 		std::printf("ADD PIECE");
-		notif->Notify(2);
+		notifier->Notify(2);
 	}
 	m_colmap[front.y][front.x] = 3;
 	m_colmap[back.y][back.x] = 0;

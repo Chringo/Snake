@@ -39,9 +39,9 @@ int System::Run()
 				break;
 			}
 		}
-		//PerformanceTests(m_clock.getElapsedTime().asSeconds());
+		//this->PerformanceTests(m_clock.getElapsedTime().asSeconds());
 		m_game.Update(e, m_clock.restart().asSeconds());
-		Render();
+		this->Render();
 	}
 	return 0;
 }

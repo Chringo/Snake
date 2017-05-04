@@ -15,10 +15,10 @@ public:
 
 	void Print() const;//TEST
 
-	Notifier *notif;
 private:
 	void Shutdown();
-
+	
 	std::vector< std::vector<int> > m_colmap;
+	Notifier *notifier;
 };
 #endif
