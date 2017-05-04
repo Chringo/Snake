@@ -59,18 +59,27 @@ void System::Render()
 	m_window.draw(m_game);
 	m_window.display();
 }
+
 void System::PerformanceTests(const float lastframe)
 {
 	m_numframes++;
 	m_elapsedtime += lastframe;
 	float average = m_numframes / m_elapsedtime;
-	if (m_shortest < average)
-		m_shortest = average;
-	if (m_longest > average)
-		m_longest = average;
+	if (m_numframes > 100)// Skip the first 100 frames
+	{
+		if (m_shortest < average)
+			m_shortest = average;
+		if (m_longest > average)
+			m_longest = average;
+	}
 
-	std::printf("%.1f\n", average);
-	std::printf("%.1f\n", m_longest);
-	std::printf("%.1f\n", m_shortest);
-	system("cls");// Should avoid calls to system but it gets the job done...
+	if (m_elapsedtime > 1)
+	{
+		system("cls");// Should avoid calls to system but it gets the job done...
+		std::printf("%.1f\n", average);
+		std::printf("%.1f\n", m_longest);
+		std::printf("%.1f\n", m_shortest);
+		m_numframes = 0;
+		m_elapsedtime = 0;
+	}
 }
