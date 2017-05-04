@@ -63,14 +63,14 @@ void System::PerformanceTests(const float lastframe)
 {
 	m_numframes++;
 	m_elapsedtime += lastframe;
-	float averageframe = m_elapsedtime / m_numframes;
-	if (m_longestframe < lastframe)
-		m_longestframe = lastframe;
-	if (m_shortestframe > lastframe)
-		m_shortestframe = lastframe;
+	float average = m_numframes / m_elapsedtime;
+	if (m_shortest < average)
+		m_shortest = average;
+	if (m_longest > average)
+		m_longest = average;
 
-	std::printf("%.6f\n", averageframe);
-	std::printf("%.6f\n", m_longestframe);
-	std::printf("%.6f\n", m_shortestframe);
+	std::printf("%.1f\n", average);
+	std::printf("%.1f\n", m_longest);
+	std::printf("%.1f\n", m_shortest);
 	system("cls");// Should avoid calls to system but it gets the job done...
 }

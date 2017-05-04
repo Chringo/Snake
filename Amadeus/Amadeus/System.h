@@ -29,7 +29,7 @@ private:
 	// Performance tests
 	int m_numframes = 0;
 	float m_elapsedtime = 0;
-	float m_longestframe = 0;
-	float m_shortestframe = 100;
+	float m_longest = 10000;
+	float m_shortest = 0;
 };
 #endif // AMADEUS_MAIN_SYSTEM_H_
