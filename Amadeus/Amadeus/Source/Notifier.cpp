@@ -15,13 +15,13 @@ int Notifier::Init(SnakeHolder * sh, ItemHolder * ih)
 	return 0;
 }
 
-void Notifier::Notify(int input)
+void Notifier::Notify(Flag input)
 {
-	if (input == 1)
+	if (input == Flag::GAME_OVER)
 	{
 		m_lost = true;
 	}
-	else if (input == 2)
+	else if (input == Flag::ITEM_HIT)
 	{
 		snakeholder->Add();
 		std::printf("\n%d\n", itemholder->UpdateScore());

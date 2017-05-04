@@ -28,12 +28,12 @@ void CollisionHandler::UpdateSnake(const sf::Vector2i front, const sf::Vector2i 
 	if (m_colmap[front.y][front.x] == 1 || m_colmap[front.y][front.x] == 3)
 	{
 		std::printf("GAME OVER");
-		notifier->Notify(1);
+		notifier->Notify(Notifier::Flag::GAME_OVER);
 	}
 	else if (m_colmap[front.y][front.x] == 2)
 	{
 		std::printf("ADD PIECE");
-		notifier->Notify(2);
+		notifier->Notify(Notifier::Flag::ITEM_HIT);
 	}
 	m_colmap[front.y][front.x] = 3;
 	m_colmap[back.y][back.x] = 0;
@@ -61,6 +61,6 @@ void CollisionHandler::Print() const
 
 void CollisionHandler::Shutdown()
 {
-	notif = nullptr;
+	notifier = nullptr;
 	m_colmap.clear();
 }

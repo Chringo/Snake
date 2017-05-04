@@ -16,8 +16,8 @@ public:
 	Notifier();
 	~Notifier();
 
-	int Init(SnakeHolder *sh, ItemHolder *ih);
-	void Notify(int input);
+	int Init(SnakeHolder *snakeholder, ItemHolder *itemholder);
+	void Notify(Flag input);
 	bool getLost() const;
 private:
 	bool m_lost;
