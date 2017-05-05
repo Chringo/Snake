@@ -18,6 +18,7 @@ public:
 private:
 	void Shutdown();
 	
+	bool m_itemhitpreviousframe;
 	std::vector< std::vector<int> > m_colmap;
 	Notifier *notifier;
 };

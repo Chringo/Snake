@@ -1,6 +1,7 @@
 #include <Amadeus\CollisionHandler.h>
 CollisionHandler::CollisionHandler()
 {
+	m_itemhitpreviousframe = false;
 	notifier = nullptr;
 }
 CollisionHandler::~CollisionHandler()
@@ -10,6 +11,7 @@ CollisionHandler::~CollisionHandler()
 int CollisionHandler::Init(Notifier *notif, int * map, int height, int width)
 {
 	Shutdown();
+	m_itemhitpreviousframe = false;
 	notifier = notif;
 	for (int h = 0; h < height; h++)
 	{
@@ -25,18 +27,26 @@ int CollisionHandler::Init(Notifier *notif, int * map, int height, int width)
 
 void CollisionHandler::UpdateSnake(const sf::Vector2i front, const sf::Vector2i back)
 {
+	if (!m_itemhitpreviousframe)
+	{
+		m_colmap[back.y][back.x] = 0;
+	}
+	else
+	{
+		m_itemhitpreviousframe = false;
+	}
 	if (m_colmap[front.y][front.x] == 1 || m_colmap[front.y][front.x] == 3)
 	{
-		std::printf("GAME OVER");
+		std::printf("GAME_OVER");
 		notifier->Notify(Notifier::Flag::GAME_OVER);
 	}
 	else if (m_colmap[front.y][front.x] == 2)
 	{
-		std::printf("ADD PIECE");
+		std::printf("ITEM_HIT");
+		m_itemhitpreviousframe = true;
 		notifier->Notify(Notifier::Flag::ITEM_HIT);
 	}
 	m_colmap[front.y][front.x] = 3;
-	m_colmap[back.y][back.x] = 0;
 }
 
 void CollisionHandler::UpdateItem(const sf::Vector2i pos)
