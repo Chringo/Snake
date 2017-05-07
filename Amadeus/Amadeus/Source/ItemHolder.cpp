@@ -14,9 +14,16 @@ int ItemHolder::Init(int *map, const int HEIGHT, const int WIDTH)
 	m_activeitem = 1;
 	m_numitems = 7;
 	m_items = new Item[m_numitems];
-	for (int i = 0; i < m_numitems; i++)
+
+	std::random_device rd;// Obtain a new seed for each game instance, hence why it's local
+	gen = std::mt19937(rd());// Load seed into generator
+	// TODO - If map design can be intact, split the map in four parts to even out the pseudo-RNG
+	disx = std::uniform_int_distribution<int>(1, WIDTH - 2);//TEST
+	disy = std::uniform_int_distribution<int>(1, HEIGHT - 2);//1, WIDTH-2, etc - replaced with fileloading
+
+	for (int i = 0; i < m_numitems; i++)//TEST
 	{
-		m_items[i].Init(sf::Vector2i((2 * i) + 1, (2 * i) + 1), i + 1);
+		m_items[i].Init(sf::Vector2i(disx(gen), disy(gen)), i + 1);
 	}
 
 	sf::Vector2i temp = this->getActiveItemPos();
@@ -26,17 +33,13 @@ int ItemHolder::Init(int *map, const int HEIGHT, const int WIDTH)
 
 int ItemHolder::Respawn()
 {
-	// Remove current item
-	// TODO - Should we remove something?
 	// Move current item
-	// TODO
+	m_items[m_activeitem].setGridPos(disx(gen), disy(gen));
 	// Set new active item
 	if (m_activeitem == m_numitems - 1)
 		m_activeitem = 0;
 	else
 		m_activeitem++;
-	// Should we return points from here?
-	// Might break responsibility of function
 	return 0;
 }
 int ItemHolder::UpdateScore()//TEST int for debug output
@@ -68,9 +71,9 @@ void ItemHolder::Shutdown()
 
 void ItemHolder::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	//for (int i = 0; i < m_numitems; i++)//TEST
-	//{
-	//	target.draw(m_items[i], states);
-	//}
-	target.draw(m_items[m_activeitem], states);
+	for (int i = 0; i < m_numitems; i++)//TEST
+	{
+		target.draw(m_items[i], states);
+	}
+	//target.draw(m_items[m_activeitem], states);
 }
