@@ -11,7 +11,6 @@ ItemHolder::~ItemHolder()
 int ItemHolder::Init(int *map, const int HEIGHT, const int WIDTH)
 {
 	Shutdown();
-	m_activeitem = 1;
 	m_numitems = 7;
 	m_items = new Item[m_numitems];
 
@@ -36,6 +35,7 @@ int ItemHolder::Init(int *map, const int HEIGHT, const int WIDTH)
 		m_items[i].Init(sf::Vector2i(x, y), i + 1);
 	}
 
+	m_activeitem = 0;
 	sf::Vector2i temp = this->getActiveItemPos();
 	map[temp.x * HEIGHT + temp.y] = 2;
 	return 0;
