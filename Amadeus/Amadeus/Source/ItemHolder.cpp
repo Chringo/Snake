@@ -23,7 +23,17 @@ int ItemHolder::Init(int *map, const int HEIGHT, const int WIDTH)
 
 	for (int i = 0; i < m_numitems; i++)//TEST
 	{
-		m_items[i].Init(sf::Vector2i(disx(gen), disy(gen)), i + 1);
+		int x = disx(gen);
+		int y = disy(gen);
+		if (map[y * HEIGHT + x] != 0)
+		{
+			while (map[y * HEIGHT + x] != 0)
+			{
+				x = disx(gen);
+				y = disy(gen);
+			}
+		}
+		m_items[i].Init(sf::Vector2i(x, y), i + 1);
 	}
 
 	sf::Vector2i temp = this->getActiveItemPos();
