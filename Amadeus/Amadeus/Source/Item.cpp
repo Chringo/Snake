@@ -15,10 +15,10 @@ void Item::Init(sf::Vector2i gridpos, int points)
 	shape.setOutlineColor(sf::Color::Black);
 }
 
-void Item::setPos(sf::Vector2i pos)
+void Item::setGridPos(const int x, const int y)
 {
-	m_gridpos = pos;
-	shape.setPosition(5 + 3 + m_gridpos.x * (m_size + 1), 5 + 3 + m_gridpos.y * (m_size + 1));
+	m_gridpos = sf::Vector2i(x, y);
+	shape.setPosition(5 + 3 + x * (m_size + 1), 5 + 3 + y * (m_size + 1));
 }
 
 int Item::getPoints() const

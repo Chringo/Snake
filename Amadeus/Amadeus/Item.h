@@ -8,7 +8,7 @@ public:
 	~Item();
 
 	void Init(sf::Vector2i gridpos, int points);
-	void setPos(sf::Vector2i gridPos);
+	void setGridPos(const int x, const int y);
 	int getPoints() const;
 private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
