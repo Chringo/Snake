@@ -37,20 +37,15 @@ int Game::Init()
 	}
 	m_mapholder->Init(map, HEIGHT, WIDTH);
 
-	m_itemholder = new ItemHolder();
-	m_itemholder->Init();
-	for (int i = 0; i < 7; i++)//TEST
-	{
-		sf::Vector2i temp = m_itemholder->getActiveItemPos();
-		map[temp.x * HEIGHT + temp.y] = 2;
-	}
-
 	m_snakeholder = new SnakeHolder();
 	m_snakeholder->Init(sf::Vector2i((WIDTH / 2) + 1, HEIGHT / 2));
 	for (int i = 0; i < 4; i++)//TEST
 	{
 		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + 1 + i] = 3;
 	}
+
+	m_itemholder = new ItemHolder();
+	m_itemholder->Init(map, HEIGHT, WIDTH);
 
 	m_notifier = new Notifier();
 	m_notifier->Init(m_snakeholder, m_itemholder);
