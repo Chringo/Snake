@@ -3,9 +3,13 @@ CollisionHandler::CollisionHandler()
 {
 	m_itemhitpreviousframe = false;
 	notifier = nullptr;
+	m_colmap = nullptr;
+	m_height = 0;
+	m_width = 0;
 }
 CollisionHandler::~CollisionHandler()
 {
+	Shutdown();
 }
 
 int CollisionHandler::Init(Notifier *notif, int * map, int height, int width)
@@ -13,15 +17,26 @@ int CollisionHandler::Init(Notifier *notif, int * map, int height, int width)
 	Shutdown();
 	m_itemhitpreviousframe = false;
 	notifier = notif;
+	//for (int h = 0; h < height; h++)
+	//{
+	//	std::vector<int> row;
+	//	for (int w = 0; w < width; w++)
+	//	{
+	//		row.push_back(map[h * height + w]);
+	//	}
+	//	m_colmap.push_back(row);
+	//}	
+	m_colmap = new int*[height];
 	for (int h = 0; h < height; h++)
 	{
-		std::vector<int> row;
+		m_colmap[h] = new int[width];
 		for (int w = 0; w < width; w++)
 		{
-			row.push_back(map[h * height + w]);
+			m_colmap[h][w] = map[h * height + w];
 		}
-		m_colmap.push_back(row);
 	}
+	m_height = height;
+	m_width = width;
 	return 0;
 }
 
@@ -59,9 +74,9 @@ void CollisionHandler::UpdateItem(const sf::Vector2i pos)
 
 void CollisionHandler::Print() const
 {
-	for (int h = 0; h < m_colmap.size(); h++)//TEST
+	for (int h = 0; h < m_height; h++)//TEST
 	{
-		for (int w = 0; w < m_colmap[0].size(); w++)
+		for (int w = 0; w < m_width; w++)
 		{
 			std::printf("%d ", m_colmap[h][w]);
 		}
@@ -72,5 +87,13 @@ void CollisionHandler::Print() const
 void CollisionHandler::Shutdown()
 {
 	notifier = nullptr;
-	m_colmap.clear();
+	if (m_colmap)
+	{
+		for (int h = 0; h < m_height; h++)
+		{
+			delete m_colmap[h];
+		}
+		delete[] m_colmap;
+		m_colmap = nullptr;
+	}
 }
