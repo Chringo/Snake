@@ -60,6 +60,10 @@ int ItemHolder::UpdateScore()//TEST int for debug output
 	m_currentscore += this->getPoints();
 	return m_currentscore;
 }
+int ItemHolder::getHighScore() const
+{
+	return m_currentscore;
+}
 /**
 *	Active item returns it's position on the grid map
 */

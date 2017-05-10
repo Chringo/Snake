@@ -13,6 +13,7 @@ public:
 	int Respawn(sf::Vector2i emptyposition);
 
 	int UpdateScore();
+	int getHighScore() const;
 	sf::Vector2i getActiveItemPos() const;
 private:
 	int getPoints() const;

@@ -80,6 +80,7 @@ int Game::Update(const sf::Event &e, float dt)
 	//std::printf("%.6f\n", dt);//TEST
 	if (m_notifier->getLost())
 	{
+		std::printf("FINAL SCORE: %d\n", m_itemholder->getHighScore());
 		this->Init();
 	}
 
