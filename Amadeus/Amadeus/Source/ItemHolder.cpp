@@ -37,7 +37,7 @@ int ItemHolder::Init(const int HEIGHT, const int WIDTH, int *map)
 
 	m_activeitem = 0;
 	sf::Vector2i temp = this->getActiveItemPos();
-	map[temp.x * HEIGHT + temp.y] = 2;
+	map[temp.y * HEIGHT + temp.x] = 2;
 	return 0;
 }
 
