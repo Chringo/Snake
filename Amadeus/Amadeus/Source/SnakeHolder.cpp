@@ -11,6 +11,7 @@ SnakeHolder::~SnakeHolder()
 int SnakeHolder::Init(sf::Vector2i startpos)
 {
 	Shutdown();
+	m_direction = 2;
 	m_snake = new Snake();
 	m_snake->Init(startpos);
 	return 0;

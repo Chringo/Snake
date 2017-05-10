@@ -130,31 +130,21 @@ void Game::HandleInput(const sf::Event &e)
 		Snake::MovedPieces a;
 		switch (e.key.code)
 		{
-		case sf::Keyboard::S:
-			a = m_snakeholder->Move(0);
-			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
-			break;
-		case sf::Keyboard::W:
-			a = m_snakeholder->Move(1);
-			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
-			break;
 		case sf::Keyboard::A:
-			a = m_snakeholder->Move(2);
-			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+
 			break;
 		case sf::Keyboard::D:
-			a = m_snakeholder->Move(3);
-			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+
 			break;
-		case sf::Keyboard::Q://TEST
-			std::printf("\nE: RESPAWN ITEM\n");
-			m_itemholder->Respawn(m_colhandler->UpdateItem());
-			break;
-		case sf::Keyboard::E://TEST
-			std::printf("\nE: ADD PIECE\n");
-			// Add a snake piece
-			m_snakeholder->Add();
-			break;
+		//case sf::Keyboard::Q://TEST
+		//	std::printf("\nE: RESPAWN ITEM\n");
+		//	m_itemholder->Respawn(m_colhandler->UpdateItem());
+		//	break;
+		//case sf::Keyboard::E://TEST
+		//	std::printf("\nE: ADD PIECE\n");
+		//	// Add a snake piece
+		//	m_snakeholder->Add();
+		//	break;
 		case sf::Keyboard::P://TEST
 			system("cls");
 			//TEST - Print out collision map
