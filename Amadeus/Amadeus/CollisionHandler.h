@@ -14,8 +14,9 @@ public:
 	int Init(Notifier *notifier, int *map, int height, int width);
 	void UpdateSnake(const sf::Vector2i front, const sf::Vector2i back);
 	void UpdateItem(const sf::Vector2i itemPos);
-	sf::Vector2i getRandomPos();
 
+	bool getPreviousFrameStatus() const { return m_itemhitpreviousframe; }
+	sf::Vector2i getRandomPos();
 	void Print() const;//TEST
 
 private:

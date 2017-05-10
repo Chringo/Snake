@@ -17,7 +17,7 @@ int Game::Init()
 	m_score = 0;
 	m_gametime = 0;
 	m_timesteps = 0;
-	m_difficulty = 0.5f;
+	m_difficulty = 0.4f;
 	m_mapholder = new MapHolder();
 	// TODO - Import map
 	const int HEIGHT = 15;
@@ -105,6 +105,11 @@ int Game::Update(const sf::Event &e, float dt)
 			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
 		}
 		m_timesteps = 0;
+	}
+
+	if (m_colhandler->getPreviousFrameStatus())
+	{
+		m_difficulty -= 0.0001f;
 	}
 
 	return 0;
