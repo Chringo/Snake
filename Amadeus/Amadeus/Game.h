@@ -22,6 +22,9 @@ private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
 	int m_score;
+	float m_gametime;
+	float m_timesteps;
+	float m_difficulty;
 	MapHolder *m_mapholder;
 	ItemHolder *m_itemholder;
 	SnakeHolder *m_snakeholder;

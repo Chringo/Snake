@@ -2,6 +2,8 @@
 Game::Game()
 {
 	m_score = 0;
+	m_gametime = 0;
+	m_timesteps = 0;
 	m_mapholder = nullptr;
 	m_itemholder = nullptr;
 	m_snakeholder = nullptr;
@@ -13,6 +15,9 @@ int Game::Init()
 {
 	Shutdown();
 	m_score = 0;
+	m_gametime = 0;
+	m_timesteps = 0;
+	m_difficulty = 0.9f;
 	m_mapholder = new MapHolder();
 	// TODO - Import map
 	const int HEIGHT = 15;
@@ -38,7 +43,7 @@ int Game::Init()
 	m_mapholder->Init(HEIGHT, WIDTH, map);
 
 	m_snakeholder = new SnakeHolder();
-	m_snakeholder->Init(sf::Vector2i((WIDTH / 2) , HEIGHT / 2));
+	m_snakeholder->Init(sf::Vector2i((WIDTH / 2), HEIGHT / 2));
 	for (int i = 0; i < 4; i++)//TEST
 	{
 		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + i] = 3;
@@ -66,12 +71,20 @@ int Game::Init()
 
 int Game::Update(const sf::Event &e, float dt)
 {
+	m_gametime += dt;
+	m_timesteps += dt;
 	//std::printf("%.6f\n", dt);//TEST
 	if (m_notifier->getLost())
 	{
 		this->Init();
 	}
-	//m_colhandler->UpdateItem(m_itemholder->getActiveItemPos());
+
+	if (m_timesteps > m_difficulty)
+	{
+		//std::printf("%.6f\n", m_gametime);//TEST
+
+		m_timesteps = 0;
+	}
 
 	return 0;
 }
