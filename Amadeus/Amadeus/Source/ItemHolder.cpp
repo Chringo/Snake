@@ -22,37 +22,37 @@ int ItemHolder::Init(const int HEIGHT, const int WIDTH, int *map)
 
 	for (int i = 0; i < m_numitems; i++)//TEST
 	{
-		int x = disx(gen);
-		int y = disy(gen);
-		// Identify walls and snake and avoid spawning on these
-		// NOTE - Items will spawn on each other which might be a risk
-		// TODO - Don't spawn on previous Item
-		if (map[y * HEIGHT + x] != 0)
-		{
-			while (map[y * HEIGHT + x] != 0)
-			{
-				x = disx(gen);
-				y = disy(gen);
-			}
-		}
-		m_items[i].Init(sf::Vector2i(x, y), i + 1);
+		//int x = disx(gen);
+		//int y = disy(gen);
+		//// Identify walls and snake and avoid spawning on these
+		//// NOTE - Items will spawn on each other which might be a risk
+		//// TODO - Don't spawn on previous Item
+		//if (map[y * HEIGHT + x] != 0)
+		//{
+		//	while (map[y * HEIGHT + x] != 0)
+		//	{
+		//		x = disx(gen);
+		//		y = disy(gen);
+		//	}
+		//}
+		m_items[i].Init(sf::Vector2i(), i + 1);
 	}
 
 	m_activeitem = 0;
-	sf::Vector2i temp = this->getActiveItemPos();
-	map[temp.y * HEIGHT + temp.x] = 2;
+	//sf::Vector2i temp = this->getActiveItemPos();
+	//map[temp.y * HEIGHT + temp.x] = 2;
 	return 0;
 }
 
-int ItemHolder::Respawn()
+int ItemHolder::Respawn(sf::Vector2i pos)
 {
-	// Move current item
-	m_items[m_activeitem].setGridPos(disx(gen), disy(gen));
 	// Set new active item
 	if (m_activeitem == m_numitems - 1)
 		m_activeitem = 0;
 	else
 		m_activeitem++;
+	// Move current item
+	m_items[m_activeitem].setGridPos(pos.x, pos.y);
 	return 0;
 }
 int ItemHolder::UpdateScore()//TEST int for debug output
@@ -84,9 +84,9 @@ void ItemHolder::Shutdown()
 
 void ItemHolder::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
-	for (int i = 0; i < m_numitems; i++)//TEST
-	{
-		target.draw(m_items[i], states);
-	}
-	//target.draw(m_items[m_activeitem], states);
+	//for (int i = 0; i < m_numitems; i++)//TEST
+	//{
+	//	target.draw(m_items[i], states);
+	//}
+	target.draw(m_items[m_activeitem], states);
 }

@@ -61,9 +61,13 @@ void CollisionHandler::UpdateSnake(const sf::Vector2i front, const sf::Vector2i 
 	{
 		std::printf("ITEM_HIT");
 		m_itemhitpreviousframe = true;
+		m_colmap[front.y][front.x] = 3;
 		notifier->Notify(Notifier::Flag::ITEM_HIT);
 	}
-	m_colmap[front.y][front.x] = 3;
+	else
+	{
+		m_colmap[front.y][front.x] = 3;
+	}
 }
 
 void CollisionHandler::UpdateItem(const sf::Vector2i pos)
@@ -86,25 +90,17 @@ sf::Vector2i CollisionHandler::UpdateItem()
 			}
 		}
 	}
-	//int i = 0;
+	int i = 0;
+	//std::printf("%d\n", spawnpoints.size());
 	//for (i = 0; i < spawnpoints.size(); i++)//TEST
 	//{
 	//	std::printf("%d - %d\n", spawnpoints[i].x, spawnpoints[i].y);
 	//}
 	std::uniform_int_distribution<int> dis 
 		= std::uniform_int_distribution<int>(0, (int)spawnpoints.size() - 1);
-	//int attempts = 0;
-	//for (int h = 0; h < m_height; h++)//TEST
-	//{
-	//	for (int w = 0; w < m_width; w++)
-	//	{
-	//		attempts++;
-	//		i = dis(gen);
-	//		std::printf("ATTEMPT %d INDEX %d : %d - %d\n", attempts, i, spawnpoints[i].x, spawnpoints[i].y);
-	//	}
-	//}
-	//return spawnpoints[i];
-	return spawnpoints[dis(gen)];
+	i = dis(gen);
+	//std::printf("INDEX %d : %d - %d\n", i, spawnpoints[i].x, spawnpoints[i].y);
+	return spawnpoints[i];
 }
 
 void CollisionHandler::Print() const

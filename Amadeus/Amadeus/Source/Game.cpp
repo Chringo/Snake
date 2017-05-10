@@ -52,6 +52,9 @@ int Game::Init()
 	m_notifier->Init(m_snakeholder, m_itemholder, m_colhandler);
 	m_colhandler->Init(m_notifier, map, HEIGHT, WIDTH);
 
+	m_itemholder->Respawn(m_colhandler->UpdateItem());
+	m_colhandler->UpdateItem(m_itemholder->getActiveItemPos());
+
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	//{
@@ -68,7 +71,7 @@ int Game::Update(const sf::Event &e, float dt)
 	{
 		this->Init();
 	}
-	m_colhandler->UpdateItem(m_itemholder->getActiveItemPos());
+	//m_colhandler->UpdateItem(m_itemholder->getActiveItemPos());
 
 	return 0;
 }
@@ -132,7 +135,7 @@ void Game::HandleInput(const sf::Event &e)
 			break;
 		case sf::Keyboard::Q://TEST
 			std::printf("\nE: RESPAWN ITEM\n");
-			m_itemholder->Respawn();
+			m_itemholder->Respawn(m_colhandler->UpdateItem());
 			break;
 		case sf::Keyboard::E://TEST
 			std::printf("\nE: ADD PIECE\n");

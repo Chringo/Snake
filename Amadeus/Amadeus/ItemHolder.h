@@ -10,7 +10,7 @@ public:
 	~ItemHolder();
 
 	int Init(const int HEIGHT, const int WIDTH, int *map);
-	int Respawn();
+	int Respawn(sf::Vector2i emptyposition);
 
 	int UpdateScore();
 	sf::Vector2i getActiveItemPos() const;
