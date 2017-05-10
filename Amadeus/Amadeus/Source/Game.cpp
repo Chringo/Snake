@@ -57,7 +57,7 @@ int Game::Init()
 	m_notifier->Init(m_snakeholder, m_itemholder, m_colhandler);
 	m_colhandler->Init(m_notifier, map, HEIGHT, WIDTH);
 
-	m_itemholder->Respawn(m_colhandler->UpdateItem());
+	m_itemholder->Respawn(m_colhandler->getRandomPos());
 	m_colhandler->UpdateItem(m_itemholder->getActiveItemPos());
 
 	for (int i = 0; i < Keys::SIZE; i++)
@@ -86,7 +86,6 @@ int Game::Update(const sf::Event &e, float dt)
 	if (m_timesteps > m_difficulty)
 	{
 		//std::printf("%.6f\n", m_gametime);//TEST
-
 		if (m_keys[Keys::A])
 		{
 			Snake::MovedPieces a = m_snakeholder->Move(0);
@@ -153,12 +152,12 @@ void Game::HandleInput(const sf::Event &e)
 		switch (e.key.code)
 		{
 		case sf::Keyboard::A:
-			std::printf("PREPARE LEFT\n");//TEST
+			//std::printf("PREPARE LEFT\n");//TEST
 			m_keys[Keys::A] = true;
 			m_keys[Keys::D] = false;
 			break;
 		case sf::Keyboard::D:
-			std::printf("PREPARE RIGHT\n");//TEST
+			//std::printf("PREPARE RIGHT\n");//TEST
 			m_keys[Keys::D] = true;
 			m_keys[Keys::A] = false;
 			break;

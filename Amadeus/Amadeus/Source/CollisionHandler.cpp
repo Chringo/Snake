@@ -77,7 +77,7 @@ void CollisionHandler::UpdateItem(const sf::Vector2i pos)
 		m_colmap[pos.y][pos.x] = 2;
 	}
 }
-sf::Vector2i CollisionHandler::UpdateItem()
+sf::Vector2i CollisionHandler::getRandomPos()
 {
 	std::vector<sf::Vector2i> spawnpoints;
 	for (int h = 0; h < m_height; h++)
@@ -99,7 +99,7 @@ sf::Vector2i CollisionHandler::UpdateItem()
 	std::uniform_int_distribution<int> dis 
 		= std::uniform_int_distribution<int>(0, (int)spawnpoints.size() - 1);
 	i = dis(gen);
-	//std::printf("INDEX %d : %d - %d\n", i, spawnpoints[i].x, spawnpoints[i].y);
+	//std::printf("INDEX %d : %d - %d\n", i, spawnpoints[i].x, spawnpoints[i].y);//TEST
 	return spawnpoints[i];
 }
 

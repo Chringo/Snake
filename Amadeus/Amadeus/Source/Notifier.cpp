@@ -26,7 +26,7 @@ void Notifier::Notify(Flag input)
 	{
 		snakeholder->Add();
 		std::printf("\n%d\n", itemholder->UpdateScore());
-		itemholder->Respawn(colhandler->UpdateItem());
+		itemholder->Respawn(colhandler->getRandomPos());
 		colhandler->UpdateItem(itemholder->getActiveItemPos());
 	}
 }
