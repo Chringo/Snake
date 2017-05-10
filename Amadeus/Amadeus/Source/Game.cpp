@@ -15,7 +15,7 @@ int Game::Init()
 	m_score = 0;
 	m_mapholder = new MapHolder();
 	// TODO - Import map
-	const int HEIGHT = 7;
+	const int HEIGHT = 15;
 	const int WIDTH = HEIGHT;
 	int map[HEIGHT * WIDTH];
 	// Generate map - Only quadratic map works for now
@@ -38,19 +38,18 @@ int Game::Init()
 	m_mapholder->Init(HEIGHT, WIDTH, map);
 
 	m_snakeholder = new SnakeHolder();
-	m_snakeholder->Init(sf::Vector2i((WIDTH / 2) + 1, HEIGHT / 2));
-	for (int i = 0; i < 2; i++)//TEST
+	m_snakeholder->Init(sf::Vector2i((WIDTH / 2) , HEIGHT / 2));
+	for (int i = 0; i < 4; i++)//TEST
 	{
-		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + 1 + i] = 3;
+		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + i] = 3;
 	}
 
 	m_itemholder = new ItemHolder();
 	m_itemholder->Init(HEIGHT, WIDTH, map);
 
 	m_notifier = new Notifier();
-	m_notifier->Init(m_snakeholder, m_itemholder);
-
 	m_colhandler = new CollisionHandler();
+	m_notifier->Init(m_snakeholder, m_itemholder, m_colhandler);
 	m_colhandler->Init(m_notifier, map, HEIGHT, WIDTH);
 
 	// Background

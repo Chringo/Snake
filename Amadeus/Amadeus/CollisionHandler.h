@@ -4,6 +4,7 @@
 #include <random>// C++11
 #include <SFML\System\Vector2.hpp>
 #include <Amadeus\Notifier.h>
+class Notifier;
 class CollisionHandler
 {
 public:

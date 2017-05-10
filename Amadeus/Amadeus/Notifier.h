@@ -2,6 +2,8 @@
 #define AMADEUS_MAIN_NOTIFIER_H_
 #include <Amadeus\SnakeHolder.h>
 #include <Amadeus\ItemHolder.h>
+#include <Amadeus\CollisionHandler.h>
+class CollisionHandler;
 class Notifier
 {
 public:
@@ -16,12 +18,13 @@ public:
 	Notifier();
 	~Notifier();
 
-	int Init(SnakeHolder *snakeholder, ItemHolder *itemholder);
+	int Init(SnakeHolder *snakeholder, ItemHolder *itemholder, CollisionHandler *colhandler);
 	void Notify(Flag input);
 	bool getLost() const;
 private:
 	bool m_lost;
 	SnakeHolder *snakeholder;
 	ItemHolder *itemholder;
+	CollisionHandler *colhandler;
 };
 #endif

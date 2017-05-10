@@ -7,11 +7,12 @@ Notifier::~Notifier()
 {
 }
 
-int Notifier::Init(SnakeHolder * sh, ItemHolder * ih)
+int Notifier::Init(SnakeHolder * sh, ItemHolder * ih, CollisionHandler *ch)
 {
 	m_lost = false;
 	snakeholder = sh;
 	itemholder = ih;
+	colhandler = ch;
 	return 0;
 }
 
@@ -25,7 +26,8 @@ void Notifier::Notify(Flag input)
 	{
 		snakeholder->Add();
 		std::printf("\n%d\n", itemholder->UpdateScore());
-		itemholder->Respawn();
+		itemholder->Respawn(colhandler->UpdateItem());
+		colhandler->UpdateItem(itemholder->getActiveItemPos());
 	}
 }
 
