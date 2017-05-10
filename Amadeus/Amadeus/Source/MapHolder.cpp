@@ -9,16 +9,16 @@ MapHolder::~MapHolder()
 	Shutdown();
 }
 
-int MapHolder::Init(int  *map, int height, int width)
+int MapHolder::Init(const int HEIGHT, const int WIDTH, int *map)
 {
 	Shutdown();
-	m_numtiles = height * width;
+	m_numtiles = HEIGHT * WIDTH;
 	m_map = new Tile[m_numtiles];
-	for (int h = 0; h < height; h++)
+	for (int h = 0; h < HEIGHT; h++)
 	{
-		for (int w = 0; w < width; w++)
+		for (int w = 0; w < WIDTH; w++)
 		{
-			m_map[h * height + w].Init(map[h * height + w], h, w);
+			m_map[h * HEIGHT + w].Init(map[h * HEIGHT + w], h, w);
 		}
 	}
 	return 0;

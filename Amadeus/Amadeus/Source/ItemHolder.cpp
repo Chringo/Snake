@@ -8,7 +8,7 @@ ItemHolder::~ItemHolder()
 	Shutdown();
 }
 
-int ItemHolder::Init(int *map, const int HEIGHT, const int WIDTH)
+int ItemHolder::Init(const int HEIGHT, const int WIDTH, int *map)
 {
 	Shutdown();
 	m_numitems = 3;

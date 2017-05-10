@@ -9,7 +9,7 @@ public:
 	ItemHolder();
 	~ItemHolder();
 
-	int Init(int *map, const int HEIGHT, const int WIDTH);
+	int Init(const int HEIGHT, const int WIDTH, int *map);
 	int Respawn();
 
 	int UpdateScore();

@@ -35,7 +35,7 @@ int Game::Init()
 				map[h * HEIGHT + w] = 0;
 		}
 	}
-	m_mapholder->Init(map, HEIGHT, WIDTH);
+	m_mapholder->Init(HEIGHT, WIDTH, map);
 
 	m_snakeholder = new SnakeHolder();
 	m_snakeholder->Init(sf::Vector2i((WIDTH / 2) + 1, HEIGHT / 2));
@@ -45,7 +45,7 @@ int Game::Init()
 	}
 
 	m_itemholder = new ItemHolder();
-	m_itemholder->Init(map, HEIGHT, WIDTH);
+	m_itemholder->Init(HEIGHT, WIDTH, map);
 
 	m_notifier = new Notifier();
 	m_notifier->Init(m_snakeholder, m_itemholder);
