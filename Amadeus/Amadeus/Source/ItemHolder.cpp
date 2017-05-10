@@ -24,6 +24,9 @@ int ItemHolder::Init(const int HEIGHT, const int WIDTH, int *map)
 	{
 		int x = disx(gen);
 		int y = disy(gen);
+		// Identify walls and snake and avoid spawning on these
+		// NOTE - Items will spawn on each other which might be a risk
+		// TODO - Don't spawn on previous Item
 		if (map[y * HEIGHT + x] != 0)
 		{
 			while (map[y * HEIGHT + x] != 0)
