@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\CollisionHandler.cpp" />
+    <ClCompile Include="Source\FileHandler.cpp" />
     <ClCompile Include="Source\Game.cpp" />
     <ClCompile Include="Source\GridObject.cpp" />
     <ClCompile Include="Source\Item.cpp" />
@@ -35,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CollisionHandler.h" />
+    <ClInclude Include="FileHandler.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GridObject.h" />
     <ClInclude Include="Item.h" />
