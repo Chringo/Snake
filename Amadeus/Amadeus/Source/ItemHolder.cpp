@@ -13,13 +13,11 @@ int ItemHolder::Init(const int HEIGHT, const int WIDTH, int *map)
 	Shutdown();
 	m_numitems = 7;
 	m_items = new Item[m_numitems];
-	
-	std::random_device rd;// Obtain a new seed for each game instance, hence why it's local
-	gen = std::mt19937(rd());// Load seed into generator
-	// TODO - If map design can be intact, split the map in four parts to even out the pseudo-RNG
-	disx = std::uniform_int_distribution<int>(1, WIDTH - 2);//TEST
-	disy = std::uniform_int_distribution<int>(1, HEIGHT - 2);//1, WIDTH-2, etc - replaced with fileloading
-
+	//std::random_device rd;// Obtain a new seed for each game instance, hence why it's local
+	//gen = std::mt19937(rd());// Load seed into generator
+	//// TODO - If map design can be intact, split the map in four parts to even out the pseudo-RNG
+	//disx = std::uniform_int_distribution<int>(1, WIDTH - 2);//TEST
+	//disy = std::uniform_int_distribution<int>(1, HEIGHT - 2);//1, WIDTH-2, etc - replaced with fileloading
 	for (int i = 0; i < m_numitems; i++)//TEST
 	{
 		//int x = disx(gen);

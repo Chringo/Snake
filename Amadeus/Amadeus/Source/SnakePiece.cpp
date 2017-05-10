@@ -24,7 +24,7 @@ void SnakePiece::Init(sf::Vector2i gridpos, Piece type)
 	float size = m_size - 4;
 	shape = sf::CircleShape(size / 2, 4);
 	shape.setPosition(5 + 2 + m_gridpos.x * (m_size + 1), 5 + 2 + m_gridpos.y * (m_size + 1));
-	float test = 9;//TEST
+	sf::Uint8 test = 9;//TEST
 	shape.setFillColor(sf::Color((test * m_gridpos.x), 0, (test * m_gridpos.x)));
 }
 

@@ -17,7 +17,7 @@ int Game::Init()
 	m_score = 0;
 	m_gametime = 0;
 	m_timesteps = 0;
-	m_difficulty = 0.4f;
+	m_difficulty = 0.5f;
 	m_mapholder = new MapHolder();
 	// TODO - Import map
 	const int HEIGHT = 15;
