@@ -4,7 +4,7 @@
 #include <random>// C++11
 #include <SFML\System\Vector2.hpp>
 #include <Amadeus\Notifier.h>
-class Notifier;
+class Notifier;// TODO - Remove forward declaration by figuring out a better design between classes
 class CollisionHandler
 {
 public:

@@ -3,7 +3,7 @@
 #include <Amadeus\SnakeHolder.h>
 #include <Amadeus\ItemHolder.h>
 #include <Amadeus\CollisionHandler.h>
-class CollisionHandler;
+class CollisionHandler;// TODO - Remove forward declaration by figuring out a better design between classes
 class Notifier
 {
 public:
