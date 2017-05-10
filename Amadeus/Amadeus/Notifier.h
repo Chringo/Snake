@@ -14,7 +14,6 @@ public:
 		GAME_OVER,
 		ITEM_HIT
 	};
-
 	Notifier();
 	~Notifier();
 

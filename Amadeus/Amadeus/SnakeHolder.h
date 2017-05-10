@@ -5,11 +5,17 @@
 class SnakeHolder : public sf::Drawable
 {
 public:
+	enum class KeyInput
+	{
+		FORWARD,// Technically not an input
+		LEFT,
+		RIGHT
+	};
 	SnakeHolder();
 	~SnakeHolder();
 
 	int Init(sf::Vector2i startpos);
-	Snake::MovedPieces Move(int input);
+	Snake::MovedPieces Move(KeyInput input);
 	void Add();
 private:
 	void Shutdown();

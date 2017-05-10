@@ -89,19 +89,19 @@ int Game::Update(const sf::Event &e, float dt)
 		//std::printf("%.6f\n", m_gametime);//TEST
 		if (m_keys[Keys::A])
 		{
-			Snake::MovedPieces a = m_snakeholder->Move(0);
+			Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::LEFT);
 			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
 			m_keys[Keys::A] = false;
 		}
 		else if(m_keys[Keys::D])
 		{
-			Snake::MovedPieces a = m_snakeholder->Move(1);
+			Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::RIGHT);
 			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
 			m_keys[Keys::D] = false;
 		}
 		else// Forward
 		{
-			Snake::MovedPieces a = m_snakeholder->Move(2);
+			Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::FORWARD);
 			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
 		}
 		m_timesteps = 0;

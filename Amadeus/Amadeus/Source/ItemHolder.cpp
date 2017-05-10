@@ -11,7 +11,7 @@ ItemHolder::~ItemHolder()
 int ItemHolder::Init(const int HEIGHT, const int WIDTH, int *map)
 {
 	Shutdown();
-	m_numitems = 3;
+	m_numitems = 7;
 	m_items = new Item[m_numitems];
 	
 	std::random_device rd;// Obtain a new seed for each game instance, hence why it's local

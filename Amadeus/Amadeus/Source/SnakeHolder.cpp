@@ -11,22 +11,22 @@ SnakeHolder::~SnakeHolder()
 int SnakeHolder::Init(sf::Vector2i startpos)
 {
 	Shutdown();
-	m_direction = 1;
+	m_direction = 1;// Forward
 	m_snake = new Snake();
 	m_snake->Init(startpos);
 	return 0;
 }
 
-Snake::MovedPieces SnakeHolder::Move(int input)
+Snake::MovedPieces SnakeHolder::Move(KeyInput input)
 {
-	if (input == 0)
+	if (input == KeyInput::LEFT)
 	{
 		if (m_direction == 3)
 			m_direction = 0;
 		else
 			m_direction++;
 	}
-	else if (input == 1)
+	else if (input == KeyInput::RIGHT)
 	{
 		if (m_direction == 0)
 			m_direction = 3;
