@@ -104,12 +104,13 @@ int Game::Update(const sf::Event &e, float dt)
 			Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::FORWARD);
 			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
 		}
-		m_timesteps = 0;
-	}
 
-	if (m_colhandler->getPreviousFrameStatus())
-	{
-		m_difficulty -= 0.0001f;
+		if (m_colhandler->getPreviousFrameStatus())
+		{
+			m_difficulty -= 0.01f;
+			std::printf("%.6f\n", m_difficulty);
+		}
+		m_timesteps = 0;
 	}
 
 	return 0;
