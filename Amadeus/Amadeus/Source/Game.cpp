@@ -17,7 +17,7 @@ int Game::Init()
 	m_score = 0;
 	m_gametime = 0;
 	m_timesteps = 0;
-	m_difficulty = 0.9f;
+	m_difficulty = 0.4f;
 	m_mapholder = new MapHolder();
 	// TODO - Import map
 	const int HEIGHT = 15;
@@ -87,6 +87,23 @@ int Game::Update(const sf::Event &e, float dt)
 	{
 		//std::printf("%.6f\n", m_gametime);//TEST
 
+		if (m_keys[Keys::A])
+		{
+			Snake::MovedPieces a = m_snakeholder->Move(0);
+			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+			m_keys[Keys::A] = false;
+		}
+		else if(m_keys[Keys::D])
+		{
+			Snake::MovedPieces a = m_snakeholder->Move(1);
+			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+			m_keys[Keys::D] = false;
+		}
+		else// Forward
+		{
+			Snake::MovedPieces a = m_snakeholder->Move(2);
+			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+		}
 		m_timesteps = 0;
 	}
 

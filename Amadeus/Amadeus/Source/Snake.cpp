@@ -81,14 +81,14 @@ Snake::MovedPieces Snake::Move(int direction)
 	sf::Vector2i gp = m_front->getGridPos();
 	switch (direction)
 	{
-	case 0://DOWN
-		gp.y++;
-		break;
-	case 1://UP
+	case 0://UP
 		gp.y--;
 		break;
-	case 2://LEFT
+	case 1://LEFT
 		gp.x--;
+		break;
+	case 2://DOWN
+		gp.y++;
 		break;
 	case 3://RIGHT
 		gp.x++;
