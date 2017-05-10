@@ -60,6 +60,10 @@ int Game::Init()
 	m_itemholder->Respawn(m_colhandler->UpdateItem());
 	m_colhandler->UpdateItem(m_itemholder->getActiveItemPos());
 
+	for (int i = 0; i < Keys::SIZE; i++)
+	{
+		m_keys.push_back(false);
+	}
 	// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	//{
@@ -116,6 +120,7 @@ void Game::Shutdown()
 		delete m_notifier;
 		m_notifier = nullptr;
 	}
+	m_keys.clear();
 }
 
 int Game::getHighScore() const
@@ -131,10 +136,14 @@ void Game::HandleInput(const sf::Event &e)
 		switch (e.key.code)
 		{
 		case sf::Keyboard::A:
-
+			std::printf("PREPARE LEFT\n");//TEST
+			m_keys[Keys::A] = true;
+			m_keys[Keys::D] = false;
 			break;
 		case sf::Keyboard::D:
-
+			std::printf("PREPARE RIGHT\n");//TEST
+			m_keys[Keys::D] = true;
+			m_keys[Keys::A] = false;
 			break;
 		//case sf::Keyboard::Q://TEST
 		//	std::printf("\nE: RESPAWN ITEM\n");

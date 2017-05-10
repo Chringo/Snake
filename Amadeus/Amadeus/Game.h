@@ -1,5 +1,6 @@
 #ifndef AMADEUS_MAIN_GAME_H_
 #define AMADEUS_MAIN_GAME_H_
+#include <vector>
 #include <SFML\Graphics.hpp>
 #include <Amadeus\MapHolder.h>
 #include <Amadeus\ItemHolder.h>
@@ -30,6 +31,14 @@ private:
 	SnakeHolder *m_snakeholder;
 	CollisionHandler *m_colhandler;
 	Notifier *m_notifier;
+	// Key logic
+	enum Keys : unsigned int
+	{
+		A,
+		D,
+		SIZE
+	};
+	std::vector<bool> m_keys;
 
 	sf::Texture m_backtexture;
 	sf::Sprite m_backsprite;
