@@ -37,6 +37,8 @@ int CollisionHandler::Init(Notifier *notif, int * map, int height, int width)
 	}
 	m_height = height;
 	m_width = width;
+	std::random_device rd;// Obtain a new seed for each game instance, hence why it's local
+	gen = std::mt19937(rd());// Load seed into generator
 	return 0;
 }
 
@@ -70,6 +72,23 @@ void CollisionHandler::UpdateItem(const sf::Vector2i pos)
 	{
 		m_colmap[pos.y][pos.x] = 2;
 	}
+}
+sf::Vector2i CollisionHandler::UpdateItem()
+{
+	std::vector<sf::Vector2i> spawnpoints;
+	for (int h = 0; h < m_height; h++)
+	{
+		for (int w = 0; w < m_width; w++)
+		{
+			if (m_colmap[h][w] == 0)
+			{
+				spawnpoints.push_back(sf::Vector2i(w, h));
+			}
+		}
+	}
+	std::uniform_int_distribution<int> dis 
+		= std::uniform_int_distribution<int>(0, (int)spawnpoints.size());
+	return spawnpoints[dis(gen)];
 }
 
 void CollisionHandler::Print() const
