@@ -11,9 +11,9 @@ ItemHolder::~ItemHolder()
 int ItemHolder::Init(int *map, const int HEIGHT, const int WIDTH)
 {
 	Shutdown();
-	m_numitems = 7;
+	m_numitems = 3;
 	m_items = new Item[m_numitems];
-
+	
 	std::random_device rd;// Obtain a new seed for each game instance, hence why it's local
 	gen = std::mt19937(rd());// Load seed into generator
 	// TODO - If map design can be intact, split the map in four parts to even out the pseudo-RNG
