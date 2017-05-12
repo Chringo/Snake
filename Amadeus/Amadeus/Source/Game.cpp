@@ -19,28 +19,14 @@ int Game::Init()
 	m_timesteps = 0;
 	m_difficulty = 0.4f;
 	m_mapholder = new MapHolder();
-	// TODO - Import map
-	const int HEIGHT = 15;
-	const int WIDTH = HEIGHT;
-	int map[HEIGHT * WIDTH];
-	// Generate map - Only quadratic map works for now
-	for (int h = 0; h < HEIGHT; h++)//TEST
-	{
-		for (int w = 0; w < WIDTH; w++)
-		{
-			if (h == 0)
-				map[h * HEIGHT + w] = 1;
-			else if (h == HEIGHT - 1)
-				map[h * HEIGHT + w] = 1;
-			else if (w == 0)
-				map[h * HEIGHT + w] = 1;
-			else if (w == WIDTH - 1)
-				map[h * HEIGHT + w] = 1;
-			else
-				map[h * HEIGHT + w] = 0;
-		}
-	}
-	m_mapholder->Init(HEIGHT, WIDTH, map);
+	int height = 0;
+	int width = 0;
+	int **map = nullptr;
+	// Import map from file system
+	map = m_data.LoadMap("default.txt", &height, &width, map);
+	std::printf("H%d - W%d - M0: %d\n", height, width, map[0][0]);//TEST
+	
+	m_mapholder->Init(height, width, map);
 
 	m_snakeholder = new SnakeHolder();
 	m_snakeholder->Init(sf::Vector2i((WIDTH / 2), HEIGHT / 2));

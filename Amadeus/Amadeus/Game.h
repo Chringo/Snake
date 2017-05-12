@@ -7,6 +7,7 @@
 #include <Amadeus\SnakeHolder.h>
 #include <Amadeus\CollisionHandler.h>
 #include <Amadeus\Notifier.h>
+#include <Amadeus\FileHandler.h>
 class Game : public sf::Drawable
 {
 public:
@@ -31,6 +32,7 @@ private:
 	SnakeHolder *m_snakeholder;
 	CollisionHandler *m_colhandler;
 	Notifier *m_notifier;
+	FileHandler m_data;
 	// Key logic
 	enum Keys : unsigned int
 	{
