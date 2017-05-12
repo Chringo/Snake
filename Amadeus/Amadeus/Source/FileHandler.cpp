@@ -17,7 +17,7 @@ int ** FileHandler::LoadMap(std::string filepath, int * height, int * width, int
 		std::printf("ACCESSING - %s\n", filepath.c_str());
 		char hfiller, wfiller;
 		stream >> hfiller >> *height >> wfiller >> *width;
-		std::printf("Filler values: %c %c\n", hfiller, wfiller);
+		std::printf("   Filler values: %c %c\n", hfiller, wfiller);
 		map = new int*[*height];
 		for (int h = 0; h < *height; h++)
 		{

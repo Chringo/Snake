@@ -1,4 +1,5 @@
 #include <Amadeus\GridObject.h>
+const float GridObject::sDrawSize = 26.0f;
 GridObject::GridObject()
 {
 }

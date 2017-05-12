@@ -7,9 +7,9 @@ Tile::~Tile() {}
 
 void Tile::Init(int type, int height, int width)
 {
-	float size = m_size;
+	float size = sDrawSize;
 	shape = sf::RectangleShape(sf::Vector2f(size, size));
-	shape.setPosition(5 + width * (m_size + 1), 5 + height * (m_size + 1));
+	shape.setPosition(5 + width * (sDrawSize + 1), 5 + height * (sDrawSize + 1));
 	shape.setOutlineThickness(1);
 	shape.setOutlineColor(sf::Color::White);
 	if (type == 0)// TODO - Add static enum

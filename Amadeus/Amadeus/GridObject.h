@@ -12,7 +12,9 @@ public:
 protected:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const = 0;
 
-	const float m_size = 26.0f;
+/// Static variables are deprecated. Only static constants are allowed and preferably avoided.
+/// They begin with <s> followed by capital letters per word in variable name.
+	static const float sDrawSize;
 	sf::Vector2i m_gridpos;
 	sf::Texture m_texture;
 	sf::Sprite m_sprite;
