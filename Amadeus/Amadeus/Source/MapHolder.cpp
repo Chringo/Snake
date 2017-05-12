@@ -9,7 +9,7 @@ MapHolder::~MapHolder()
 	Shutdown();
 }
 
-int MapHolder::Init(const int HEIGHT, const int WIDTH, int *map)
+int MapHolder::Init(const int HEIGHT, const int WIDTH, int ** map)
 {
 	Shutdown();
 	m_numtiles = HEIGHT * WIDTH;
