@@ -13,7 +13,8 @@ private:
 	void Shutdown();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
-	Tile *m_map;
-	int m_numtiles;
+	Tile ** m_map;
+	int m_height;
+	int m_width;
 };
 #endif // AMADEUS_MAIN_MAPHOLDER_H_
