@@ -17,15 +17,6 @@ int CollisionHandler::Init(Notifier *notif, int * map, int height, int width)
 	Shutdown();
 	m_itemhitpreviousframe = false;
 	notifier = notif;
-	//for (int h = 0; h < height; h++)
-	//{
-	//	std::vector<int> row;
-	//	for (int w = 0; w < width; w++)
-	//	{
-	//		row.push_back(map[h * height + w]);
-	//	}
-	//	m_colmap.push_back(row);
-	//}	
 	m_colmap = new int*[height];
 	for (int h = 0; h < height; h++)
 	{
@@ -90,17 +81,9 @@ sf::Vector2i CollisionHandler::getRandomPos()
 			}
 		}
 	}
-	int i = 0;
-	//std::printf("%d\n", spawnpoints.size());
-	//for (i = 0; i < spawnpoints.size(); i++)//TEST
-	//{
-	//	std::printf("%d - %d\n", spawnpoints[i].x, spawnpoints[i].y);
-	//}
 	std::uniform_int_distribution<int> dis 
 		= std::uniform_int_distribution<int>(0, (int)spawnpoints.size() - 1);
-	i = dis(gen);
-	//std::printf("INDEX %d : %d - %d\n", i, spawnpoints[i].x, spawnpoints[i].y);//TEST
-	return spawnpoints[i];
+	return spawnpoints[dis(gen)];
 }
 
 void CollisionHandler::Print() const

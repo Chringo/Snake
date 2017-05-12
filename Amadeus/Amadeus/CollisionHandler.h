@@ -1,6 +1,5 @@
 #ifndef AMADEUS_MAIN_COLLISIONHANDLER_H_
 #define AMADEUS_MAIN_COLLISIONHANDLER_H_
-//#include <vector>
 #include <random>// C++11
 #include <SFML\System\Vector2.hpp>
 #include <Amadeus\Notifier.h>
@@ -23,7 +22,6 @@ private:
 	void Shutdown();
 	
 	bool m_itemhitpreviousframe;
-	//std::vector< std::vector<int> > m_colmap;
 	int **m_colmap;
 	int m_height;
 	int m_width;
