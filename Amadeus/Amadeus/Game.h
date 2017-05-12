@@ -1,6 +1,5 @@
 #ifndef AMADEUS_MAIN_GAME_H_
 #define AMADEUS_MAIN_GAME_H_
-#include <vector>
 #include <SFML\Graphics.hpp>
 #include <Amadeus\MapHolder.h>
 #include <Amadeus\ItemHolder.h>
@@ -40,7 +39,7 @@ private:
 		D,
 		SIZE
 	};
-	std::vector<bool> m_keys;
+	bool m_keys[SIZE];
 
 	sf::Texture m_backtexture;
 	sf::Sprite m_backsprite;

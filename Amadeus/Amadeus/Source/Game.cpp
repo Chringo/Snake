@@ -50,7 +50,7 @@ int Game::Init()
 
 	for (int i = 0; i < Keys::SIZE; i++)
 	{
-		m_keys.push_back(false);
+		m_keys[i] = false;
 	}
 	//// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
@@ -131,7 +131,6 @@ void Game::Shutdown()
 		delete m_notifier;
 		m_notifier = nullptr;
 	}
-	m_keys.clear();
 }
 
 int Game::getHighScore() const
