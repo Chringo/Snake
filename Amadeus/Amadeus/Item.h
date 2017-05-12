@@ -7,7 +7,7 @@ public:
 	Item();
 	~Item();
 
-	void Init(sf::Vector2i gridpos, int points);
+	void Init(int points);
 	void setGridPos(const int kX, const int kY);
 	int getPoints() const;
 private:

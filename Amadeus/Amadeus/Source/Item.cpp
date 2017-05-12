@@ -2,9 +2,9 @@
 Item::Item() {}
 Item::~Item() {}
 
-void Item::Init(sf::Vector2i gridpos, int points)
+void Item::Init(int points)
 {
-	m_gridpos = gridpos;
+	m_gridpos = sf::Vector2i();
 	m_points = points;
 
 	float size = sDrawSize - 6;

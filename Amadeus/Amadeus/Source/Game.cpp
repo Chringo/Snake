@@ -38,7 +38,7 @@ int Game::Init()
 	}
 
 	m_itemholder = new ItemHolder();
-	m_itemholder->Init(HEIGHT, WIDTH, map);
+	m_itemholder->Init(7, 1);
 
 	m_notifier = new Notifier();
 	m_colhandler = new CollisionHandler();

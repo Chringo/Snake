@@ -8,37 +8,16 @@ ItemHolder::~ItemHolder()
 	Shutdown();
 }
 
-int ItemHolder::Init(const int HEIGHT, const int WIDTH, int *map)
+int ItemHolder::Init(int numitems, int startingpointvalue)
 {
 	Shutdown();
-	m_numitems = 7;
+	m_numitems = numitems;
 	m_items = new Item[m_numitems];
-	//std::random_device rd;// Obtain a new seed for each game instance, hence why it's local
-	//gen = std::mt19937(rd());// Load seed into generator
-	//// TODO - If map design can be intact, split the map in four parts to even out the pseudo-RNG
-	//disx = std::uniform_int_distribution<int>(1, WIDTH - 2);//TEST
-	//disy = std::uniform_int_distribution<int>(1, HEIGHT - 2);//1, WIDTH-2, etc - replaced with fileloading
-	for (int i = 0; i < m_numitems; i++)//TEST
+	for (int i = 0; i < m_numitems; i++)
 	{
-		//int x = disx(gen);
-		//int y = disy(gen);
-		//// Identify walls and snake and avoid spawning on these
-		//// NOTE - Items will spawn on each other which might be a risk
-		//// TODO - Don't spawn on previous Item
-		//if (map[y * HEIGHT + x] != 0)
-		//{
-		//	while (map[y * HEIGHT + x] != 0)
-		//	{
-		//		x = disx(gen);
-		//		y = disy(gen);
-		//	}
-		//}
-		m_items[i].Init(sf::Vector2i(), i + 1);
+		m_items[i].Init(i + startingpointvalue);
 	}
-
 	m_activeitem = 0;
-	//sf::Vector2i temp = this->getActiveItemPos();
-	//map[temp.y * HEIGHT + temp.x] = 2;
 	return 0;
 }
 
