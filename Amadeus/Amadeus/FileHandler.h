@@ -7,7 +7,7 @@ public:
 	FileHandler();
 	~FileHandler();
 
-	int LoadMap(std::string filepath, int *height, int *width, int *map);
+	int ** LoadMap(std::string filepath, int * height, int * width, int ** map);
 	int LoadMap(std::string filepath);
 };
 #endif // AMADEUS_MAIN_FILEHANDLER_H_
