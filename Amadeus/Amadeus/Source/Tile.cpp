@@ -9,7 +9,7 @@ void Tile::Init(int type, int height, int width)
 {
 	float size = m_size;
 	shape = sf::RectangleShape(sf::Vector2f(size, size));
-	shape.setPosition(5 + height * (m_size + 1), 5 + width * (m_size + 1));
+	shape.setPosition(5 + width * (m_size + 1), 5 + height * (m_size + 1));
 	shape.setOutlineThickness(1);
 	shape.setOutlineColor(sf::Color::White);
 	if (type == 0)// TODO - Add static enum
@@ -22,7 +22,7 @@ void Tile::Init(int type, int height, int width)
 		shape.setFillColor(sf::Color(50, 0, 25));
 		m_iswall = true;
 	}
-	m_gridpos = sf::Vector2i(height, width);
+	m_gridpos = sf::Vector2i(width, height);
 }
 
 bool Tile::isWall() const
