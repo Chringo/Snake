@@ -10,7 +10,7 @@ public:
 	CollisionHandler();
 	~CollisionHandler();
 
-	int Init(Notifier *notifier, int *map, int height, int width);
+	int Init(Notifier *notifier, int ** map, int height, int width);
 	void UpdateSnake(const sf::Vector2i kFront, const sf::Vector2i kBack);
 	void UpdateItem(const sf::Vector2i kItemPos);
 

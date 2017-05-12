@@ -12,20 +12,12 @@ CollisionHandler::~CollisionHandler()
 	Shutdown();
 }
 
-int CollisionHandler::Init(Notifier *notif, int * map, int height, int width)
+int CollisionHandler::Init(Notifier *notif, int ** map, int height, int width)
 {
 	Shutdown();
 	m_itemhitpreviousframe = false;
 	notifier = notif;
-	m_colmap = new int*[height];
-	for (int h = 0; h < height; h++)
-	{
-		m_colmap[h] = new int[width];
-		for (int w = 0; w < width; w++)
-		{
-			m_colmap[h][w] = map[h * height + w];
-		}
-	}
+	m_colmap = map;
 	m_height = height;
 	m_width = width;
 	std::random_device rd;// Obtain a new seed for each game instance, hence why it's local

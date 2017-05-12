@@ -43,7 +43,7 @@ int Game::Init()
 	m_notifier = new Notifier();
 	m_colhandler = new CollisionHandler();
 	m_notifier->Init(m_snakeholder, m_itemholder, m_colhandler);
-	m_colhandler->Init(m_notifier, map, HEIGHT, WIDTH);
+	m_colhandler->Init(m_notifier, map, height, width);
 
 	m_itemholder->Respawn(m_colhandler->getRandomPos());
 	m_colhandler->UpdateItem(m_itemholder->getActiveItemPos());
@@ -52,7 +52,7 @@ int Game::Init()
 	{
 		m_keys.push_back(false);
 	}
-	// Background
+	//// Background
 	//if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	//{
 	//	m_backsprite.setTexture(m_backtexture);
