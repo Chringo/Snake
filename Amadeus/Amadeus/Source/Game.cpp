@@ -29,10 +29,12 @@ int Game::Init()
 	m_mapholder->Init(height, width, map);
 
 	m_snakeholder = new SnakeHolder();
-	m_snakeholder->Init(sf::Vector2i((WIDTH / 2), HEIGHT / 2));
-	for (int i = 0; i < 4; i++)//TEST
+	m_snakeholder->Init(sf::Vector2i((width / 2), height / 2));
+	const int kPieces = 4;
+	std::printf("Creating %d SnakePieces on collision map", kPieces);
+	for (int i = 0; i < kPieces; i++)
 	{
-		map[(HEIGHT / 2) * HEIGHT + (WIDTH / 2) + i] = 3;
+		map[(height / 2)][(width / 2) + i] = 3;
 	}
 
 	m_itemholder = new ItemHolder();

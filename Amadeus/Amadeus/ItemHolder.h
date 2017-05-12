@@ -9,7 +9,7 @@ public:
 	ItemHolder();
 	~ItemHolder();
 
-	int Init(const int HEIGHT, const int WIDTH, int *map);
+	int Init(const int kHeight, const int kWidth, int *map);
 	int Respawn(sf::Vector2i freeposition);
 
 	int UpdateScore();

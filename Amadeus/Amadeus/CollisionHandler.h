@@ -12,8 +12,8 @@ public:
 	~CollisionHandler();
 
 	int Init(Notifier *notifier, int *map, int height, int width);
-	void UpdateSnake(const sf::Vector2i front, const sf::Vector2i back);
-	void UpdateItem(const sf::Vector2i itemPos);
+	void UpdateSnake(const sf::Vector2i kFront, const sf::Vector2i kBack);
+	void UpdateItem(const sf::Vector2i kItemPos);
 
 	bool getPreviousFrameStatus() const { return m_itemhitpreviousframe; }
 	sf::Vector2i getRandomPos();

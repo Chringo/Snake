@@ -15,9 +15,9 @@ public:
 	~Game();
 
 	int Init();
-	int Update(const sf::Event &e, float dt);
+	int Update(const sf::Event &kEvent, float dt);
 	void Shutdown();
-	void HandleInput(const sf::Event &e);
+	void HandleInput(const sf::Event &kEvent);
 
 	int getHighScore() const;
 private:

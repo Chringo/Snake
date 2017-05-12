@@ -19,7 +19,9 @@ public:
 	int Shutdown();
 private:
 	void Render();
-	void PerformanceTests(const float lastframe);
+/// Name of constant begins with <k> followed by capital letter per word in variable name.
+/// This rule is applied on all member variables, local variables and on parameters in header-files.
+	void PerformanceTests(const float kLastFrame);
 
 	sf::RenderWindow m_window;
 	sf::Clock m_clock;
