@@ -63,6 +63,8 @@ void CollisionHandler::UpdateItem(const sf::Vector2i pos)
 sf::Vector2i CollisionHandler::getRandomPos()
 {
 	std::vector<sf::Vector2i> spawnpoints;
+	int data = sizeof(spawnpoints);
+	int numpositions = 0;
 	for (int h = 0; h < m_height; h++)
 	{
 		for (int w = 0; w < m_width; w++)
@@ -70,11 +72,15 @@ sf::Vector2i CollisionHandler::getRandomPos()
 			if (m_colmap[h][w] == 0)
 			{
 				spawnpoints.push_back(sf::Vector2i(w, h));
+				data += sizeof(sf::Vector2i);
+				numpositions++;
 			}
 		}
 	}
 	std::uniform_int_distribution<int> dis 
 		= std::uniform_int_distribution<int>(0, (int)spawnpoints.size() - 1);
+	data += sizeof(dis);
+	std::printf("CollisionHandler::getRandomPos()\n   Number of positions: %d\n   Data consumption: %d\n", numpositions, data);
 	return spawnpoints[dis(gen)];
 }
 
