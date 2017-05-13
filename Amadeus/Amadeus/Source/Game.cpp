@@ -24,14 +24,14 @@ int Game::Init()
 	int **map = nullptr;
 	// Import map from file system
 	map = m_data.LoadMap("default.txt", &height, &width, map);
-	std::printf("Verifying scope: H%d - W%d - M[0][0] %d\n", height, width, map[0][0]);//TEST
+	std::printf("Verifying scope: H%d - W%d - M[0][0] %d\n", height, width, map[0][0]);
 	
 	m_mapholder->Init(height, width, map);
 
 	m_snakeholder = new SnakeHolder();
 	m_snakeholder->Init(sf::Vector2i((width / 2), height / 2));
 	const int kPieces = 4;
-	std::printf("Creating %d SnakePieces on collision map", kPieces);
+	std::printf("Creating %d SnakePieces on collision map\n", kPieces);
 	for (int i = 0; i < kPieces; i++)
 	{
 		map[(height / 2)][(width / 2) + i] = 3;
@@ -63,42 +63,45 @@ int Game::Init()
 
 int Game::Update(const sf::Event &e, float dt)
 {
-	m_gametime += dt;
-	m_timesteps += dt;
-	//std::printf("%.6f\n", dt);//TEST
-	if (m_notifier->getLost())
+	if (!m_keys[Keys::PAUSE])
 	{
-		std::printf("FINAL SCORE: %d\n", m_itemholder->getHighScore());
-		this->Init();
-	}
-
-	if (m_timesteps > m_difficulty)
-	{
-		//std::printf("%.6f\n", m_gametime);//TEST
-		if (m_keys[Keys::A])
+		m_gametime += dt;
+		m_timesteps += dt;
+		//std::printf("%.6f\n", dt);//TEST
+		if (m_notifier->getLost())
 		{
-			Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::LEFT);
-			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
-			m_keys[Keys::A] = false;
-		}
-		else if(m_keys[Keys::D])
-		{
-			Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::RIGHT);
-			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
-			m_keys[Keys::D] = false;
-		}
-		else// Forward
-		{
-			Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::FORWARD);
-			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+			std::printf("FINAL SCORE: %d\n", m_itemholder->getHighScore());
+			this->Init();
 		}
 
-		if (m_colhandler->getPreviousFrameStatus())
+		if (m_timesteps > m_difficulty)
 		{
-			m_difficulty -= 0.01f;
-			std::printf("%.6f\n", m_difficulty);
+			//std::printf("%.6f\n", m_gametime);//TEST
+			if (m_keys[Keys::A])
+			{
+				Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::LEFT);
+				m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+				m_keys[Keys::A] = false;
+			}
+			else if (m_keys[Keys::D])
+			{
+				Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::RIGHT);
+				m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+				m_keys[Keys::D] = false;
+			}
+			else// Forward
+			{
+				Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::FORWARD);
+				m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+			}
+
+			if (m_colhandler->getPreviousFrameStatus())
+			{
+				m_difficulty -= 0.01f;
+				//std::printf("%.6f\n", m_difficulty);
+			}
+			m_timesteps = 0;
 		}
-		m_timesteps = 0;
 	}
 
 	return 0;
@@ -154,6 +157,9 @@ void Game::HandleInput(const sf::Event &e)
 			//std::printf("PREPARE RIGHT\n");//TEST
 			m_keys[Keys::D] = true;
 			m_keys[Keys::A] = false;
+			break;
+		case sf::Keyboard::T:
+			m_keys[Keys::PAUSE] = !m_keys[Keys::PAUSE];
 			break;
 		//case sf::Keyboard::Q://TEST
 		//	std::printf("\nE: RESPAWN ITEM\n");

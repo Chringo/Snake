@@ -37,6 +37,7 @@ private:
 	{
 		A,
 		D,
+		PAUSE,
 		SIZE
 	};
 	bool m_keys[SIZE];
