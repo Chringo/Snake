@@ -28,24 +28,11 @@ int ** FileHandler::LoadMap(std::string filepath, int * height, int * width, int
 			for (int w = 0; w < *width; w++)
 			{
 				map[h][w] = row[w] - '0';
-				//std::printf("%d ", map[h][w]);
+				//std::printf("%d", map[h][w]);
 			}
 			//std::printf("\n");
 		}
-		// Old data structure of map
-		//map = new int[*height * *width];
-		//for (int h = 0; h < *height; h++)
-		//{
-		//	std::string row;
-		//	stream >> row;
-		//	//std::printf("%d - %s\n", h, row.c_str());
-		//	for (int w = 0; w < *width; w++)
-		//	{
-		//		map[h * *height + w] = row[w] - '0';
-		//		//std::printf("%d ", map[h * *height + w]);
-		//	}
-		//	//std::printf("\n");
-		//}
+		stream.close();
 	}
 	else
 	{
