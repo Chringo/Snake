@@ -25,7 +25,8 @@ void Notifier::Notify(Flag input)
 	else if (input == Flag::ITEM_HIT)
 	{
 		snakeholder->Add();
-		std::printf("%d\n", itemholder->UpdateScore());
+		//std::printf("%d\n", itemholder->UpdateScore());
+		itemholder->UpdateScore();
 		itemholder->Respawn(colhandler->getRandomPos());
 		colhandler->UpdateItem(itemholder->getActiveItemPos());
 	}

@@ -1,5 +1,5 @@
 #include <Amadeus\Snake.h>
-#define STARTING_SNAKE_SIZE 4
+#define STARTING_SNAKE_SIZE 12
 Snake::Snake()
 {
 	m_maxpieces = 16;

@@ -80,7 +80,7 @@ sf::Vector2i CollisionHandler::getRandomPos()
 	std::uniform_int_distribution<int> dis 
 		= std::uniform_int_distribution<int>(0, (int)spawnpoints.size() - 1);
 	data += sizeof(dis);
-	std::printf("CollisionHandler::getRandomPos()\n   Number of positions: %d\n   Data consumption: %d\n", numpositions, data);
+	//std::printf("CollisionHandler::getRandomPos()\n   Number of positions: %d\n   Data consumption: %d\n", numpositions, data);
 	return spawnpoints[dis(gen)];
 }
 

@@ -17,7 +17,7 @@ int Game::Init()
 	m_score = 0;
 	m_gametime = 0;
 	m_timesteps = 0;
-	m_difficulty = 0.4f;
+	m_difficulty = 0.35f;
 	m_mapholder = new MapHolder();
 	int height = 0;
 	int width = 0;
@@ -30,7 +30,7 @@ int Game::Init()
 
 	m_snakeholder = new SnakeHolder();
 	m_snakeholder->Init(sf::Vector2i((width / 2), height / 2));
-	const int kPieces = 4;
+	const int kPieces = 12;
 	std::printf("Creating %d SnakePieces on collision map\n", kPieces);
 	for (int i = 0; i < kPieces; i++)
 	{
@@ -89,16 +89,23 @@ int Game::Update(const sf::Event &e, float dt)
 				m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
 				m_keys[Keys::D] = false;
 			}
-			else// Forward
+			else
 			{
 				Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::FORWARD);
 				m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
 			}
 
-			if (m_colhandler->getPreviousFrameStatus())
+			if (m_colhandler->ItemWasHit())
 			{
-				m_difficulty -= 0.01f;
-				//std::printf("%.6f\n", m_difficulty);
+				if (m_difficulty > 0.12f)
+				{
+					m_difficulty -= 0.01f;
+				}
+				else if (m_difficulty > 0.032f)
+				{
+					m_difficulty -= 0.002f;
+				}
+				std::printf("%.5f\n", m_difficulty);
 			}
 			m_timesteps = 0;
 		}

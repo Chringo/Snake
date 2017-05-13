@@ -14,7 +14,7 @@ public:
 	void UpdateSnake(const sf::Vector2i kFront, const sf::Vector2i kBack);
 	void UpdateItem(const sf::Vector2i kItemPos);
 
-	bool getPreviousFrameStatus() const { return m_itemhitpreviousframe; }
+	bool ItemWasHit() const { return m_itemhitpreviousframe; }
 	sf::Vector2i getRandomPos();
 	void Print() const;//TEST
 
