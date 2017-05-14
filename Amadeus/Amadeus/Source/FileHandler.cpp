@@ -91,7 +91,7 @@ void FileHandler::SaveSession(int score)
 	for (i = 0; i < 5; i++)
 	{
 		int temp = leaderboard.back();
-		//std::printf("%d ", temp);
+		//std::printf("   %d ", temp);
 		outstream.write(reinterpret_cast<char*>(&temp), sizeof temp);
 		leaderboard.pop_back();
 	}
