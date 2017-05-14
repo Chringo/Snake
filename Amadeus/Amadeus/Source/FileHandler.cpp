@@ -10,7 +10,7 @@ FileHandler::~FileHandler()
 int ** FileHandler::LoadMap(std::string filepath, int * height, int * width, int ** map)
 {
 	filepath = "../Assets/Maps/" + filepath;
-	
+
 	std::ifstream stream(filepath);
 	if (stream.is_open())
 	{

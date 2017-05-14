@@ -1,5 +1,6 @@
 #ifndef AMADEUS_MAIN_COLLISIONHANDLER_H_
 #define AMADEUS_MAIN_COLLISIONHANDLER_H_
+#include <vector>
 #include <random>// C++11
 #include <SFML\System\Vector2.hpp>
 #include <Amadeus\Notifier.h>
@@ -14,7 +15,7 @@ public:
 	void UpdateSnake(const sf::Vector2i kFront, const sf::Vector2i kBack);
 	void UpdateItem(const sf::Vector2i kItemPos);
 
-	bool ItemWasHit() const { return m_itemhitpreviousframe; }
+	bool ItemWasHit() const;
 	sf::Vector2i getRandomPos();
 	void Print() const;//TEST
 

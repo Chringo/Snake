@@ -60,6 +60,10 @@ void CollisionHandler::UpdateItem(const sf::Vector2i pos)
 		m_colmap[pos.y][pos.x] = 2;
 	}
 }
+bool CollisionHandler::ItemWasHit() const
+{
+	return m_itemhitpreviousframe;
+}
 sf::Vector2i CollisionHandler::getRandomPos()
 {
 	std::vector<sf::Vector2i> spawnpoints;
