@@ -61,14 +61,14 @@ void FileHandler::SaveSession(int score)
 {
 	std::string filepath = "../Assets/Saves/Leaderboard.txt";
 	std::list<int> leaderboard;
-	std::ifstream instream(filepath);
+	std::ifstream instream(filepath, std::ios::binary);
 	if (instream.is_open())
 	{
 		std::printf("ACCESSING - %s\n", filepath.c_str());
 		int temp = 0;
 		while (!instream.eof())
 		{
-			instream >> temp;
+			instream.read(reinterpret_cast<char*>(&temp), sizeof temp);
 			leaderboard.push_back(temp);
 		}
 		instream.close();
@@ -79,7 +79,7 @@ void FileHandler::SaveSession(int score)
 	}
 	leaderboard.push_back(score);
 	leaderboard.sort();
-	int i = leaderboard.size() - 1;
+	int i = leaderboard.size();
 	if (i < 5)
 	{
 		for (int j = i; j < 5; j++)
@@ -87,11 +87,13 @@ void FileHandler::SaveSession(int score)
 			leaderboard.push_front(0);
 		}
 	}
-	std::ofstream outstream(filepath);
+	std::ofstream outstream(filepath, std::ios::binary);
 	for (i = 0; i < 5; i++)
 	{
-		//std::printf("%d ", leaderboard.back());
-		outstream << leaderboard.back() << '\n';
+		int temp = leaderboard.back();
+		//std::printf("%d ", temp);
+		outstream.write(reinterpret_cast<char*>(&temp), sizeof temp);
 		leaderboard.pop_back();
 	}
+	//std::printf("\n");
 }
