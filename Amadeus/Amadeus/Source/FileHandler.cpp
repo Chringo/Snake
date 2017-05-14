@@ -1,5 +1,6 @@
 #include <Amadeus\FileHandler.h>
 #include <fstream>
+#include <list>
 FileHandler::FileHandler()
 {
 }
@@ -54,4 +55,43 @@ int FileHandler::LoadMap(std::string filepath)
 		std::printf("FAILED - %s\n", filepath.c_str());
 	}
 	return 0;
+}
+
+void FileHandler::SaveSession(int score)
+{
+	std::string filepath = "../Assets/Saves/Leaderboard.txt";
+	std::list<int> leaderboard;
+	std::ifstream instream(filepath);
+	if (instream.is_open())
+	{
+		std::printf("ACCESSING - %s\n", filepath.c_str());
+		int temp = 0;
+		while (!instream.eof())
+		{
+			instream >> temp;
+			leaderboard.push_back(temp);
+		}
+		instream.close();
+	}
+	else
+	{
+		std::printf("FAILED - %s\n", filepath.c_str());
+	}
+	leaderboard.push_back(score);
+	leaderboard.sort();
+	int i = leaderboard.size() - 1;
+	if (i < 5)
+	{
+		for (int j = i; j < 5; j++)
+		{
+			leaderboard.push_front(0);
+		}
+	}
+	std::ofstream outstream(filepath);
+	for (i = 0; i < 5; i++)
+	{
+		//std::printf("%d ", leaderboard.back());
+		outstream << leaderboard.back() << '\n';
+		leaderboard.pop_back();
+	}
 }

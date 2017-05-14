@@ -71,6 +71,7 @@ int Game::Update(const sf::Event &e, float dt)
 		if (m_notifier->getLost())
 		{
 			std::printf("FINAL SCORE: %d\n", m_itemholder->getHighScore());
+			m_data.SaveSession(m_itemholder->getHighScore());
 			this->Init();
 		}
 

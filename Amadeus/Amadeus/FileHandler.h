@@ -9,5 +9,7 @@ public:
 
 	int ** LoadMap(std::string filepath, int * height, int * width, int ** map);
 	int LoadMap(std::string filepath);
+
+	void SaveSession(int score);
 };
 #endif // AMADEUS_MAIN_FILEHANDLER_H_
