@@ -50,5 +50,6 @@ private:
 	sf::Sprite m_backsprite;
 	sf::Text m_pausetitle;
 	sf::Text m_exittext;
+	sf::Text m_menutext;
 };
 #endif // AMADEUS_MAIN_GAME_H_

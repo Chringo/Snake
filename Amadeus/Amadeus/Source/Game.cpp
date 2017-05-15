@@ -25,7 +25,7 @@ int Game::Init()
 	// Import map from file system
 	map = filehandler->LoadMap("default.txt", &height, &width, map);
 	std::printf("Verifying scope: H%d - W%d - M[0][0] %d\n", height, width, map[0][0]);
-	
+
 	m_mapholder->Init(height, width, map);
 
 	m_snakeholder = new SnakeHolder();
@@ -64,18 +64,32 @@ int Game::Init()
 	// Pause screen
 	m_pausetitle.setFont(*filehandler->getFont());
 	m_pausetitle.setString("Pause screen");
-	m_pausetitle.setCharacterSize(75); // in pixels, not points!
-	m_pausetitle.setFillColor(sf::Color(153, 153, 102));
+	m_pausetitle.setCharacterSize(90); // in pixels, not points!
+	m_pausetitle.setFillColor(sf::Color(51, 51, 0));
+	m_pausetitle.setOutlineColor(sf::Color(153, 153, 102));
+	m_pausetitle.setOutlineThickness(3);
 	float lcenter = m_pausetitle.getLocalBounds().width / 2;
 	float top = 25;
 	m_pausetitle.move(sf::Vector2f(wcenter - lcenter, top));
 
+	m_menutext.setFont(*filehandler->getFont());
+	m_menutext.setString("Go back to menu");
+	m_menutext.setCharacterSize(65); // in pixels, not points!
+	m_menutext.setFillColor(sf::Color(102, 102, 51));
+	m_menutext.setOutlineColor(sf::Color::Black);
+	m_menutext.setOutlineThickness(2);
+	lcenter = m_menutext.getLocalBounds().width / 2;
+	top += 85;
+	m_menutext.move(sf::Vector2f(wcenter - lcenter, top));
+
 	m_exittext.setFont(*filehandler->getFont());
 	m_exittext.setString("Exit game");
-	m_exittext.setCharacterSize(50); // in pixels, not points!
-	m_exittext.setFillColor(sf::Color(153, 153, 102));
+	m_exittext.setCharacterSize(65); // in pixels, not points!
+	m_exittext.setFillColor(sf::Color(102, 102, 51));
+	m_exittext.setOutlineColor(sf::Color::Black);
+	m_exittext.setOutlineThickness(2);
 	lcenter = m_exittext.getLocalBounds().width / 2;
-	top += 75;
+	top += 65;
 	m_exittext.move(sf::Vector2f(wcenter - lcenter, top));
 	return 0;
 }
@@ -135,7 +149,7 @@ int Game::Update(float dt)
 			m_exittext.setFillColor(sf::Color::White);
 			m_keys[Keys::W] = false;
 		}
-		else if(m_keys[Keys::S])
+		else if (m_keys[Keys::S])
 		{
 			m_exittext.setFillColor(sf::Color::White);
 			m_keys[Keys::S] = false;
@@ -211,15 +225,15 @@ void Game::HandleInput(const sf::Event &e)
 			m_keys[Keys::PAUSE] = !m_keys[Keys::PAUSE];
 			break;
 		case sf::Keyboard::W:
-			if(m_keys[Keys::PAUSE])
+			if (m_keys[Keys::PAUSE])
 				m_keys[Keys::W] = true;
 			break;
 		case sf::Keyboard::S:
-			if(m_keys[Keys::PAUSE])
+			if (m_keys[Keys::PAUSE])
 				m_keys[Keys::S] = true;
 			break;
 		case sf::Keyboard::Return:
-			if(m_keys[Keys::PAUSE])
+			if (m_keys[Keys::PAUSE])
 				m_keys[Keys::ENTER] = true;
 			break;
 		//case sf::Keyboard::Q://TEST
@@ -258,5 +272,6 @@ void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(m_backsprite, states);
 		target.draw(m_pausetitle, states);
 		target.draw(m_exittext, states);
+		target.draw(m_menutext, states);
 	}
 }
