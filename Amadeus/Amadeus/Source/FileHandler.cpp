@@ -79,7 +79,7 @@ void FileHandler::SaveSession(int score)
 	}
 	leaderboard.push_back(score);
 	leaderboard.sort();
-	int i = leaderboard.size();
+	int i = static_cast<int>(leaderboard.size());
 	if (i < 5)
 	{
 		for (int j = i; j < 5; j++)
