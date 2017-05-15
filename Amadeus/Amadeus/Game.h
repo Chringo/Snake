@@ -14,7 +14,7 @@ public:
 	~Game();
 
 	int Init();
-	int Update(const sf::Event &kEvent, float dt);
+	int Update(float dt);
 	void Shutdown();
 	void HandleInput(const sf::Event &kEvent);
 
@@ -39,6 +39,9 @@ private:
 		A,
 		D,
 		PAUSE,
+		W,
+		S,
+		ENTER,
 		SIZE
 	};
 	bool m_keys[SIZE];
@@ -46,5 +49,6 @@ private:
 	sf::Texture m_backtexture;
 	sf::Sprite m_backsprite;
 	sf::Text m_pausetitle;
+	sf::Text m_exittext;
 };
 #endif // AMADEUS_MAIN_GAME_H_

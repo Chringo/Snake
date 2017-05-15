@@ -69,10 +69,18 @@ int Game::Init()
 	float lcenter = m_pausetitle.getLocalBounds().width / 2;
 	float top = 25;
 	m_pausetitle.move(sf::Vector2f(wcenter - lcenter, top));
+
+	m_exittext.setFont(*filehandler->getFont());
+	m_exittext.setString("Exit game");
+	m_exittext.setCharacterSize(50); // in pixels, not points!
+	m_exittext.setFillColor(sf::Color(153, 153, 102));
+	lcenter = m_exittext.getLocalBounds().width / 2;
+	top += 75;
+	m_exittext.move(sf::Vector2f(wcenter - lcenter, top));
 	return 0;
 }
 
-int Game::Update(const sf::Event &e, float dt)
+int Game::Update(float dt)
 {
 	if (!m_keys[Keys::PAUSE])
 	{
@@ -118,6 +126,27 @@ int Game::Update(const sf::Event &e, float dt)
 				std::printf("%.5f\n", m_difficulty);
 			}
 			m_timesteps = 0;
+		}
+	}
+	else
+	{
+		if (m_keys[Keys::W])
+		{
+			m_exittext.setFillColor(sf::Color::White);
+			m_keys[Keys::W] = false;
+		}
+		else if(m_keys[Keys::S])
+		{
+			m_exittext.setFillColor(sf::Color::White);
+			m_keys[Keys::S] = false;
+		}
+		else if (m_keys[Keys::ENTER])
+		{
+			if (m_exittext.getFillColor() == sf::Color::White)
+			{
+				return 1;
+			}
+			m_keys[Keys::ENTER] = false;
 		}
 	}
 
@@ -171,17 +200,27 @@ void Game::HandleInput(const sf::Event &e)
 		switch (e.key.code)
 		{
 		case sf::Keyboard::A:
-			//std::printf("PREPARE LEFT\n");//TEST
 			m_keys[Keys::A] = true;
 			m_keys[Keys::D] = false;
 			break;
 		case sf::Keyboard::D:
-			//std::printf("PREPARE RIGHT\n");//TEST
 			m_keys[Keys::D] = true;
 			m_keys[Keys::A] = false;
 			break;
 		case sf::Keyboard::T:
 			m_keys[Keys::PAUSE] = !m_keys[Keys::PAUSE];
+			break;
+		case sf::Keyboard::W:
+			if(m_keys[Keys::PAUSE])
+				m_keys[Keys::W] = true;
+			break;
+		case sf::Keyboard::S:
+			if(m_keys[Keys::PAUSE])
+				m_keys[Keys::S] = true;
+			break;
+		case sf::Keyboard::Return:
+			if(m_keys[Keys::PAUSE])
+				m_keys[Keys::ENTER] = true;
 			break;
 		//case sf::Keyboard::Q://TEST
 		//	std::printf("\nE: RESPAWN ITEM\n");
@@ -218,5 +257,6 @@ void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	{
 		target.draw(m_backsprite, states);
 		target.draw(m_pausetitle, states);
+		target.draw(m_exittext, states);
 	}
 }

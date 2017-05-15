@@ -7,6 +7,7 @@ int System::Init()
 	// TODO - Error cases
 	m_window.create(sf::VideoMode(1280, 720), "TITLE"/*, sf::Style::None*/);
 	m_window.setVerticalSyncEnabled(true);
+	m_gamerunning = true;
 	m_data.ImportFont();
 	m_game.setFileHandler(&m_data);
 	m_game.Init();
@@ -29,11 +30,15 @@ int System::Run()
 				// If escape was pressed go to next case and close window
 				if (e.key.code != sf::Keyboard::Escape)// 36 = ESC
 				{
-					if (e.key.code == sf::Keyboard::F1)
+					if (e.key.code == sf::Keyboard::F1)//TEST
 					{
 						m_game.Init();
+						m_gamerunning = true;
 					}
-					m_game.HandleInput(e);
+					if (m_gamerunning) 
+					{
+						m_game.HandleInput(e);
+					}
 					break;
 				}
 			case sf::Event::Closed:
@@ -42,7 +47,14 @@ int System::Run()
 			}
 		}
 		//this->PerformanceTests(m_clock.getElapsedTime().asSeconds());
-		m_game.Update(e, m_clock.restart().asSeconds());
+		if (m_gamerunning)
+		{
+			int temp = m_game.Update(m_clock.restart().asSeconds());
+			if (temp == 1)
+				m_window.close();
+			else if (temp == 2)
+				m_gamerunning = false;
+		}
 		this->Render();
 	}
 	return 0;
@@ -56,9 +68,9 @@ int System::Shutdown()
 
 void System::Render()
 {
-	// TODO - Off-screen drawing tests
 	m_window.clear(sf::Color::Black);
-	m_window.draw(m_game);
+	if (m_gamerunning)
+		m_window.draw(m_game);
 	m_window.display();
 }
 
