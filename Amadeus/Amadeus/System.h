@@ -5,6 +5,7 @@
 /// The format of the symbol name should be <SOLUTION>_<PROJECT>_<FILE>_H_
 #include <SFML\Graphics.hpp>
 #include <Amadeus\Game.h>
+#include <Amadeus\FileHandler.h>
 class System
 {
 /// Separate functions and variables, functions comes first.
@@ -27,6 +28,7 @@ private:
 	sf::Clock m_clock;
 
 	Game m_game;
+	FileHandler m_data;
 
 	// Performance tests
 	int m_numframes = 0;

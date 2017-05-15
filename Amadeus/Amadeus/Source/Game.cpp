@@ -23,7 +23,7 @@ int Game::Init()
 	int width = 0;
 	int **map = nullptr;
 	// Import map from file system
-	map = m_data.LoadMap("default.txt", &height, &width, map);
+	map = filehandler->LoadMap("default.txt", &height, &width, map);
 	std::printf("Verifying scope: H%d - W%d - M[0][0] %d\n", height, width, map[0][0]);
 	
 	m_mapholder->Init(height, width, map);
@@ -71,7 +71,7 @@ int Game::Update(const sf::Event &e, float dt)
 		if (m_notifier->getLost())
 		{
 			std::printf("FINAL SCORE: %d\n", m_itemholder->getHighScore());
-			m_data.SaveSession(m_itemholder->getHighScore());
+			filehandler->SaveSession(m_itemholder->getHighScore());
 			this->Init();
 		}
 
@@ -142,6 +142,11 @@ void Game::Shutdown()
 		delete m_notifier;
 		m_notifier = nullptr;
 	}
+}
+
+void Game::setFileHandler(FileHandler * fh)
+{
+	filehandler = fh;
 }
 
 int Game::getHighScore() const

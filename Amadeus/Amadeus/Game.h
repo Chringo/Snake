@@ -18,6 +18,7 @@ public:
 	void Shutdown();
 	void HandleInput(const sf::Event &kEvent);
 
+	void setFileHandler(FileHandler *filehandler);
 	int getHighScore() const;
 private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;
@@ -31,7 +32,7 @@ private:
 	SnakeHolder *m_snakeholder;
 	CollisionHandler *m_colhandler;
 	Notifier *m_notifier;
-	FileHandler m_data;
+	FileHandler *filehandler;
 	// Key logic
 	enum Keys : unsigned int
 	{

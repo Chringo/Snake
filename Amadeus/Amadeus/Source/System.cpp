@@ -7,6 +7,7 @@ int System::Init()
 	// TODO - Error cases
 	m_window.create(sf::VideoMode(1280, 720), "TITLE"/*, sf::Style::None*/);
 	m_window.setVerticalSyncEnabled(true);
+	m_game.setFileHandler(&m_data);
 	m_game.Init();
 	// Restart clock to avoid a very high dt on the first frame
 	m_clock.restart();

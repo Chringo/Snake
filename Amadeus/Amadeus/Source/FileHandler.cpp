@@ -88,12 +88,13 @@ void FileHandler::SaveSession(int score)
 		}
 	}
 	std::ofstream outstream(filepath, std::ios::binary);
+	std::printf("   ");
 	for (i = 0; i < 5; i++)
 	{
 		int temp = leaderboard.back();
-		//std::printf("   %d ", temp);
+		std::printf("%d ", temp);
 		outstream.write(reinterpret_cast<char*>(&temp), sizeof temp);
 		leaderboard.pop_back();
 	}
-	//std::printf("\n");
+	std::printf("\n");
 }
