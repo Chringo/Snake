@@ -52,12 +52,23 @@ int Game::Init()
 	{
 		m_keys[i] = false;
 	}
+
+	/* GRAPHICS */
+	float wcenter = 1280 / 2;
 	// Background
 	if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	{
 		m_backsprite.setTexture(m_backtexture);
 		m_backsprite.setColor(sf::Color(50, 50, 50, 180));
 	}
+	// Pause screen
+	m_pausetitle.setFont(*filehandler->getFont());
+	m_pausetitle.setString("Pause screen");
+	m_pausetitle.setCharacterSize(75); // in pixels, not points!
+	m_pausetitle.setFillColor(sf::Color(153, 153, 102));
+	float lcenter = m_pausetitle.getLocalBounds().width / 2;
+	float top = 25;
+	m_pausetitle.move(sf::Vector2f(wcenter - lcenter, top));
 	return 0;
 }
 
@@ -67,7 +78,6 @@ int Game::Update(const sf::Event &e, float dt)
 	{
 		m_gametime += dt;
 		m_timesteps += dt;
-		//std::printf("%.6f\n", dt);//TEST
 		if (m_notifier->getLost())
 		{
 			std::printf("FINAL SCORE: %d\n", m_itemholder->getHighScore());
@@ -77,7 +87,6 @@ int Game::Update(const sf::Event &e, float dt)
 
 		if (m_timesteps > m_difficulty)
 		{
-			//std::printf("%.6f\n", m_gametime);//TEST
 			if (m_keys[Keys::A])
 			{
 				Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::LEFT);
@@ -205,6 +214,9 @@ void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		target.draw(*m_itemholder, states);
 	if (m_snakeholder)
 		target.draw(*m_snakeholder, states);
-	if(m_keys[Keys::PAUSE])
+	if (m_keys[Keys::PAUSE])
+	{
 		target.draw(m_backsprite, states);
+		target.draw(m_pausetitle, states);
+	}
 }
