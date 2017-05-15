@@ -57,6 +57,20 @@ int FileHandler::LoadMap(std::string filepath)
 	return 0;
 }
 
+int FileHandler::ImportFont()
+{
+	std::string filepath = "../Assets/Fonts/arcade/ARCADE.ttf";
+	if (m_mainfont.loadFromFile(filepath))
+	{
+		std::printf("ACCESSING - %s\n", filepath.c_str());
+	}
+	else
+	{
+		// Error message is produced by loadFromFile()
+	}
+	return 0;
+}
+
 void FileHandler::SaveSession(int score)
 {
 	std::string filepath = "../Assets/Saves/Leaderboard.txt";
@@ -97,4 +111,9 @@ void FileHandler::SaveSession(int score)
 		leaderboard.pop_back();
 	}
 	std::printf("\n");
+}
+
+sf::Font * FileHandler::getFont()
+{
+	return &m_mainfont;
 }
