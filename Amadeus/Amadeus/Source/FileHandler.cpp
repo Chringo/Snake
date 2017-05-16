@@ -57,9 +57,9 @@ int FileHandler::LoadMap(std::string filepath)
 	return 0;
 }
 
-int FileHandler::ImportFont()
+int FileHandler::ImportFont(std::string filepath)
 {
-	std::string filepath = "../Assets/Fonts/arcade/ARCADE.ttf";
+	filepath = "../Assets/Fonts/" + filepath;// arcade / ARCADE.ttf";
 	if (m_mainfont.loadFromFile(filepath))
 	{
 		std::printf("ACCESSING - %s\n", filepath.c_str());

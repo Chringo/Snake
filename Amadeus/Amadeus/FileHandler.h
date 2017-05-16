@@ -10,7 +10,7 @@ public:
 
 	int ** LoadMap(std::string filepath, int * height, int * width, int ** map);
 	int LoadMap(std::string filepath);
-	int ImportFont();
+	int ImportFont(std::string filepath);
 	void SaveSession(int score);
 
 	sf::Font * getFont();

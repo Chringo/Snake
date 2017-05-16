@@ -8,7 +8,7 @@ int System::Init()
 	m_window.create(sf::VideoMode(1280, 720), "TITLE"/*, sf::Style::None*/);
 	m_window.setVerticalSyncEnabled(true);
 	m_gamerunning = true;
-	m_data.ImportFont();
+	m_data.ImportFont("arcade/ARCADE.ttf");
 	m_game.setFileHandler(&m_data);
 	m_game.Init();
 	// Restart clock to avoid a very high dt on the first frame

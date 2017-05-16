@@ -52,7 +52,6 @@ int Game::Init()
 	{
 		m_keys[i] = false;
 	}
-
 	/* GRAPHICS */
 	// Background
 	if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
@@ -200,11 +199,6 @@ void Game::Shutdown()
 		delete m_notifier;
 		m_notifier = nullptr;
 	}
-	for (int i = 0; i < 3; i++)
-	{
-		m_pausemenu[i].setOutlineThickness(0);
-		m_pausemenu[i].setOutlineColor(sf::Color());
-	}
 }
 
 void Game::setFileHandler(FileHandler * fh)
@@ -247,15 +241,8 @@ void Game::HandleInput(const sf::Event &e)
 			if (m_keys[Keys::PAUSE])
 				m_keys[Keys::ENTER] = true;
 			break;
-		//case sf::Keyboard::Q://TEST
-		//	std::printf("\nE: RESPAWN ITEM\n");
-		//	m_itemholder->Respawn(m_colhandler->UpdateItem());
-		//	break;
-		//case sf::Keyboard::E://TEST
-		//	std::printf("\nE: ADD PIECE\n");
-		//	// Add a snake piece
-		//	m_snakeholder->Add();
-		//	break;
+		case sf::Keyboard::Q://TEST
+			break;
 		case sf::Keyboard::P://TEST
 			system("cls");
 			//TEST - Print out collision map
