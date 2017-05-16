@@ -161,7 +161,11 @@ int Game::Update(float dt)
 		}
 		else if (m_keys[Keys::ENTER])
 		{
-			if (m_pausemenu[2].getFillColor() == sf::Color::White)
+			if (m_pausemenu[1].getFillColor() == sf::Color::White)
+			{
+				return 2;
+			}
+			else if (m_pausemenu[2].getFillColor() == sf::Color::White)
 			{
 				return 1;
 			}
