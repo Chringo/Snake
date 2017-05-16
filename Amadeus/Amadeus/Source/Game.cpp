@@ -11,6 +11,47 @@ Game::Game()
 }
 Game::~Game() {}
 
+int Game::StaticSetup()
+{
+	/* GRAPHICS */
+	// Background
+	if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
+	{
+		m_backsprite.setTexture(m_backtexture);
+		m_backsprite.setColor(sf::Color(50, 50, 50, 180));
+	}
+	int i = 0;
+	m_pausemenu[i].setFont(*filehandler->getFont());
+	m_pausemenu[i].setString("Pause screen");
+	m_pausemenu[i].setCharacterSize(110); // in pixels, not points!
+	m_pausemenu[i].setFillColor(sf::Color(51, 51, 0));
+	m_pausemenu[i].setOutlineColor(sf::Color(153, 153, 102));
+	//m_pausemenu[i].setOutlineThickness(3);
+	float lcenter = m_pausemenu[i].getLocalBounds().width / 2;
+	float wcenter = 1280 / 2;
+	float top = 25;
+	m_pausemenu[i].setPosition(sf::Vector2f(wcenter - lcenter, top));
+	i++;
+	m_pausemenu[i].setFont(*filehandler->getFont());
+	m_pausemenu[i].setString("Go back to menu");
+	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
+	m_pausemenu[i].setOutlineColor(sf::Color::Black);
+	//m_pausemenu[i].setOutlineThickness(2);
+	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
+	top += 100;
+	m_pausemenu[i].setPosition(sf::Vector2f(wcenter - lcenter, top));
+	i++;
+	m_pausemenu[i].setFont(*filehandler->getFont());
+	m_pausemenu[i].setString("Exit game");
+	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
+	m_pausemenu[i].setOutlineColor(sf::Color::Black);
+	//m_pausemenu[i].setOutlineThickness(2);
+	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
+	top += 75;
+	m_pausemenu[i].setPosition(sf::Vector2f(wcenter - lcenter, top));
+	return 0;
+}
+
 int Game::Init()
 {
 	Shutdown();
@@ -40,6 +81,7 @@ int Game::Init()
 	m_itemholder = new ItemHolder();
 	m_itemholder->Init(7, 1);
 
+	// TODO - Remove circular dependency
 	m_notifier = new Notifier();
 	m_colhandler = new CollisionHandler();
 	m_notifier->Init(m_snakeholder, m_itemholder, m_colhandler);
@@ -52,46 +94,11 @@ int Game::Init()
 	{
 		m_keys[i] = false;
 	}
-	/* GRAPHICS */
-	// Background
-	if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
-	{
-		m_backsprite.setTexture(m_backtexture);
-		m_backsprite.setColor(sf::Color(50, 50, 50, 180));
-	}
+
 	// Pause screen
 	m_operatemenu = false;
-	int i = 0;
-	m_pausemenu[i].setFont(*filehandler->getFont());
-	m_pausemenu[i].setString("Pause screen");
-	m_pausemenu[i].setCharacterSize(110); // in pixels, not points!
-	m_pausemenu[i].setFillColor(sf::Color(51, 51, 0));
-	m_pausemenu[i].setOutlineColor(sf::Color(153, 153, 102));
-	//m_pausemenu[i].setOutlineThickness(3);
-	float lcenter = m_pausemenu[i].getLocalBounds().width / 2;
-	float wcenter = 1280 / 2;
-	float top = 25;
-	m_pausemenu[i].move(sf::Vector2f(wcenter - lcenter, top));
-	i++;
-	m_pausemenu[i].setFont(*filehandler->getFont());
-	m_pausemenu[i].setString("Go back to menu");
-	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
-	m_pausemenu[i].setFillColor(sf::Color::White);
-	m_pausemenu[i].setOutlineColor(sf::Color::Black);
-	//m_pausemenu[i].setOutlineThickness(2);
-	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
-	top += 100;
-	m_pausemenu[i].move(sf::Vector2f(wcenter - lcenter, top));
-	i++;
-	m_pausemenu[i].setFont(*filehandler->getFont());
-	m_pausemenu[i].setString("Exit game");
-	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
-	m_pausemenu[i].setFillColor(sf::Color(102, 102, 51));
-	m_pausemenu[i].setOutlineColor(sf::Color::Black);
-	//m_pausemenu[i].setOutlineThickness(2);
-	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
-	top += 75;
-	m_pausemenu[i].move(sf::Vector2f(wcenter - lcenter, top));
+	m_pausemenu[1].setFillColor(sf::Color::White);
+	m_pausemenu[2].setFillColor(sf::Color(102, 102, 51));
 	return 0;
 }
 

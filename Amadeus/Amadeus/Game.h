@@ -13,6 +13,7 @@ public:
 	Game();
 	~Game();
 
+	int StaticSetup();
 	int Init();
 	int Update(float dt);
 	void Shutdown();
