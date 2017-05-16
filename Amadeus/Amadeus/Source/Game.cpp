@@ -54,7 +54,6 @@ int Game::Init()
 	}
 
 	/* GRAPHICS */
-	float wcenter = 1280 / 2;
 	// Background
 	if (m_backtexture.loadFromFile("../Assets/Textures/bgd_wood.png"))
 	{
@@ -62,35 +61,38 @@ int Game::Init()
 		m_backsprite.setColor(sf::Color(50, 50, 50, 180));
 	}
 	// Pause screen
-	m_pausetitle.setFont(*filehandler->getFont());
-	m_pausetitle.setString("Pause screen");
-	m_pausetitle.setCharacterSize(90); // in pixels, not points!
-	m_pausetitle.setFillColor(sf::Color(51, 51, 0));
-	m_pausetitle.setOutlineColor(sf::Color(153, 153, 102));
-	m_pausetitle.setOutlineThickness(3);
-	float lcenter = m_pausetitle.getLocalBounds().width / 2;
+	m_operatemenu = false;
+	int i = 0;
+	m_pausemenu[i].setFont(*filehandler->getFont());
+	m_pausemenu[i].setString("Pause screen");
+	m_pausemenu[i].setCharacterSize(110); // in pixels, not points!
+	m_pausemenu[i].setFillColor(sf::Color(51, 51, 0));
+	m_pausemenu[i].setOutlineColor(sf::Color(153, 153, 102));
+	m_pausemenu[i].setOutlineThickness(3);
+	float lcenter = m_pausemenu[i].getLocalBounds().width / 2;
+	float wcenter = 1280 / 2;
 	float top = 25;
-	m_pausetitle.move(sf::Vector2f(wcenter - lcenter, top));
-
-	m_menutext.setFont(*filehandler->getFont());
-	m_menutext.setString("Go back to menu");
-	m_menutext.setCharacterSize(65); // in pixels, not points!
-	m_menutext.setFillColor(sf::Color(102, 102, 51));
-	m_menutext.setOutlineColor(sf::Color::Black);
-	m_menutext.setOutlineThickness(2);
-	lcenter = m_menutext.getLocalBounds().width / 2;
-	top += 85;
-	m_menutext.move(sf::Vector2f(wcenter - lcenter, top));
-
-	m_exittext.setFont(*filehandler->getFont());
-	m_exittext.setString("Exit game");
-	m_exittext.setCharacterSize(65); // in pixels, not points!
-	m_exittext.setFillColor(sf::Color(102, 102, 51));
-	m_exittext.setOutlineColor(sf::Color::Black);
-	m_exittext.setOutlineThickness(2);
-	lcenter = m_exittext.getLocalBounds().width / 2;
-	top += 65;
-	m_exittext.move(sf::Vector2f(wcenter - lcenter, top));
+	m_pausemenu[i].move(sf::Vector2f(wcenter - lcenter, top));
+	i++;
+	m_pausemenu[i].setFont(*filehandler->getFont());
+	m_pausemenu[i].setString("Go back to menu");
+	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
+	m_pausemenu[i].setFillColor(sf::Color::White);
+	m_pausemenu[i].setOutlineColor(sf::Color::Black);
+	m_pausemenu[i].setOutlineThickness(2);
+	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
+	top += 100;
+	m_pausemenu[i].move(sf::Vector2f(wcenter - lcenter, top));
+	i++;
+	m_pausemenu[i].setFont(*filehandler->getFont());
+	m_pausemenu[i].setString("Exit game");
+	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
+	m_pausemenu[i].setFillColor(sf::Color(102, 102, 51));
+	m_pausemenu[i].setOutlineColor(sf::Color::Black);
+	m_pausemenu[i].setOutlineThickness(2);
+	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
+	top += 75;
+	m_pausemenu[i].move(sf::Vector2f(wcenter - lcenter, top));
 	return 0;
 }
 
@@ -146,17 +148,21 @@ int Game::Update(float dt)
 	{
 		if (m_keys[Keys::W])
 		{
-			m_exittext.setFillColor(sf::Color::White);
+			m_pausemenu[(1 + m_operatemenu)].setFillColor(sf::Color(102, 102, 51));
+			m_operatemenu = !m_operatemenu;
+			m_pausemenu[(1 + m_operatemenu)].setFillColor(sf::Color::White);
 			m_keys[Keys::W] = false;
 		}
 		else if (m_keys[Keys::S])
 		{
-			m_exittext.setFillColor(sf::Color::White);
+			m_pausemenu[(1 + m_operatemenu)].setFillColor(sf::Color(102, 102, 51));
+			m_operatemenu = !m_operatemenu;
+			m_pausemenu[(1 + m_operatemenu)].setFillColor(sf::Color::White);
 			m_keys[Keys::S] = false;
 		}
 		else if (m_keys[Keys::ENTER])
 		{
-			if (m_exittext.getFillColor() == sf::Color::White)
+			if (m_pausemenu[2].getFillColor() == sf::Color::White)
 			{
 				return 1;
 			}
@@ -193,6 +199,11 @@ void Game::Shutdown()
 	{
 		delete m_notifier;
 		m_notifier = nullptr;
+	}
+	for (int i = 0; i < 3; i++)
+	{
+		m_pausemenu[i].setOutlineThickness(0);
+		m_pausemenu[i].setOutlineColor(sf::Color());
 	}
 }
 
@@ -270,8 +281,8 @@ void Game::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	if (m_keys[Keys::PAUSE])
 	{
 		target.draw(m_backsprite, states);
-		target.draw(m_pausetitle, states);
-		target.draw(m_exittext, states);
-		target.draw(m_menutext, states);
+		target.draw(m_pausemenu[0], states);
+		target.draw(m_pausemenu[1], states);
+		target.draw(m_pausemenu[2], states);
 	}
 }
