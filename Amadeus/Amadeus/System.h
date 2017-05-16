@@ -36,5 +36,7 @@ private:
 	float m_elapsedtime = 0;
 	float m_longest = 10000;
 	float m_shortest = 0;
+
+	sf::Text m_leaderboard[6];
 };
 #endif // AMADEUS_MAIN_SYSTEM_H_

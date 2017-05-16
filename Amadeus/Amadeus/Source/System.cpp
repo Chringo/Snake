@@ -11,6 +11,20 @@ int System::Init()
 	m_data.ImportFont("arcade/ARCADE.ttf");
 	m_game.setFileHandler(&m_data);
 	m_game.StaticSetup();
+
+	int i = 0;
+	m_leaderboard[i].setFont(*m_data.getFont());
+	m_leaderboard[i].setString("Leaderboard");
+	m_leaderboard[i].setCharacterSize(45); // in pixels, not points!
+	m_leaderboard[i].setFillColor(sf::Color(51, 51, 0));
+	m_leaderboard[i].setOutlineColor(sf::Color(153, 153, 102));
+	//m_leaderboard[i].setOutlineThickness(3);
+	float lwidth = m_leaderboard[i].getLocalBounds().width;
+	float wglobal = 1280;
+	float top = 25;
+	m_leaderboard[i].move(sf::Vector2f(wglobal - lwidth - 65, top));
+	i++;
+
 	// Restart clock to avoid a very high dt on the first frame
 	m_clock.restart();
 	return 0;
@@ -70,7 +84,13 @@ void System::Render()
 {
 	m_window.clear(sf::Color::Black);
 	if (m_gamerunning)
+	{
 		m_window.draw(m_game);
+	}
+	else
+	{
+		m_window.draw(*m_leaderboard);
+	}
 	m_window.display();
 }
 
