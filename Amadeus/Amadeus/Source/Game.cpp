@@ -68,7 +68,7 @@ int Game::Init()
 	m_pausemenu[i].setCharacterSize(110); // in pixels, not points!
 	m_pausemenu[i].setFillColor(sf::Color(51, 51, 0));
 	m_pausemenu[i].setOutlineColor(sf::Color(153, 153, 102));
-	m_pausemenu[i].setOutlineThickness(3);
+	//m_pausemenu[i].setOutlineThickness(3);
 	float lcenter = m_pausemenu[i].getLocalBounds().width / 2;
 	float wcenter = 1280 / 2;
 	float top = 25;
@@ -79,7 +79,7 @@ int Game::Init()
 	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
 	m_pausemenu[i].setFillColor(sf::Color::White);
 	m_pausemenu[i].setOutlineColor(sf::Color::Black);
-	m_pausemenu[i].setOutlineThickness(2);
+	//m_pausemenu[i].setOutlineThickness(2);
 	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
 	top += 100;
 	m_pausemenu[i].move(sf::Vector2f(wcenter - lcenter, top));
@@ -89,7 +89,7 @@ int Game::Init()
 	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
 	m_pausemenu[i].setFillColor(sf::Color(102, 102, 51));
 	m_pausemenu[i].setOutlineColor(sf::Color::Black);
-	m_pausemenu[i].setOutlineThickness(2);
+	//m_pausemenu[i].setOutlineThickness(2);
 	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
 	top += 75;
 	m_pausemenu[i].move(sf::Vector2f(wcenter - lcenter, top));
