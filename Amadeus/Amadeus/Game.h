@@ -29,6 +29,7 @@ private:
 	float m_gametime;
 	float m_timesteps;
 	float m_difficulty;
+	sf::String m_mapname;
 	MapHolder *m_mapholder;
 	ItemHolder *m_itemholder;
 	SnakeHolder *m_snakeholder;
