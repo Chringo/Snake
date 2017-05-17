@@ -1,4 +1,5 @@
 #include <Amadeus\System.h>
+#define NUMBER_OF_MAPS 3
 System::System() {}
 System::~System() {}
 
@@ -17,7 +18,7 @@ int System::Init()
 	m_game.StaticSetup();
 
 	m_data.LoadLeaderboard(m_leaderboard);
-	this->MenuSetup(2);
+	this->MenuSetup(NUMBER_OF_MAPS);
 
 	// Restart clock to avoid a very high dt on the first frame
 	m_clock.restart();
@@ -75,6 +76,7 @@ int System::Run()
 			else if (temp == 2)
 			{
 				m_gamerunning = false;
+				m_mapchosen = false;
 				m_data.LoadLeaderboard(m_leaderboard);
 			}
 		}
@@ -109,6 +111,10 @@ void System::Render()
 		for (int i = 0; i < 3; i++)
 		{
 			m_window.draw(m_center[i]);
+		}
+		for (int i = 0; i < NUMBER_OF_MAPS; i++)
+		{
+			m_window.draw(m_mapoptions[i]);
 		}
 	}
 	m_window.display();
@@ -185,4 +191,28 @@ void System::MenuSetup(int numberofmaps)
 	lwidth = m_center[i].getLocalBounds().width;
 	top = m_center[i].getLocalBounds().height;
 	m_center[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), hglobal - (top * 2)));
+	i = 0;
+	top = 230;
+	m_mapoptions[i].setFont(*m_data.getFont());
+	m_mapoptions[i].setString("MAP1");
+	m_mapoptions[i].setCharacterSize(125); // in pixels, not points!
+	m_mapoptions[i].setFillColor(sf::Color(102, 102, 51));
+	lwidth = m_mapoptions[i].getLocalBounds().width;
+	m_mapoptions[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), top));
+	i++;
+	top += 115;
+	m_mapoptions[i].setFont(*m_data.getFont());
+	m_mapoptions[i].setString("MAP2");
+	m_mapoptions[i].setCharacterSize(125); // in pixels, not points!
+	m_mapoptions[i].setFillColor(sf::Color(102, 102, 51));
+	lwidth = m_mapoptions[i].getLocalBounds().width;
+	m_mapoptions[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), top));
+	i++;
+	top += 115;
+	m_mapoptions[i].setFont(*m_data.getFont());
+	m_mapoptions[i].setString("MAP3");
+	m_mapoptions[i].setCharacterSize(125); // in pixels, not points!
+	m_mapoptions[i].setFillColor(sf::Color(102, 102, 51));
+	lwidth = m_mapoptions[i].getLocalBounds().width;
+	m_mapoptions[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), top));
 }

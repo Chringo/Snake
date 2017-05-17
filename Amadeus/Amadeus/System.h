@@ -43,6 +43,6 @@ private:
 
 	sf::Text m_leaderboard[6];
 	sf::Text m_center[3];
-	sf::Text *m_mapoptions;
+	sf::Text m_mapoptions[3];
 };
 #endif // AMADEUS_MAIN_SYSTEM_H_
