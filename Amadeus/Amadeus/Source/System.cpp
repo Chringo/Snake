@@ -55,9 +55,18 @@ int System::Run()
 		{
 			int temp = m_game.Update(m_clock.restart().asSeconds());
 			if (temp == 1)
+			{
 				m_window.close();
+			}
 			else if (temp == 2)
+			{
 				m_gamerunning = false;
+				m_data.LoadLeaderboard(m_leaderboard);
+			}
+		}
+		else
+		{
+			m_clock.restart().asSeconds();
 		}
 		this->Render();
 	}
