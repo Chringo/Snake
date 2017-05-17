@@ -20,6 +20,7 @@ public:
 	void HandleInput(const sf::Event &kEvent);
 
 	void setFileHandler(FileHandler *filehandler);
+	void setMap(sf::String filename);
 	int getHighScore() const;
 private:
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;

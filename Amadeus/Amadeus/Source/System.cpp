@@ -10,6 +10,7 @@ int System::Init()
 	m_gamerunning = false;
 	m_data.ImportFont("arcade/ARCADE.ttf");
 	m_game.setFileHandler(&m_data);
+	m_game.setMap("default.txt");
 	m_game.StaticSetup();
 
 	m_data.LoadLeaderboard(m_leaderboard);

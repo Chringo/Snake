@@ -64,7 +64,7 @@ int Game::Init()
 	int width = 0;
 	int **map = nullptr;
 	// Import map from file system
-	map = filehandler->LoadMap("default.txt", &height, &width, map);
+	map = filehandler->LoadMap(m_mapname, &height, &width, map);
 	std::printf("Verifying scope: H%d - W%d - M[0][0] %d\n", height, width, map[0][0]);
 
 	m_mapholder->Init(height, width, map);
@@ -215,6 +215,11 @@ void Game::Shutdown()
 void Game::setFileHandler(FileHandler * fh)
 {
 	filehandler = fh;
+}
+
+void Game::setMap(sf::String filename)
+{
+	m_mapname = filename;
 }
 
 int Game::getHighScore() const
