@@ -1,12 +1,8 @@
 #include <Amadeus\FileHandler.h>
 #include <fstream>
 #include <list>
-FileHandler::FileHandler()
-{
-}
-FileHandler::~FileHandler()
-{
-}
+FileHandler::FileHandler() {}
+FileHandler::~FileHandler() {}
 
 int ** FileHandler::LoadMap(std::string filepath, int * height, int * width, int ** map)
 {
@@ -116,4 +112,29 @@ void FileHandler::SaveSession(int score)
 sf::Font * FileHandler::getFont()
 {
 	return &m_mainfont;
+}
+
+void FileHandler::LoadLeaderboard(sf::Text * leaderboard)
+{
+	std::string filepath = "../Assets/Saves/Leaderboard.txt";
+	std::ifstream instream(filepath, std::ios::binary);
+	if (instream.is_open())
+	{
+		std::printf("ACCESSING - %s\n", filepath.c_str());
+		int temp = 0;
+		for (int i = 1; i < 6; i++)
+		{
+			instream.read(reinterpret_cast<char*>(&temp), sizeof temp);			
+			leaderboard[i].setString(std::to_string(temp));
+		}
+		instream.close();
+	}
+	else
+	{
+		std::printf("FAILED - %s\n", filepath.c_str());
+		for (int i = 1; i < 6; i++)
+		{
+			leaderboard[i].setString("0");
+		}
+	}
 }
