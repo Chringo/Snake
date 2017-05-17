@@ -6,8 +6,11 @@ int System::Init()
 {
 	// TODO - Error cases
 	m_window.create(sf::VideoMode(1280, 720), "TITLE"/*, sf::Style::None*/);
-	m_window.setVerticalSyncEnabled(true);
+	m_vsync = true;
+	m_performance = false;
+	m_mapchosen = false;
 	m_gamerunning = false;
+	m_window.setVerticalSyncEnabled(m_vsync);
 	m_data.ImportFont("arcade/ARCADE.ttf");
 	m_game.setFileHandler(&m_data);
 	m_game.setMap("default.txt");
@@ -40,7 +43,16 @@ int System::Run()
 						m_game.Init();
 						m_gamerunning = true;
 					}
-					if (m_gamerunning) 
+					else if (e.key.code == sf::Keyboard::F2)
+					{
+						m_vsync = !m_vsync;
+						m_window.setVerticalSyncEnabled(m_vsync);
+					}
+					else if (e.key.code == sf::Keyboard::F3)
+					{
+						m_performance = !m_performance;
+					}
+					if (m_gamerunning)
 					{
 						m_game.HandleInput(e);
 					}
@@ -51,7 +63,8 @@ int System::Run()
 				break;
 			}
 		}
-		//this->PerformanceTests(m_clock.getElapsedTime().asSeconds());
+		if (m_performance)
+			this->PerformanceTests(m_clock.getElapsedTime().asSeconds());
 		if (m_gamerunning)
 		{
 			int temp = m_game.Update(m_clock.restart().asSeconds());

@@ -28,6 +28,9 @@ private:
 	sf::RenderWindow m_window;
 	sf::Clock m_clock;
 
+	bool m_vsync;
+	bool m_performance;
+	bool m_mapchosen;
 	bool m_gamerunning;
 	Game m_game;
 	FileHandler m_data;
