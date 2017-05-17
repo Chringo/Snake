@@ -23,6 +23,7 @@ private:
 /// Name of constant begins with <k> followed by capital letter per word in variable name.
 /// This rule is applied on all member variables, local variables and on parameters in header-files.
 	void PerformanceTests(const float kLastFrame);
+	void MenuSetup(int numberofmaps);
 
 	sf::RenderWindow m_window;
 	sf::Clock m_clock;
@@ -38,5 +39,7 @@ private:
 	float m_shortest = 0;
 
 	sf::Text m_leaderboard[6];
+	sf::Text m_center[3];
+	sf::Text *m_mapoptions;
 };
 #endif // AMADEUS_MAIN_SYSTEM_H_

@@ -12,18 +12,8 @@ int System::Init()
 	m_game.setFileHandler(&m_data);
 	m_game.StaticSetup();
 
-	int i = 0;
-	m_leaderboard[i].setFont(*m_data.getFont());
-	m_leaderboard[i].setString("Leaderboard");
-	m_leaderboard[i].setCharacterSize(45); // in pixels, not points!
-	m_leaderboard[i].setFillColor(sf::Color(51, 51, 0));
-	m_leaderboard[i].setOutlineColor(sf::Color(153, 153, 102));
-	//m_leaderboard[i].setOutlineThickness(3);
-	float lwidth = m_leaderboard[i].getLocalBounds().width;
-	float wglobal = 1280;
-	float top = 25;
-	m_leaderboard[i].move(sf::Vector2f(wglobal - lwidth - 65, top));
-	i++;
+	m_data.LoadLeaderboard(m_leaderboard);
+	this->MenuSetup(2);
 
 	// Restart clock to avoid a very high dt on the first frame
 	m_clock.restart();
@@ -89,7 +79,14 @@ void System::Render()
 	}
 	else
 	{
-		m_window.draw(*m_leaderboard);
+		for (int i = 0; i < 6; i++)
+		{
+			m_window.draw(m_leaderboard[i]);
+		}
+		for (int i = 0; i < 3; i++)
+		{
+			m_window.draw(m_center[i]);
+		}
 	}
 	m_window.display();
 }
@@ -116,4 +113,53 @@ void System::PerformanceTests(const float lastframe)
 		m_numframes = 0;
 		m_elapsedtime = 0;
 	}
+}
+
+void System::MenuSetup(int numberofmaps)
+{
+	int i = 0;
+	float wglobal = 1280;
+	float hglobal = 720;
+
+	m_leaderboard[i].setFont(*m_data.getFont());
+	m_leaderboard[i].setString("Leaderboard");
+	m_leaderboard[i].setCharacterSize(45); // in pixels, not points!
+	m_leaderboard[i].setFillColor(sf::Color(153, 153, 102));
+	float lwidth = m_leaderboard[i].getLocalBounds().width;
+	float top = 25;
+	m_leaderboard[i].setPosition(sf::Vector2f(wglobal - lwidth - 65, top));
+	top += 45;
+	for (i++; i < 6; i++)
+	{
+		m_leaderboard[i].setFont(*m_data.getFont());
+		m_leaderboard[i].setCharacterSize(30); // in pixels, not points!
+		m_leaderboard[i].setFillColor(sf::Color(153, 153, 102));
+		lwidth = m_leaderboard[i].getLocalBounds().width;
+		m_leaderboard[i].setPosition(sf::Vector2f(wglobal - lwidth - 75, top));
+		top += 30;
+	}
+	i = 0;
+	m_center[i].setFont(*m_data.getFont());
+	m_center[i].setString("Snake");
+	m_center[i].setCharacterSize(105); // in pixels, not points!
+	m_center[i].setFillColor(sf::Color(153, 153, 102));
+	lwidth = m_center[i].getLocalBounds().width;
+	top = 25;
+	m_center[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), top));
+	top += 120;
+	i++;
+	m_center[i].setFont(*m_data.getFont());
+	m_center[i].setString("Start");
+	m_center[i].setCharacterSize(80); // in pixels, not points!
+	m_center[i].setFillColor(sf::Color(51, 51, 0));
+	lwidth = m_center[i].getLocalBounds().width;
+	m_center[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), top));
+	i++;
+	m_center[i].setFont(*m_data.getFont());
+	m_center[i].setString("Exit game");
+	m_center[i].setCharacterSize(80); // in pixels, not points!
+	m_center[i].setFillColor(sf::Color(102, 102, 51));
+	lwidth = m_center[i].getLocalBounds().width;
+	top = m_center[i].getLocalBounds().height;
+	m_center[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), hglobal - (top * 2)));
 }

@@ -24,8 +24,8 @@ int Game::StaticSetup()
 	m_pausemenu[i].setFont(*filehandler->getFont());
 	m_pausemenu[i].setString("Pause screen");
 	m_pausemenu[i].setCharacterSize(110); // in pixels, not points!
-	m_pausemenu[i].setFillColor(sf::Color(51, 51, 0));
-	m_pausemenu[i].setOutlineColor(sf::Color(153, 153, 102));
+	m_pausemenu[i].setFillColor(sf::Color(153, 153, 102));
+	//m_pausemenu[i].setOutlineColor(sf::Color(153, 153, 102));
 	//m_pausemenu[i].setOutlineThickness(3);
 	float lcenter = m_pausemenu[i].getLocalBounds().width / 2;
 	float wcenter = 1280 / 2;
@@ -35,7 +35,7 @@ int Game::StaticSetup()
 	m_pausemenu[i].setFont(*filehandler->getFont());
 	m_pausemenu[i].setString("Go back to menu");
 	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
-	m_pausemenu[i].setOutlineColor(sf::Color::Black);
+	//m_pausemenu[i].setOutlineColor(sf::Color::Black);
 	//m_pausemenu[i].setOutlineThickness(2);
 	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
 	top += 100;
@@ -44,7 +44,7 @@ int Game::StaticSetup()
 	m_pausemenu[i].setFont(*filehandler->getFont());
 	m_pausemenu[i].setString("Exit game");
 	m_pausemenu[i].setCharacterSize(75); // in pixels, not points!
-	m_pausemenu[i].setOutlineColor(sf::Color::Black);
+	//m_pausemenu[i].setOutlineColor(sf::Color::Black);
 	//m_pausemenu[i].setOutlineThickness(2);
 	lcenter = m_pausemenu[i].getLocalBounds().width / 2;
 	top += 75;
@@ -145,7 +145,7 @@ int Game::Update(float dt)
 				{
 					m_difficulty -= 0.002f;
 				}
-				std::printf("%.5f\n", m_difficulty);
+				//std::printf("%.5f\n", m_difficulty);
 			}
 			m_timesteps = 0;
 		}
