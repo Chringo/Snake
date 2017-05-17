@@ -71,7 +71,7 @@ int Game::Init()
 
 	m_snakeholder = new SnakeHolder();
 	m_snakeholder->Init(sf::Vector2i((width / 2), height / 2));
-	const int kPieces = 12;
+	const int kPieces = 8;
 	std::printf("Creating %d SnakePieces on collision map\n", kPieces);
 	for (int i = 0; i < kPieces; i++)
 	{

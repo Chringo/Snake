@@ -35,6 +35,12 @@ int System::Run()
 		{
 			switch (e.type)
 			{
+			case sf::Event::MouseButtonPressed:
+				if (!e.mouseButton.button)
+				{
+					this->MouseEvent(e.mouseButton.x, e.mouseButton.y);
+				}
+				break;
 			case sf::Event::KeyPressed:
 				// If escape was pressed go to next case and close window
 				if (e.key.code != sf::Keyboard::Escape)// 36 = ESC
@@ -141,6 +147,74 @@ void System::PerformanceTests(const float lastframe)
 		std::printf("%.1f\n", m_shortest);
 		m_numframes = 0;
 		m_elapsedtime = 0;
+	}
+}
+
+void System::MouseEvent(int x, int y)
+{
+	int target = -1;
+	const sf::FloatRect exit = m_center[2].getGlobalBounds();
+	if (x > exit.left && x < (exit.left + exit.width) &&
+		y > exit.top && y < (exit.top + exit.height))
+	{
+		m_window.close();
+	}
+	if (!m_mapchosen)
+	{
+		for (int i = 0; i < NUMBER_OF_MAPS; i++)
+		{
+			const sf::FloatRect bounds = m_mapoptions[i].getGlobalBounds();
+			if (x > bounds.left && x < (bounds.left + bounds.width) &&
+				y > bounds.top && y < (bounds.top + bounds.height))
+			{
+				m_mapoptions[i].setFillColor(sf::Color(204, 204, 0));
+				target = i;
+				m_mapchosen = true;
+			}
+			else
+			{
+				m_mapoptions[i].setFillColor(sf::Color(102, 102, 51));
+			}
+		}
+		switch (target)
+		{
+		case 0:
+			m_game.setMap("default.txt");
+			break;
+		case 1:
+			m_game.setMap("map2.txt");
+			break;
+		case 2:
+			m_game.setMap("small.txt");
+			break;
+		default:
+			m_mapchosen = false;
+			break;
+		}
+		if (m_mapchosen)
+		{
+			m_center[1].setFillColor(sf::Color(102, 102, 51));
+		}
+		else
+		{
+			m_center[1].setFillColor(sf::Color(51, 51, 0));
+		}
+	}
+	else
+	{
+		const sf::FloatRect bounds = m_center[1].getGlobalBounds();
+		if (x > bounds.left && x < (bounds.left + bounds.width) &&
+			y > bounds.top && y < (bounds.top + bounds.height))
+		{
+			m_gamerunning = true;
+			m_game.Init();
+		}
+		m_mapchosen = false;
+		m_center[1].setFillColor(sf::Color(51, 51, 0));
+		for (int i = 0; i < NUMBER_OF_MAPS; i++)
+		{
+			m_mapoptions[i].setFillColor(sf::Color(102, 102, 51));
+		}
 	}
 }
 
