@@ -54,7 +54,7 @@ int Game::StaticSetup()
 
 int Game::Init()
 {
-	Shutdown();
+	this->Shutdown();
 	m_score = 0;
 	m_gametime = 0;
 	m_timesteps = 0;

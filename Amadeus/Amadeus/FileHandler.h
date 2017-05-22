@@ -12,7 +12,7 @@ public:
 	int ** LoadMap(std::string filepath, int * height, int * width, int ** map);
 	int LoadMap(std::string filepath);
 	int ImportFont(std::string filepath);
-	void SaveSession(int score);
+	void SaveSession(int points);
 	void LoadLeaderboard(sf::Text * leaderboard);
 
 	void setName(std::string name);

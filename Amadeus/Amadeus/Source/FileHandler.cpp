@@ -122,15 +122,16 @@ sf::Font * FileHandler::getFont()
 void FileHandler::LoadLeaderboard(sf::Text * leaderboard)
 {
 	std::string filepath = "../Assets/Saves/Leaderboard.txt";
-	std::ifstream instream(filepath, std::ios::binary);
+	std::ifstream instream(filepath);
 	if (instream.is_open())
 	{
 		std::printf("ACCESSING - %s\n", filepath.c_str());
-		int temp = 0;
+		ScoreRow a;
 		for (int i = 1; i < 6; i++)
 		{
-			instream.read(reinterpret_cast<char*>(&temp), sizeof temp);			
-			leaderboard[i].setString(std::to_string(temp));
+			instream >> a.sr_points >> a.sr_name;
+			const std::string b = a.sr_name + " - " + std::to_string(a.sr_points);
+			leaderboard[i].setString(b);
 		}
 		instream.close();
 	}
@@ -139,7 +140,7 @@ void FileHandler::LoadLeaderboard(sf::Text * leaderboard)
 		std::printf("FAILED - %s\n", filepath.c_str());
 		for (int i = 1; i < 6; i++)
 		{
-			leaderboard[i].setString("0");
+			leaderboard[i].setString("NaN - 0");
 		}
 	}
 }
