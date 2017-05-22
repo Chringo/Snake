@@ -19,11 +19,13 @@ public:
 	int Run();
 	int Shutdown();
 private:
+	sf::String PlayerSetsName();
 	void Render();
+	void HandleEvents();
+	void MouseEvent(int x, int y);
 /// Name of constant begins with <k> followed by capital letter per word in variable name.
 /// This rule is applied on all member variables, local variables and on parameters in header-files.
 	void PerformanceTests(const float kLastFrame);
-	void MouseEvent(int x, int y);
 	void MenuSetup(int numberofmaps);
 
 	sf::RenderWindow m_window;
@@ -33,6 +35,7 @@ private:
 	bool m_performance;
 	bool m_mapchosen;
 	bool m_gamerunning;
+	std::string m_playername;
 	Game m_game;
 	FileHandler m_data;
 

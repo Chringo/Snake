@@ -13,63 +13,102 @@ int System::Init()
 	m_gamerunning = false;
 	m_window.setVerticalSyncEnabled(m_vsync);
 	m_data.ImportFont("arcade/ARCADE.ttf");
-	m_game.setFileHandler(&m_data);
-	m_game.setMap("default.txt");
-	m_game.StaticSetup();
 
-	m_data.LoadLeaderboard(m_leaderboard);
-	this->MenuSetup(NUMBER_OF_MAPS);
+	m_playername = this->PlayerSetsName();
+	std::printf("Player: %s\n", m_playername.c_str());
+	if (m_window.isOpen())
+	{
+		m_game.setFileHandler(&m_data);
+		m_game.setMap("default.txt");
+		m_game.StaticSetup();
 
-	// Restart clock to avoid a very high dt on the first frame
-	m_clock.restart();
+		m_data.LoadLeaderboard(m_leaderboard);
+		this->MenuSetup(NUMBER_OF_MAPS);
+
+		// Restart clock to avoid a very high dt on the first frame
+		m_clock.restart();
+	}
 	return 0;
+}
+
+sf::String System::PlayerSetsName()
+{
+	int i = 0;
+	float whalfglobal = 1280 / 2;
+	float hthirdglobal = 720 / 3;
+	m_center[i].setFont(*m_data.getFont());
+	m_center[i].setString("Create a username:");
+	m_center[i].setCharacterSize(80); // in pixels, not points!
+	m_center[i].setFillColor(sf::Color(153, 153, 102));
+	float lwidth = m_center[i].getLocalBounds().width;
+	float top = hthirdglobal - m_center[i].getLocalBounds().height;
+	m_center[i].setPosition(sf::Vector2f(whalfglobal - (lwidth / 2), top));
+	top = m_center[0].getLocalBounds().height;
+	i++;
+	m_center[i].setFont(*m_data.getFont());
+	m_center[i].setString("");
+	m_center[i].setCharacterSize(80); // in pixels, not points!
+	m_center[i].setFillColor(sf::Color(102, 102, 51));
+	top = m_center[0].getPosition().y + (top * 2);
+	
+	sf::String name = "";
+	while (m_window.isOpen())
+	{
+		sf::Event e;
+		while (m_window.pollEvent(e))
+		{
+			if (e.type == sf::Event::TextEntered)
+			{
+				//std::printf("%d ", e.text.unicode);
+				if (e.text.unicode >= 48 && e.text.unicode <= 57 ||	// Numbers
+					e.text.unicode >= 65 && e.text.unicode <= 90 ||	// Uppercase
+					e.text.unicode >= 97 && e.text.unicode <= 122)	// Lowercase
+				{
+					name.insert(name.getSize(), e.text.unicode);
+					m_center[i].setString(name);
+					lwidth = m_center[i].getLocalBounds().width;
+					m_center[i].setPosition(sf::Vector2f(whalfglobal - (lwidth / 2), top));
+				}
+			}
+			else if (e.type == sf::Event::KeyPressed)
+			{
+				if (e.key.code == sf::Keyboard::BackSpace)
+				{
+					if (name.getSize() == 0)
+						m_center[i].setString("");
+					else
+						name.erase(name.getSize() - 1);
+					m_center[i].setString(name);
+					lwidth = m_center[i].getLocalBounds().width;
+					m_center[i].setPosition(sf::Vector2f(whalfglobal - (lwidth / 2), top));
+				}
+				else if (e.key.code == sf::Keyboard::Escape)
+				{
+					m_window.close();
+				}
+				else if (e.key.code == sf::Keyboard::Return)
+				{
+					return name;
+				}
+			}
+			else if (e.type == sf::Event::Closed)
+			{
+				m_window.close();
+			}
+		}
+		m_window.clear(sf::Color::Black);
+		m_window.draw(m_center[0]);
+		m_window.draw(m_center[1]);
+		m_window.display();
+	}
+	return name;
 }
 
 int System::Run()
 {
 	while (m_window.isOpen())
 	{
-		// Events triggered since last iteration
-		sf::Event e;
-		while (m_window.pollEvent(e))
-		{
-			switch (e.type)
-			{
-			case sf::Event::MouseButtonPressed:
-				if (!e.mouseButton.button)
-				{
-					this->MouseEvent(e.mouseButton.x, e.mouseButton.y);
-				}
-				break;
-			case sf::Event::KeyPressed:
-				// If escape was pressed go to next case and close window
-				if (e.key.code != sf::Keyboard::Escape)// 36 = ESC
-				{
-					if (e.key.code == sf::Keyboard::F1)//TEST
-					{
-						m_game.Init();
-						m_gamerunning = true;
-					}
-					else if (e.key.code == sf::Keyboard::F2)
-					{
-						m_vsync = !m_vsync;
-						m_window.setVerticalSyncEnabled(m_vsync);
-					}
-					else if (e.key.code == sf::Keyboard::F3)
-					{
-						m_performance = !m_performance;
-					}
-					if (m_gamerunning)
-					{
-						m_game.HandleInput(e);
-					}
-					break;
-				}
-			case sf::Event::Closed:
-				m_window.close();
-				break;
-			}
-		}
+		this->HandleEvents();
 		if (m_performance)
 			this->PerformanceTests(m_clock.getElapsedTime().asSeconds());
 		if (m_gamerunning)
@@ -126,27 +165,48 @@ void System::Render()
 	m_window.display();
 }
 
-void System::PerformanceTests(const float lastframe)
+void System::HandleEvents()
 {
-	m_numframes++;
-	m_elapsedtime += lastframe;
-	float average = m_numframes / m_elapsedtime;
-	if (m_numframes > 100)// Skip the first 100 frames
+	// Events triggered since last iteration
+	sf::Event e;
+	while (m_window.pollEvent(e))
 	{
-		if (m_shortest < average)
-			m_shortest = average;
-		if (m_longest > average)
-			m_longest = average;
-	}
-
-	if (m_elapsedtime > 1)
-	{
-		system("cls");// Should avoid calls to system but it gets the job done...
-		std::printf("%.1f\n", average);
-		std::printf("%.1f\n", m_longest);
-		std::printf("%.1f\n", m_shortest);
-		m_numframes = 0;
-		m_elapsedtime = 0;
+		switch (e.type)
+		{
+		case sf::Event::MouseButtonPressed:
+			if (!e.mouseButton.button)
+			{
+				this->MouseEvent(e.mouseButton.x, e.mouseButton.y);
+			}
+			break;
+		case sf::Event::KeyPressed:
+			// If escape was pressed go to next case and close window
+			if (e.key.code != sf::Keyboard::Escape)// 36 = ESC
+			{
+				if (e.key.code == sf::Keyboard::F1)//TEST
+				{
+					m_game.Init();
+					m_gamerunning = true;
+				}
+				else if (e.key.code == sf::Keyboard::F2)
+				{
+					m_vsync = !m_vsync;
+					m_window.setVerticalSyncEnabled(m_vsync);
+				}
+				else if (e.key.code == sf::Keyboard::F3)
+				{
+					m_performance = !m_performance;
+				}
+				if (m_gamerunning)
+				{
+					m_game.HandleInput(e);
+				}
+				break;
+			}
+		case sf::Event::Closed:
+			m_window.close();
+			break;
+		}
 	}
 }
 
@@ -215,6 +275,30 @@ void System::MouseEvent(int x, int y)
 		{
 			m_mapoptions[i].setFillColor(sf::Color(102, 102, 51));
 		}
+	}
+}
+
+void System::PerformanceTests(const float lastframe)
+{
+	m_numframes++;
+	m_elapsedtime += lastframe;
+	float average = m_numframes / m_elapsedtime;
+	if (m_numframes > 100)// Skip the first 100 frames
+	{
+		if (m_shortest < average)
+			m_shortest = average;
+		if (m_longest > average)
+			m_longest = average;
+	}
+
+	if (m_elapsedtime > 1)
+	{
+		system("cls");// Should avoid calls to system but it gets the job done...
+		std::printf("%.1f\n", average);
+		std::printf("%.1f\n", m_longest);
+		std::printf("%.1f\n", m_shortest);
+		m_numframes = 0;
+		m_elapsedtime = 0;
 	}
 }
 
