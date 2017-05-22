@@ -125,6 +125,14 @@ int System::Run()
 				m_gamerunning = false;
 				m_mapchosen = false;
 				m_data.LoadLeaderboard(m_leaderboard);
+				float top = 125;
+				const float wglobal = 1280;
+				for (int i = 1; i < 6; i++)
+				{
+					const float lwidth = m_leaderboard[i].getLocalBounds().width;
+					m_leaderboard[i].setPosition(sf::Vector2f(wglobal - lwidth - 75, top));
+					top += 30;
+				}
 			}
 		}
 		else
@@ -308,14 +316,14 @@ void System::PerformanceTests(const float lastframe)
 void System::MenuSetup(int numberofmaps)
 {
 	int i = 0;
-	float wglobal = 1280;
-	float hglobal = 720;
+	const float wglobal = 1280;
+	const float hglobal = 720;
 
 	m_playername.setFont(*m_data.getFont());
 	m_playername.setCharacterSize(45); // in pixels, not points!
 	m_playername.setFillColor(sf::Color(153, 153, 102));
 	float lwidth = m_playername.getLocalBounds().width;
-	float top = 25;
+	float top = 80;
 	m_playername.setPosition(sf::Vector2f(lwidth + 65, top));
 
 	m_leaderboard[i].setFont(*m_data.getFont());
@@ -334,15 +342,15 @@ void System::MenuSetup(int numberofmaps)
 		m_leaderboard[i].setPosition(sf::Vector2f(wglobal - lwidth - 75, top));
 		top += 30;
 	}
+
 	i = 0;
 	m_center[i].setFont(*m_data.getFont());
 	m_center[i].setString("Snake");
-	m_center[i].setCharacterSize(105); // in pixels, not points!
+	m_center[i].setCharacterSize(165); // in pixels, not points!
 	m_center[i].setFillColor(sf::Color(153, 153, 102));
 	lwidth = m_center[i].getLocalBounds().width;
-	top = 25;
-	m_center[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), top));
-	top += 120;
+	m_center[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), -15));
+	top = 140;
 	i++;
 	m_center[i].setFont(*m_data.getFont());
 	m_center[i].setString("Start");
@@ -358,6 +366,7 @@ void System::MenuSetup(int numberofmaps)
 	lwidth = m_center[i].getLocalBounds().width;
 	top = m_center[i].getLocalBounds().height;
 	m_center[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), hglobal - (top * 2)));
+
 	i = 0;
 	top = 230;
 	m_mapoptions[i].setFont(*m_data.getFont());
