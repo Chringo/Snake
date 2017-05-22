@@ -67,19 +67,28 @@ int FileHandler::ImportFont(std::string filepath)
 	return 0;
 }
 
-void FileHandler::SaveSession(int score)
+void FileHandler::SaveSession(int points)
 {
 	std::string filepath = "../Assets/Saves/Leaderboard.txt";
-	std::list<int> leaderboard;
-	std::ifstream instream(filepath, std::ios::binary);
+	std::list<ScoreRow> leaderboard;
+	std::ifstream instream(filepath);
+	ScoreRow current;
+	bool accepted = false;
+	current.sr_points = points;
+	current.sr_name = m_name;
 	if (instream.is_open())
 	{
 		std::printf("ACCESSING - %s\n", filepath.c_str());
-		int temp = 0;
-		while (!instream.eof())
+		for (int i = 0; i < 5; i++)
 		{
-			instream.read(reinterpret_cast<char*>(&temp), sizeof temp);
-			leaderboard.push_back(temp);
+			ScoreRow a;
+			instream >> a.sr_points >> a.sr_name;
+			if (!accepted && current > a)
+			{
+				leaderboard.push_back(current);
+				accepted = true;
+			}
+			leaderboard.push_back(a);
 		}
 		instream.close();
 	}
@@ -87,26 +96,22 @@ void FileHandler::SaveSession(int score)
 	{
 		std::printf("FAILED - %s\n", filepath.c_str());
 	}
-	leaderboard.push_back(score);
-	leaderboard.sort();
 	int i = static_cast<int>(leaderboard.size());
 	if (i < 5)
 	{
 		for (int j = i; j < 5; j++)
 		{
-			leaderboard.push_front(0);
+			leaderboard.push_front(ScoreRow());
 		}
 	}
-	std::ofstream outstream(filepath, std::ios::binary);
-	std::printf("   ");
+	std::ofstream outstream(filepath);
 	for (i = 0; i < 5; i++)
 	{
-		int temp = leaderboard.back();
-		std::printf("%d ", temp);
-		outstream.write(reinterpret_cast<char*>(&temp), sizeof temp);
-		leaderboard.pop_back();
+		const ScoreRow a = leaderboard.front();
+		//std::printf("%s %d\n", a.sr_name.c_str(), a.sr_points);
+		outstream << a.sr_points << " " << a.sr_name << '\n';
+		leaderboard.pop_front();
 	}
-	std::printf("\n");
 }
 
 void FileHandler::setName(std::string name)

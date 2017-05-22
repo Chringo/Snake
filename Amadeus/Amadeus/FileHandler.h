@@ -18,6 +18,19 @@ public:
 	void setName(std::string name);
 	sf::Font * getFont();
 private:
+	struct ScoreRow
+	{
+		int sr_points = 0;
+		std::string sr_name = "NaN";
+		bool operator>(ScoreRow a)
+		{
+			if (sr_points > a.sr_points)
+				return true;
+			else
+				return false;
+		}
+	};
+
 	std::string m_name;
 	sf::Font m_mainfont;
 };
