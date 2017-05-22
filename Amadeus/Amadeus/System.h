@@ -35,7 +35,6 @@ private:
 	bool m_performance;
 	bool m_mapchosen;
 	bool m_gamerunning;
-	std::string m_playername;
 	Game m_game;
 	FileHandler m_data;
 
@@ -45,6 +44,7 @@ private:
 	float m_longest = 10000;
 	float m_shortest = 0;
 
+	sf::Text m_playername;
 	sf::Text m_leaderboard[6];
 	sf::Text m_center[3];
 	sf::Text m_mapoptions[3];

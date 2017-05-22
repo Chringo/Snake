@@ -14,8 +14,9 @@ int System::Init()
 	m_window.setVerticalSyncEnabled(m_vsync);
 	m_data.ImportFont("arcade/ARCADE.ttf");
 
-	m_playername = this->PlayerSetsName();
-	std::printf("Player: %s\n", m_playername.c_str());
+	m_playername.setString(this->PlayerSetsName());
+	std::string temp = m_playername.getString();
+	std::printf("Player: %s\n", temp.c_str());
 	if (m_window.isOpen())
 	{
 		m_game.setFileHandler(&m_data);
@@ -161,6 +162,7 @@ void System::Render()
 		{
 			m_window.draw(m_mapoptions[i]);
 		}
+		m_window.draw(m_playername);
 	}
 	m_window.display();
 }
@@ -308,12 +310,18 @@ void System::MenuSetup(int numberofmaps)
 	float wglobal = 1280;
 	float hglobal = 720;
 
+	m_playername.setFont(*m_data.getFont());
+	m_playername.setCharacterSize(45); // in pixels, not points!
+	m_playername.setFillColor(sf::Color(153, 153, 102));
+	float lwidth = m_playername.getLocalBounds().width;
+	float top = 25;
+	m_playername.setPosition(sf::Vector2f(lwidth + 65, top));
+
 	m_leaderboard[i].setFont(*m_data.getFont());
 	m_leaderboard[i].setString("Leaderboard");
-	m_leaderboard[i].setCharacterSize(45); // in pixels, not points!
+	m_leaderboard[i].setCharacterSize(m_playername.getCharacterSize());
 	m_leaderboard[i].setFillColor(sf::Color(153, 153, 102));
-	float lwidth = m_leaderboard[i].getLocalBounds().width;
-	float top = 25;
+	lwidth = m_leaderboard[i].getLocalBounds().width;
 	m_leaderboard[i].setPosition(sf::Vector2f(wglobal - lwidth - 65, top));
 	top += 45;
 	for (i++; i < 6; i++)
@@ -373,4 +381,5 @@ void System::MenuSetup(int numberofmaps)
 	m_mapoptions[i].setFillColor(sf::Color(102, 102, 51));
 	lwidth = m_mapoptions[i].getLocalBounds().width;
 	m_mapoptions[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), top));
+
 }
