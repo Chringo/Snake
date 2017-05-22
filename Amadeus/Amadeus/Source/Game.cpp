@@ -117,23 +117,22 @@ int Game::Update(float dt)
 
 		if (m_timesteps > m_difficulty)
 		{
+			Snake::MovedPieces a;
 			if (m_keys[Keys::A])
 			{
-				Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::LEFT);
-				m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+				a = m_snakeholder->Move(SnakeHolder::KeyInput::LEFT);
 				m_keys[Keys::A] = false;
 			}
 			else if (m_keys[Keys::D])
 			{
-				Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::RIGHT);
-				m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+				a = m_snakeholder->Move(SnakeHolder::KeyInput::RIGHT);
 				m_keys[Keys::D] = false;
 			}
 			else
 			{
-				Snake::MovedPieces a = m_snakeholder->Move(SnakeHolder::KeyInput::FORWARD);
-				m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
+				a = m_snakeholder->Move(SnakeHolder::KeyInput::FORWARD);
 			}
+			m_colhandler->UpdateSnake(a.mp_front, a.mp_back);
 
 			if (m_colhandler->ItemWasHit())
 			{

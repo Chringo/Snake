@@ -11,8 +11,8 @@ public:
 	int Init(int numitems, int startingpointvalue);
 	int Respawn(sf::Vector2i freeposition);
 
-	int UpdateScore();
-	int getHighScore() const;
+	int UpdateScore();// Updates after an item has been hit
+	int getHighScore() const;// Called when player has lost
 	sf::Vector2i getActiveItemPos() const;
 private:
 	int getPoints() const;

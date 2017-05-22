@@ -16,7 +16,7 @@ public:
 	void UpdateItem(const sf::Vector2i kItemPos);
 
 	bool ItemWasHit() const;
-	sf::Vector2i getRandomPos();
+	sf::Vector2i getRandomPos();// Return a free position for ItemHolder
 	void Print() const;//TEST
 
 private:

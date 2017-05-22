@@ -22,7 +22,8 @@ private:
 	sf::String PlayerSetsName();
 	void Render();
 	void HandleEvents();
-	void MouseEvent(int x, int y);
+	void MouseEvent(int x, int y);// Look for intersections with mouse on menu options.
+	// Menu options are Start, maps, and exit.
 /// Name of constant begins with <k> followed by capital letter per word in variable name.
 /// This rule is applied on all member variables, local variables and on parameters in header-files.
 	void PerformanceTests(const float kLastFrame);
@@ -48,7 +49,8 @@ private:
 	sf::RectangleShape m_bounds[5];
 #endif // _DEBUG
 
-	sf::Text m_playername;
+	// Graphical text representing the menu in System
+	sf::Text m_playername; // Initiates m_data with name string.
 	sf::Text m_leaderboard[6];
 	sf::Text m_center[3];
 	sf::Text m_mapoptions[3];

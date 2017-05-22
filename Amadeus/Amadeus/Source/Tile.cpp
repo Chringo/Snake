@@ -12,7 +12,7 @@ void Tile::Init(int type, int height, int width)
 	shape.setPosition(5 + width * (sDrawSize + 1), 5 + height * (sDrawSize + 1));
 	shape.setOutlineThickness(1);
 	shape.setOutlineColor(sf::Color::White);
-	if (type == 0)// TODO - Add static enum
+	if (type == 0)// TODO - Add enum class
 	{
 		shape.setFillColor(sf::Color(50, 75, 25));
 		m_iswall = false;

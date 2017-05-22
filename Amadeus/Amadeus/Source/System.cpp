@@ -5,7 +5,6 @@ System::~System() {}
 
 int System::Init()
 {
-	// TODO - Error cases
 	m_window.create(sf::VideoMode(1280, 720), "TITLE"/*, sf::Style::None*/);
 	m_vsync = true;
 	m_performance = false;
@@ -18,17 +17,18 @@ int System::Init()
 	//m_playername.setString("Dev");
 	//std::string temp = m_playername.getString();
 	//std::printf("Player: %s\n", temp.c_str());
+	// If player quit before menu, avoid the rest of initialisation.
 	if (m_window.isOpen())
 	{
 		m_game.setFileHandler(&m_data);
 		m_game.setMap("default.txt");
 		m_game.StaticSetup();
 
-		m_data.setName(m_playername.getString());
+		m_data.setName(m_playername.getString());// Log name for SaveSession()
 		m_data.LoadLeaderboard(m_leaderboard);
 		this->MenuSetup(NUMBER_OF_MAPS);
 
-		// Restart clock to avoid a very high dt on the first frame
+		// Restart clock to avoid a very high dt on the first frame.
 		m_clock.restart();
 	}
 	return 0;
@@ -68,6 +68,7 @@ sf::String System::PlayerSetsName()
 					e.text.unicode >= 97 && e.text.unicode <= 122)	// Lowercase
 				{
 					name.insert(name.getSize(), e.text.unicode);
+					// Update graphical layout.
 					m_center[i].setString(name);
 					lwidth = m_center[i].getLocalBounds().width;
 					m_center[i].setPosition(sf::Vector2f(whalfglobal - (lwidth / 2), top));
@@ -81,6 +82,7 @@ sf::String System::PlayerSetsName()
 						m_center[i].setString("");
 					else
 						name.erase(name.getSize() - 1);
+					// Update graphical layout.
 					m_center[i].setString(name);
 					lwidth = m_center[i].getLocalBounds().width;
 					m_center[i].setPosition(sf::Vector2f(whalfglobal - (lwidth / 2), top));
@@ -91,6 +93,7 @@ sf::String System::PlayerSetsName()
 				}
 				else if (e.key.code == sf::Keyboard::Return)
 				{
+					// Player has entered a username.
 					return name;
 				}
 			}
@@ -104,6 +107,7 @@ sf::String System::PlayerSetsName()
 		m_window.draw(m_center[1]);
 		m_window.display();
 	}
+	// Return whatever since the window is closed anyway.
 	return name;
 }
 
@@ -121,8 +125,9 @@ int System::Run()
 			{
 				m_window.close();
 			}
-			else if (temp == 2)
+			else if (temp == 2)// Return to System menu.
 			{
+				// Update system settings.
 				m_gamerunning = false;
 				m_mapchosen = false;
 				m_data.LoadLeaderboard(m_leaderboard);
@@ -130,6 +135,7 @@ int System::Run()
 				const float wglobal = 1280;
 				for (int i = 1; i < 6; i++)
 				{
+					// Align leaderboard again.
 					const float lwidth = m_leaderboard[i].getLocalBounds().width;
 					m_leaderboard[i].setPosition(sf::Vector2f(wglobal - lwidth - 75, top));
 					top += 30;
@@ -179,7 +185,6 @@ void System::Render()
 			m_window.draw(m_bounds[i]);
 		}
 #endif // _DEBUG
-
 	}
 	m_window.display();
 }
@@ -193,35 +198,36 @@ void System::HandleEvents()
 		switch (e.type)
 		{
 		case sf::Event::MouseButtonPressed:
-			if (!e.mouseButton.button)
+			if (!e.mouseButton.button)// Accept left-click only.
 			{
 				this->MouseEvent(e.mouseButton.x, e.mouseButton.y);
 			}
 			break;
 		case sf::Event::KeyPressed:
-			// If escape was pressed go to next case and close window
-			if (e.key.code != sf::Keyboard::Escape)// 36 = ESC
+			if (e.key.code == sf::Keyboard::Escape)
 			{
-				if (e.key.code == sf::Keyboard::F1)//TEST
-				{
-					m_game.Init();
-					m_gamerunning = true;
-				}
-				else if (e.key.code == sf::Keyboard::F2)
-				{
-					m_vsync = !m_vsync;
-					m_window.setVerticalSyncEnabled(m_vsync);
-				}
-				else if (e.key.code == sf::Keyboard::F3)
-				{
-					m_performance = !m_performance;
-				}
-				if (m_gamerunning)
-				{
-					m_game.HandleInput(e);
-				}
+				m_window.close();
 				break;
 			}
+			else if (e.key.code == sf::Keyboard::F1)//TEST - Force a game.
+			{
+				m_game.Init();
+				m_gamerunning = true;
+			}
+			else if (e.key.code == sf::Keyboard::F2)
+			{
+				m_vsync = !m_vsync;
+				m_window.setVerticalSyncEnabled(m_vsync);
+			}
+			else if (e.key.code == sf::Keyboard::F3)
+			{
+				m_performance = !m_performance;
+			}
+			if (m_gamerunning)
+			{
+				m_game.HandleInput(e);
+			}
+			break;
 		case sf::Event::Closed:
 			m_window.close();
 			break;

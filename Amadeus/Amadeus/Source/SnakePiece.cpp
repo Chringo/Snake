@@ -1,14 +1,9 @@
 #include <Amadeus\SnakePiece.h>
-SnakePiece::SnakePiece()
-{
-}
-SnakePiece::~SnakePiece()
-{
-}
+SnakePiece::SnakePiece() {}
+SnakePiece::~SnakePiece() {}
 
 void SnakePiece::operator=(const SnakePiece &orig)
 {
-	//Init(orig.m_gridpos, orig.m_type);
 	this->m_gridpos = orig.m_gridpos;
 	this->m_type = orig.m_type;
 
@@ -28,7 +23,7 @@ void SnakePiece::Init(sf::Vector2i gridpos, Piece type)
 	shape.setFillColor(sf::Color((test * m_gridpos.x), 0, (test * m_gridpos.x)));
 }
 
-void SnakePiece::Test()
+void SnakePiece::UpdatePos()
 {
 	shape.setPosition(5 + 2 + m_gridpos.x * (sDrawSize + 1), 5 + 2 + m_gridpos.y * (sDrawSize + 1));
 }

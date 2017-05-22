@@ -37,12 +37,10 @@ void CollisionHandler::UpdateSnake(const sf::Vector2i front, const sf::Vector2i 
 	}
 	if (m_colmap[front.y][front.x] == 1 || m_colmap[front.y][front.x] == 3)
 	{
-		//std::printf("GAME_OVER\n");//TEST
 		notifier->Notify(Notifier::Flag::GAME_OVER);
 	}
 	else if (m_colmap[front.y][front.x] == 2)
 	{
-		//std::printf("ITEM_HIT\n");//TEST
 		m_itemhitpreviousframe = true;
 		m_colmap[front.y][front.x] = 3;
 		notifier->Notify(Notifier::Flag::ITEM_HIT);

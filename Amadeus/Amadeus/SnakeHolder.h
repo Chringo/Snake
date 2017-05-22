@@ -16,7 +16,7 @@ public:
 
 	int Init(sf::Vector2i startpos);
 	Snake::MovedPieces Move(KeyInput input);
-	void Add();
+	void Add();// Increase m_snake
 private:
 	void Shutdown();
 	void draw(sf::RenderTarget &target, sf::RenderStates states) const;

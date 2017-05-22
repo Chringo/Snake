@@ -100,7 +100,7 @@ Snake::MovedPieces Snake::Move(int direction)
 	m_moved.mp_front = gp;
 	m_moved.mp_back = m_back->getGridPos();
 	m_back->setGridPos(gp);
-	m_back->Test();//TEST Update graphical position which is stored in SnakePiece and not GridObject
+	m_back->UpdatePos();// Update graphical position which is stored in SnakePiece and not GridObject.
 	m_front = m_back;
 	if (m_backindex > 0)
 		m_backindex--;
