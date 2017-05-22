@@ -95,13 +95,14 @@ void FileHandler::SaveSession(int points)
 	else
 	{
 		std::printf("FAILED - %s\n", filepath.c_str());
+		leaderboard.push_back(current);
 	}
 	int i = static_cast<int>(leaderboard.size());
 	if (i < 5)
 	{
 		for (int j = i; j < 5; j++)
 		{
-			leaderboard.push_front(ScoreRow());
+			leaderboard.push_back(ScoreRow());
 		}
 	}
 	std::ofstream outstream(filepath);
