@@ -43,6 +43,10 @@ private:
 	float m_elapsedtime = 0;
 	float m_longest = 10000;
 	float m_shortest = 0;
+#ifdef _DEBUG
+	// MouseHit tests
+	sf::RectangleShape m_bounds[5];
+#endif // _DEBUG
 
 	sf::Text m_playername;
 	sf::Text m_leaderboard[6];

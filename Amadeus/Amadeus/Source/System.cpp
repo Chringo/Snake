@@ -23,7 +23,7 @@ int System::Init()
 		m_game.setFileHandler(&m_data);
 		m_game.setMap("default.txt");
 		m_game.StaticSetup();
-		
+
 		m_data.setName(m_playername.getString());
 		m_data.LoadLeaderboard(m_leaderboard);
 		this->MenuSetup(NUMBER_OF_MAPS);
@@ -53,7 +53,7 @@ sf::String System::PlayerSetsName()
 	m_center[i].setCharacterSize(80); // in pixels, not points!
 	m_center[i].setFillColor(sf::Color(102, 102, 51));
 	top = m_center[0].getPosition().y + (top * 2);
-	
+
 	sf::String name = "";
 	while (m_window.isOpen())
 	{
@@ -173,6 +173,13 @@ void System::Render()
 			m_window.draw(m_mapoptions[i]);
 		}
 		m_window.draw(m_playername);
+#ifdef _DEBUG
+		for (int i = 0; i < 5; i++)
+		{
+			m_window.draw(m_bounds[i]);
+		}
+#endif // _DEBUG
+
 	}
 	m_window.display();
 }
@@ -392,5 +399,24 @@ void System::MenuSetup(int numberofmaps)
 	m_mapoptions[i].setFillColor(sf::Color(102, 102, 51));
 	lwidth = m_mapoptions[i].getLocalBounds().width;
 	m_mapoptions[i].setPosition(sf::Vector2f((wglobal / 2) - (lwidth / 2), top));
+
+#ifdef _DEBUG
+	for (i = 0; i < 3; i++)
+	{
+		const sf::FloatRect bounds = m_mapoptions[i].getGlobalBounds();
+		m_bounds[i] = sf::RectangleShape(sf::Vector2f(bounds.width, bounds.height));
+		m_bounds[i].setPosition(bounds.left, bounds.top);
+		m_bounds[i].setFillColor(sf::Color(255, 255, 255, 15));
+	}
+	const sf::FloatRect bounds = m_center[1].getGlobalBounds();
+	m_bounds[i] = sf::RectangleShape(sf::Vector2f(bounds.width, bounds.height));
+	m_bounds[i].setPosition(bounds.left, bounds.top);
+	m_bounds[i].setFillColor(sf::Color(255, 255, 255, 15));
+	i++;
+	const sf::FloatRect exit = m_center[2].getGlobalBounds();
+	m_bounds[i] = sf::RectangleShape(sf::Vector2f(exit.width, exit.height));
+	m_bounds[i].setPosition(exit.left, exit.top);
+	m_bounds[i].setFillColor(sf::Color(255, 255, 255, 15));
+#endif // _DEBUG
 
 }
