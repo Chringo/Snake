@@ -15,9 +15,10 @@ public:
 	void SaveSession(int score);
 	void LoadLeaderboard(sf::Text * leaderboard);
 
+	void setName(std::string name);
 	sf::Font * getFont();
 private:
-
+	std::string m_name;
 	sf::Font m_mainfont;
 };
 #endif // AMADEUS_MAIN_FILEHANDLER_H_

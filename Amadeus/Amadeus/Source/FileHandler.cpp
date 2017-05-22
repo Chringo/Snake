@@ -109,6 +109,11 @@ void FileHandler::SaveSession(int score)
 	std::printf("\n");
 }
 
+void FileHandler::setName(std::string name)
+{
+	m_name = name;
+}
+
 sf::Font * FileHandler::getFont()
 {
 	return &m_mainfont;

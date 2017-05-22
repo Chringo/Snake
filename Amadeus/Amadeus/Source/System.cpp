@@ -15,14 +15,15 @@ int System::Init()
 	m_data.ImportFont("arcade/ARCADE.ttf");
 
 	m_playername.setString(this->PlayerSetsName());
-	std::string temp = m_playername.getString();
-	std::printf("Player: %s\n", temp.c_str());
+	//std::string temp = m_playername.getString();
+	//std::printf("Player: %s\n", temp.c_str());
 	if (m_window.isOpen())
 	{
 		m_game.setFileHandler(&m_data);
 		m_game.setMap("default.txt");
 		m_game.StaticSetup();
 
+		m_data.setName(m_playername.getString());
 		m_data.LoadLeaderboard(m_leaderboard);
 		this->MenuSetup(NUMBER_OF_MAPS);
 
